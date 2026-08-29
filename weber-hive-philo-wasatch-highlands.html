@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Chain Behind Wasatch Highlands — Follow the Deed — The Weber County Hive</title>
+<meta name="description" content="Four layers of LLCs, a Delaware dead end, and a Governor's-office seat on the board that signs off on a SITLA land deal in Wasatch County.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0B2545;
+    --bg-deep:#071A33;
+    --paper:#EAF4FB;
+    --cyan:#4FC3E8;
+    --cyan-dim:#2E6E8E;
+    --dim:#8E9AAF;
+    --amber:#F2B134;
+    --grid: rgba(79,195,232,0.09);
+    --grid-strong: rgba(79,195,232,0.16);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:
+      linear-gradient(var(--grid) 1px, transparent 1px) 0 0/40px 40px,
+      linear-gradient(90deg, var(--grid) 1px, transparent 1px) 0 0/40px 40px,
+      var(--bg);
+    color:var(--paper);
+    font-family:'IBM Plex Sans', Arial, sans-serif;
+    line-height:1.6;
+  }
+  a{color:var(--cyan);}
+  .wrap{max-width:900px;margin:0 auto;padding:0 24px;}
+
+  .corner-marks{position:relative;}
+  .corner-marks::before,.corner-marks::after{
+    content:"";position:absolute;width:18px;height:18px;
+    border-top:2px solid var(--cyan-dim);border-left:2px solid var(--cyan-dim);
+    top:0;left:0;
+  }
+  .corner-marks::after{
+    top:auto;left:auto;bottom:0;right:0;
+    border-top:none;border-left:none;
+    border-bottom:2px solid var(--cyan-dim);border-right:2px solid var(--cyan-dim);
+  }
+
+  header.masthead{
+    border-bottom:1px solid var(--cyan-dim);
+    background:linear-gradient(180deg, var(--bg-deep), var(--bg));
+  }
+  .topbar{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:14px 0;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;letter-spacing:1px;color:var(--dim);
+    border-bottom:1px solid rgba(79,195,232,0.15);
+    max-width:900px;margin:0 auto;padding-left:24px;padding-right:24px;
+  }
+  .topbar a{color:var(--dim);text-decoration:none;}
+  .topbar a:hover{color:var(--cyan);}
+
+  .masthead-inner{padding:48px 0 36px;}
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;font-size:12px;letter-spacing:3px;
+    color:var(--cyan);text-transform:uppercase;margin-bottom:14px;
+  }
+  h1{
+    font-family:'Space Grotesk', Arial, sans-serif;font-weight:700;
+    font-size:38px;line-height:1.1;margin:0 0 14px;color:var(--paper);
+  }
+  .dek{font-size:16.5px;color:var(--dim);max-width:620px;margin:0 0 8px;}
+  .byline{
+    font-family:'IBM Plex Mono', monospace;font-size:12px;color:var(--dim);
+    margin-top:20px;
+  }
+
+  main{padding:44px 0 90px;}
+
+  .jumpnav{
+    display:flex;flex-wrap:wrap;gap:8px;
+    margin-bottom:48px;
+  }
+  .jumpnav button{
+    font-family:'IBM Plex Mono', monospace;font-size:11.5px;
+    background:transparent;border:1px solid var(--cyan-dim);color:var(--dim);
+    padding:7px 12px;border-radius:2px;cursor:pointer;
+    transition:all .15s ease;
+  }
+  .jumpnav button:hover{color:var(--cyan);border-color:var(--cyan);}
+
+  section{margin-bottom:64px;scroll-margin-top:20px;}
+  .section-label{
+    font-family:'IBM Plex Mono', monospace;font-size:12px;letter-spacing:2px;
+    color:var(--cyan);text-transform:uppercase;margin-bottom:22px;
+    display:flex;align-items:center;gap:12px;
+  }
+  .section-label::after{content:"";flex:1;height:1px;background:var(--grid-strong);}
+  h2.title{
+    font-family:'Space Grotesk', Arial, sans-serif;font-size:26px;
+    margin:0 0 18px;color:var(--paper);
+  }
+  p{font-size:15.5px;color:var(--paper);margin:0 0 14px;}
+  .lede{font-size:17px;color:var(--dim);max-width:680px;}
+
+  /* --- primer: flip cards --- */
+  .primer-hint{
+    font-family:'IBM Plex Mono', monospace;font-size:11.5px;color:var(--dim);
+    margin-bottom:16px;
+  }
+  .primer-grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:18px;
+  }
+  .flip-card{
+    height:220px;
+    perspective:1200px;
+    cursor:pointer;
+  }
+  .flip-card:focus-visible{outline:2px solid var(--cyan);outline-offset:3px;}
+  .flip-inner{
+    position:relative;
+    width:100%;height:100%;
+    transition:transform .5s cubic-bezier(.4,.2,.2,1);
+    transform-style:preserve-3d;
+  }
+  .flip-card.flipped .flip-inner{transform:rotateY(180deg);}
+  .flip-face{
+    position:absolute;inset:0;
+    backface-visibility:hidden;
+    border:1px solid var(--cyan-dim);
+    background:rgba(79,195,232,0.03);
+    padding:20px 20px;
+    display:flex;flex-direction:column;
+    overflow-y:auto;
+  }
+  .flip-front{
+    justify-content:space-between;
+  }
+  .flip-front h3{
+    font-family:'Space Grotesk', Arial, sans-serif;font-size:18px;
+    color:var(--cyan);margin:0;
+  }
+  .flip-front .flip-mark{
+    font-family:'IBM Plex Mono', monospace;font-size:11px;color:var(--cyan-dim);
+    letter-spacing:1px;
+  }
+  .flip-front .flip-tap{
+    font-family:'IBM Plex Mono', monospace;font-size:10.5px;color:var(--dim);
+    text-transform:uppercase;letter-spacing:1px;
+    display:flex;align-items:center;gap:6px;
+  }
+  .flip-back{
+    transform:rotateY(180deg);
+    justify-content:flex-start;
+    background:rgba(7,26,51,0.7);
+    border-color:var(--cyan);
+  }
+  .flip-back p{font-size:13px;color:var(--paper);margin:0;line-height:1.5;}
+  @media (max-width:720px){
+    .primer-grid{grid-template-columns:1fr;}
+    .flip-card{height:220px;}
+  }
+
+  /* --- diagram --- */
+  .diagram-wrap{
+    border:1px solid var(--cyan-dim);
+    background:rgba(7,26,51,0.5);
+    padding:20px;
+    overflow-x:auto;
+  }
+  .diagram-caption{
+    font-family:'IBM Plex Mono', monospace;font-size:11.5px;color:var(--dim);
+    margin-top:12px;text-align:center;
+  }
+
+  /* --- chain flip-cards, mirror the diagram boxes above, readable at real size --- */
+  .chain-hint{
+    font-family:'IBM Plex Mono', monospace;font-size:11.5px;color:var(--dim);
+    margin:22px 0 14px;
+  }
+  .chain-grid{
+    display:grid;
+    grid-template-columns:repeat(5, 1fr);
+    gap:12px;
+  }
+  .chain-grid .flip-card{height:190px;}
+  .chain-grid .flip-front h3{font-size:14px;line-height:1.35;}
+  .chain-grid .flip-back p{font-size:12px;line-height:1.5;}
+  .chain-grid .flip-face{padding:14px;}
+  .chain-grid .flip-front .flip-tap{font-size:9.5px;}
+  @media (max-width:640px){
+    .chain-grid{grid-template-columns:repeat(2, 1fr);}
+    .chain-grid .flip-card{height:170px;}
+  }
+
+  /* --- stat pair --- */
+  .stat-pair{
+    display:grid;grid-template-columns:1fr auto 1fr;gap:20px;
+    align-items:center;
+    border:1px solid var(--cyan-dim);
+    background:rgba(7,26,51,0.5);
+    padding:28px;margin-bottom:20px;
+  }
+  .stat-block{text-align:center;}
+  .stat-num{
+    font-family:'Space Grotesk', Arial, sans-serif;font-weight:700;
+    font-size:34px;color:var(--paper);
+  }
+  .stat-num.hi{color:var(--amber);}
+  .stat-label{
+    font-family:'IBM Plex Mono', monospace;font-size:11.5px;color:var(--dim);
+    margin-top:6px;letter-spacing:0.5px;
+  }
+  .stat-arrow{
+    font-family:'IBM Plex Mono', monospace;color:var(--cyan);font-size:22px;
+  }
+  @media (max-width:640px){
+    .stat-pair{grid-template-columns:1fr;}
+    .stat-arrow{transform:rotate(90deg);}
+  }
+
+  /* --- table --- */
+  table{width:100%;border-collapse:collapse;font-size:14.5px;}
+  th,td{
+    text-align:left;padding:10px 12px;
+    border-bottom:1px solid rgba(79,195,232,0.15);
+    vertical-align:top;
+  }
+  th{
+    font-family:'IBM Plex Mono', monospace;font-size:11px;letter-spacing:1px;
+    color:var(--cyan);text-transform:uppercase;
+  }
+  td{color:var(--dim);}
+  td.name{color:var(--paper);font-weight:500;}
+
+  /* --- timeline --- */
+  .tl{border-left:2px solid var(--cyan-dim);padding-left:24px;margin-left:6px;}
+  .tl-item{position:relative;margin-bottom:26px;}
+  .tl-item::before{
+    content:"";position:absolute;left:-30px;top:4px;
+    width:9px;height:9px;border-radius:50%;
+    background:var(--cyan-dim);border:2px solid var(--bg);
+  }
+  .tl-item.flag::before{background:var(--amber);}
+  .tl-date{
+    font-family:'IBM Plex Mono', monospace;font-size:12px;color:var(--cyan);
+    margin-bottom:4px;
+  }
+  .tl-text{font-size:14.5px;color:var(--paper);}
+
+  /* --- flag box --- */
+  .flag-box{
+    border:1px solid var(--amber);
+    background:rgba(242,177,52,0.06);
+    padding:18px 22px;
+    margin:20px 0;
+  }
+  .flag-box .flag-label{
+    font-family:'IBM Plex Mono', monospace;font-size:11px;letter-spacing:1.5px;
+    color:var(--amber);text-transform:uppercase;margin-bottom:8px;
+  }
+  .flag-box p{color:var(--paper);font-size:14.5px;margin:0;}
+
+  details{
+    border:1px solid var(--cyan-dim);
+    background:rgba(7,26,51,0.4);
+    padding:14px 18px;margin-bottom:12px;
+  }
+  summary{
+    font-family:'IBM Plex Mono', monospace;font-size:13px;color:var(--cyan);
+    cursor:pointer;
+  }
+  details p, details ul{margin-top:12px;}
+  ul{padding-left:20px;}
+  li{color:var(--dim);font-size:14.5px;margin-bottom:8px;}
+  li strong{color:var(--paper);}
+
+  .sources{
+    font-family:'IBM Plex Mono', monospace;font-size:12px;color:var(--dim);
+    border-top:1px solid var(--cyan-dim);padding-top:16px;margin-top:20px;
+  }
+  .sources li{font-size:12px;}
+
+  footer{
+    border-top:1px solid var(--cyan-dim);padding:32px 0;
+    font-family:'IBM Plex Mono', monospace;font-size:11.5px;color:var(--dim);
+    text-align:center;
+  }
+  footer a{color:var(--dim);text-decoration:underline;}
+  footer a:hover{color:var(--cyan);}
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="topbar">
+    <a href="index.html">← Follow the Deed</a>
+    <span>CASE FILE · WASATCH COUNTY, UT</span>
+  </div>
+  <div class="wrap masthead-inner corner-marks">
+    <div class="eyebrow">Follow the Deed · Case File 01</div>
+    <h1>The Chain Behind Wasatch Highlands</h1>
+    <p class="dek">Four layers of LLCs, a Delaware dead end, and a Governor's-office seat on the board that signs off — traced entirely through public records.</p>
+    <div class="byline">The Weber County Hive · Updated Aug. 29, 2026</div>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+
+    <div class="jumpnav">
+      <button data-scroll-to="primer">Start here</button>
+      <button data-scroll-to="chain">The chain</button>
+      <button data-scroll-to="deal">The deal</button>
+      <button data-scroll-to="growth">The growth pattern</button>
+      <button data-scroll-to="coxtie">The state's seat at the table</button>
+      <button data-scroll-to="timeline">Timeline</button>
+      <button data-scroll-to="open">What's still open</button>
+    </div>
+
+    <section id="primer">
+      <div class="section-label">Start here</div>
+      <div class="primer-hint">Tap a card to flip it →</div>
+      <div class="primer-grid">
+
+        <div class="flip-card" tabindex="0" role="button" aria-pressed="false" aria-label="SITLA — tap to flip">
+          <div class="flip-inner">
+            <div class="flip-face flip-front">
+              <span class="flip-mark">01 · TERM</span>
+              <h3>SITLA</h3>
+              <span class="flip-tap">↻ Tap to flip</span>
+            </div>
+            <div class="flip-face flip-back">
+              <p>The state agency that manages roughly 3.4 million acres of Utah land, granted at statehood specifically to generate money for public schools and other beneficiaries. It leases and sells land to developers; the revenue goes into permanent school funds. Its board is appointed by the Governor.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="flip-card" tabindex="0" role="button" aria-pressed="false" aria-label="Option agreement — tap to flip">
+          <div class="flip-inner">
+            <div class="flip-face flip-front">
+              <span class="flip-mark">02 · TERM</span>
+              <h3>Option agreement</h3>
+              <span class="flip-tap">↻ Tap to flip</span>
+            </div>
+            <div class="flip-face flip-back">
+              <p>A contract where SITLA agrees it will lease land to a developer, but only once the developer clears certain conditions first — usually getting the local government to rezone the land for denser use. Nothing is final until those conditions are met.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="flip-card" tabindex="0" role="button" aria-pressed="false" aria-label="LLC chain — tap to flip">
+          <div class="flip-inner">
+            <div class="flip-face flip-front">
+              <span class="flip-mark">03 · TERM</span>
+              <h3>LLC chain</h3>
+              <span class="flip-tap">↻ Tap to flip</span>
+            </div>
+            <div class="flip-face flip-back">
+              <p>One LLC "manages" or "owns" another LLC, which owns another, and so on. Every layer is legal and common in real estate. The reason to care: each layer can be registered in a different state, and some states, Delaware notably, don't require the actual people behind a company to be listed anywhere public.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section id="chain">
+      <div class="section-label">The chain</div>
+      <h2 class="title">Who's actually behind "Mountain Venture Studios"</h2>
+      <p class="lede">SITLA's paperwork names its counterparty as "Mountain Venture Studios." That name isn't registered on its own in Utah. Tracing the entities it actually operates through takes four steps.</p>
+
+      <div class="diagram-wrap corner-marks" id="diagram"></div>
+      <div class="diagram-caption">Source: Utah Division of Corporations business entity search; OpenCorporates officer records; Philo Development's own team pages.</div>
+
+      <div class="chain-hint">Diagram text small? Tap each box below — same order, left to right.</div>
+      <div class="chain-grid">
+
+        <div class="flip-card" tabindex="0" role="button" aria-pressed="false" aria-label="SITLA — tap to flip">
+          <div class="flip-inner">
+            <div class="flip-face flip-front">
+              <span class="flip-mark">01</span>
+              <h3>SITLA</h3>
+              <span class="flip-tap">↻ Tap</span>
+            </div>
+            <div class="flip-face flip-back">
+              <p>State agency. Owns the underlying 720.96 acres — land granted at statehood to fund Utah's public schools. Its board is appointed by the Governor.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="flip-card" tabindex="0" role="button" aria-pressed="false" aria-label="Mountain Venture Studios — tap to flip">
+          <div class="flip-inner">
+            <div class="flip-face flip-front">
+              <span class="flip-mark">02</span>
+              <h3>Mountain Venture<br>Studios</h3>
+              <span class="flip-tap">↻ Tap</span>
+            </div>
+            <div class="flip-face flip-back">
+              <p>The name on SITLA's own paperwork. Not separately registered in Utah — it's the public operating name of Philo Ventures' real estate arm, confirmed via CFO Brett Keenan's own listed titles.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="flip-card" tabindex="0" role="button" aria-pressed="false" aria-label="Philo Development Group, LLC — tap to flip">
+          <div class="flip-inner">
+            <div class="flip-face flip-front">
+              <span class="flip-mark">03</span>
+              <h3>Philo Development<br>Group, LLC</h3>
+              <span class="flip-tap">↻ Tap</span>
+            </div>
+            <div class="flip-face flip-back">
+              <p>Utah LLC, entity #13120459-0160. Formed Nov. 14, 2022 — about 3.5 months before SITLA signed the option agreement. Managed by the next entity in this chain.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="flip-card" tabindex="0" role="button" aria-pressed="false" aria-label="Philo Venture Management, LLC — tap to flip">
+          <div class="flip-inner">
+            <div class="flip-face flip-front">
+              <span class="flip-mark">04</span>
+              <h3>Philo Venture<br>Management, LLC</h3>
+              <span class="flip-tap">↻ Tap</span>
+            </div>
+            <div class="flip-face flip-back">
+              <p>Delaware entity, entity #12976892-0161, registered as a foreign LLC in Utah. Formed Aug. 8, 2022. Managed by the next entity in this chain.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="flip-card" tabindex="0" role="button" aria-pressed="false" aria-label="Philo Venture Partners, LLC — tap to flip">
+          <div class="flip-inner">
+            <div class="flip-face flip-front">
+              <span class="flip-mark">05</span>
+              <h3>Philo Venture<br>Partners, LLC</h3>
+              <span class="flip-tap">↻ Tap</span>
+            </div>
+            <div class="flip-face flip-back">
+              <p>Delaware entity, #13856269-0161. Utah filing left managers/members blank — legal, and optional. OpenCorporates independently shows Chad Staheli, Philo's co-founder &amp; CEO, as manager.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="flag-box" style="margin-top:24px;">
+        <div class="flag-label">Where the public trail ends</div>
+        <p>Philo Venture Partners, LLC's Utah filing left the managers/members field blank — legal, and optional under Utah law. Delaware, its home jurisdiction, doesn't require that information to be public at all. What closes the loop instead: OpenCorporates' officer records independently show <strong>Chad Staheli</strong> personally listed as manager of that entity and the one above it, filed the same day, Feb. 28, 2024.</p>
+      </div>
+
+      <details>
+        <summary>The named individuals identified so far</summary>
+        <ul>
+          <li><strong>Chad Staheli</strong> — Co-Founder &amp; CEO, Philo Ventures. Personally named manager on Philo Development Group, LLC and Philo Venture Partners, LLC.</li>
+          <li><strong>Cory Cozzens</strong> — Co-Founder &amp; Managing Partner, Philo Ventures.</li>
+          <li><strong>Brett Keenan</strong> — CFO &amp; General Counsel, Philo Ventures. Signed the Philo Venture Partners, LLC Utah filing.</li>
+          <li><strong>Greg Whitehead</strong> — Partner, Philo Ventures; the public-facing name on the Wasatch Highlands preliminary-municipality application specifically.</li>
+        </ul>
+      </details>
+    </section>
+
+    <section id="deal">
+      <div class="section-label">The deal</div>
+      <h2 class="title">What SITLA says the land is worth — before and after</h2>
+      <p class="lede">These numbers come from SITLA's own board packet, not an outside appraisal or our estimate.</p>
+
+      <div class="stat-pair">
+        <div class="stat-block">
+          <div class="stat-num">$3.6M</div>
+          <div class="stat-label">As appraised, current zoning<br>(5 homes max, 720.96 acres)</div>
+        </div>
+        <div class="stat-arrow">→</div>
+        <div class="stat-block">
+          <div class="stat-num hi">~$16M</div>
+          <div class="stat-label">Projected, IF county grants<br>rezone to 100+ lots</div>
+        </div>
+      </div>
+
+      <table>
+        <tr><th>Item</th><th>Detail</th></tr>
+        <tr><td class="name">Structure</td><td>A Mutual Option Agreement (DEVL 1297) signed Feb. 28, 2023 — not a sale. SITLA keeps title; agrees to a 10-year development lease if two conditions are met.</td></tr>
+        <tr><td class="name">Condition 1</td><td>County rezones from Preservation (P-160)/Mountain (M) to Residential Agricultural (RA-5); developer commits to a minimum of 100 lots.</td></tr>
+        <tr><td class="name">Condition 2</td><td>Developer secures water rights to service at least 100 lots.</td></tr>
+        <tr><td class="name">Original deadline</td><td>Jan. 1, 2025</td></tr>
+        <tr><td class="name">Extended deadline</td><td>Jan. 1, 2027 — approved by SITLA's board Sept. 19, 2024</td></tr>
+      </table>
+    </section>
+
+    <section id="growth">
+      <div class="section-label">The growth pattern</div>
+      <h2 class="title">A scope that expanded stage by stage</h2>
+      <p class="lede">Not a plan announced all at once — a request that grew, in public records, across four stages.</p>
+
+      <div class="tl">
+        <div class="tl-item">
+          <div class="tl-date">FEB 2023</div>
+          <div class="tl-text">SITLA option agreement: rezone to RA-5, minimum 100 lots, just the 720-acre state parcel.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date">SEPT 2024</div>
+          <div class="tl-text">SITLA's own memo: the project is now bundled with the Christensen family's 3,500 acres into a roughly 4,000-acre master plan — "increased size and scope," in the memo's own words.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date">2025–2026</div>
+          <div class="tl-text">The private land splits off and becomes a preliminary-municipality bid: 700+ homes, a hotel, glamping, retail. The SITLA piece, still nominally 144 units, is pursued separately as a legislative development agreement.</div>
+        </div>
+        <div class="tl-item flag">
+          <div class="tl-date">AUG 2026</div>
+          <div class="tl-text">Wasatch County rejects the 144-lot piece. SITLA's Jan. 2027 deadline still stands — built on a revenue projection assuming 100+ lots, a number already superseded twice by bigger plans.</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="coxtie">
+      <div class="section-label">The state's seat at the table</div>
+      <h2 class="title">A Governor's-office staffer sits on SITLA's board</h2>
+      <p><strong>Mike Mower</strong> holds SITLA's seventh, at-large board seat — appointed, per SITLA's own board page, "at the pleasure of the Governor," with a term that "does not expire." His day job: Senior Advisor for Community Outreach and Intergovernmental Relations, Governor Cox's office. He remained seated as of the board's Aug. 20, 2026 meeting.</p>
+      <p>That meeting's agenda — posted a day before Wasatch County's rejection of the 144-lot deal — had no item concerning this parcel at all. A separate, unrelated Philo Development transaction near Bryce Canyon National Park did appear on the same agenda, confirming Philo's relationship with SITLA extends beyond this one deal.</p>
+    </section>
+
+    <section id="timeline">
+      <div class="section-label">Full timeline</div>
+      <h2 class="title">Every date, in order</h2>
+      <div class="tl">
+        <div class="tl-item"><div class="tl-date">2022-08-08</div><div class="tl-text">Philo Venture Management, LLC formed (Delaware)</div></div>
+        <div class="tl-item"><div class="tl-date">2022-11-14</div><div class="tl-text">Philo Development Group, LLC formed (Utah)</div></div>
+        <div class="tl-item"><div class="tl-date">2022-12-02</div><div class="tl-text">MVS Payroll Services, Inc. formed (Keenan + Staheli named officers)</div></div>
+        <div class="tl-item"><div class="tl-date">2023-02-28</div><div class="tl-text">SITLA signs Mutual Option Agreement (DEVL 1297) with Mountain Venture Studios for 720.96 acres</div></div>
+        <div class="tl-item"><div class="tl-date">2024-02-28</div><div class="tl-text">Philo Venture Partners, LLC (Delaware) files as foreign LLC in Utah, signed by Brett Keenan</div></div>
+        <div class="tl-item"><div class="tl-date">2024-09-19</div><div class="tl-text">SITLA board extends DEVL 1297 deadline to Jan. 1, 2027; projects ~$16M revenue if rezone succeeds</div></div>
+        <div class="tl-item"><div class="tl-date">2026-02-17</div><div class="tl-text">Lt. Gov. Henderson approves Wasatch Highlands as a preliminary municipality (separate, adjacent process)</div></div>
+        <div class="tl-item"><div class="tl-date">2026-08-13</div><div class="tl-text">Wasatch County Council stops Philo's legislative development agreement request</div></div>
+        <div class="tl-item"><div class="tl-date">2026-08-18</div><div class="tl-text">Steve Waldrip delivers B&amp;C road-funds threat to Heber City Council on Gov. Cox's behalf</div></div>
+        <div class="tl-item"><div class="tl-date">2026-08-19</div><div class="tl-text">Wasatch County Council formally rejects the 144-lot legislative development agreement</div></div>
+        <div class="tl-item"><div class="tl-date">2026-08-20</div><div class="tl-text">SITLA board meets — no item on this deal appears on the agenda</div></div>
+        <div class="tl-item flag"><div class="tl-date">2027-01-01</div><div class="tl-text">Extended due-diligence deadline on DEVL 1297</div></div>
+      </div>
+    </section>
+
+    <section id="open">
+      <div class="section-label">What's still open</div>
+      <h2 class="title">Not yet confirmed</h2>
+      <ul>
+        <li>Whether Chad Staheli, Cory Cozzens, or Brett Keenan have personally donated to Gov. Cox or other Utah candidates — not yet checked. (Greg Whitehead and Philo Ventures were checked previously; no results.)</li>
+        <li>Whether "Mountain Venture Holdings, LLC" (a similarly-named but separately registered Utah entity) has any relationship to Mountain Venture Studios — no link found so far; treated as unconfirmed, not as a lead.</li>
+        <li>Whether Philo has asked SITLA's board for a further extension since the county's Aug. 19, 2026 rejection — SITLA's Sept. and Oct. 2026 board agendas were not yet posted as of this writing.</li>
+        <li>Whether SITLA's own $3.6M / $16M figures reflect a fair valuation of the land — an open question, not yet independently assessed.</li>
+      </ul>
+
+      <div class="sources">
+        <strong style="color:var(--cyan);">SOURCES</strong>
+        <ul>
+          <li>SITLA Board of Trustees packet, Sept. 19, 2024 (utah.gov/pmn/files/1170083.pdf)</li>
+          <li>SITLA Board of Trustees agenda, Aug. 20, 2026 (utah.gov/pmn/files/1472105.pdf)</li>
+          <li>Utah Division of Corporations business entity search (corporations.utah.gov)</li>
+          <li>OpenCorporates officer records</li>
+          <li>trustlands.utah.gov, Board of Trustees page</li>
+          <li>Park Record, Aug. 13 &amp; 21, 2026; KPCW, Aug. 18, 19 &amp; 26, 2026</li>
+        </ul>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    THE WEBER COUNTY HIVE — INDEPENDENT ACCOUNTABILITY JOURNALISM<br>
+    <a href="index.html">Follow the Deed</a> ·
+    <a href="https://weber-county-hive.github.io/-weber-county-hive-index/">Master Index</a> ·
+    <a href="https://webercountyhive.substack.com">Substack</a>
+  </div>
+</footer>
+
+<script>
+  // primer flip-cards — click/tap or keyboard (Enter/Space) toggles the flip
+  document.querySelectorAll('.flip-card').forEach(card => {
+    const toggle = () => {
+      const flipped = card.classList.toggle('flipped');
+      card.setAttribute('aria-pressed', flipped ? 'true' : 'false');
+    };
+    card.addEventListener('click', toggle);
+    card.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); }
+    });
+  });
+
+  // in-page jump nav — buttons + scrollIntoView, not anchor hrefs
+  document.querySelectorAll('[data-scroll-to]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const target = document.getElementById(btn.getAttribute('data-scroll-to'));
+      if (target) target.scrollIntoView({behavior:'smooth', block:'start'});
+    });
+  });
+
+  // ---- ownership chain diagram, drawn as an SVG blueprint schematic ----
+  (function(){
+    const nodes = [
+      {label:"SITLA", sub:"State agency", x:40},
+      {label:"Mountain Venture\nStudios", sub:"Public-facing name", x:250},
+      {label:"Philo Development\nGroup, LLC", sub:"Utah · formed 11/2022", x:460},
+      {label:"Philo Venture\nManagement, LLC", sub:"Delaware", x:670},
+      {label:"Philo Venture\nPartners, LLC", sub:"Delaware · no managers listed", x:880},
+    ];
+    const W = 1080, H = 220, boxW = 170, boxH = 76, y = 90;
+    let svg = `<svg viewBox="0 0 ${W} ${H}" width="100%" xmlns="http://www.w3.org/2000/svg" font-family="IBM Plex Mono, monospace">`;
+    for (let i=0;i<nodes.length-1;i++){
+      const x1 = nodes[i].x + boxW;
+      const x2 = nodes[i+1].x;
+      svg += `<line x1="${x1}" y1="${y+boxH/2}" x2="${x2}" y2="${y+boxH/2}" stroke="#4FC3E8" stroke-width="1.5"/>`;
+      svg += `<polygon points="${x2-8},${y+boxH/2-5} ${x2},${y+boxH/2} ${x2-8},${y+boxH/2+5}" fill="#4FC3E8"/>`;
+    }
+    nodes.forEach((n, i) => {
+      const stroke = i === nodes.length-1 ? "#F2B134" : "#4FC3E8";
+      svg += `<rect x="${n.x}" y="${y}" width="${boxW}" height="${boxH}" fill="rgba(79,195,232,0.05)" stroke="${stroke}" stroke-width="1.5"/>`;
+      const lines = n.label.split("\n");
+      lines.forEach((line, li) => {
+        svg += `<text x="${n.x+boxW/2}" y="${y+28+li*16}" fill="#EAF4FB" font-size="13" text-anchor="middle" font-weight="600">${line}</text>`;
+      });
+      svg += `<text x="${n.x+boxW/2}" y="${y+boxH-12}" fill="#8E9AAF" font-size="10" text-anchor="middle">${n.sub}</text>`;
+    });
+    svg += `<text x="${nodes[nodes.length-1].x+boxW/2}" y="${y+boxH+24}" fill="#F2B134" font-size="11" text-anchor="middle">↳ named individual: Chad Staheli, manager (OpenCorporates)</text>`;
+    svg += `</svg>`;
+    document.getElementById('diagram').innerHTML = svg;
+  })();
+</script>
+
+</body>
+</html>
