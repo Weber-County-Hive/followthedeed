@@ -4,301 +4,215 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Follow the Deed — The Weber County Hive</title>
-<meta name="description" content="Tracking the people, LLCs, and paper trails behind Utah land deals.">
+<meta name="description" content="Person- and entity-centered case files tracing LLC ownership chains behind Utah land deals.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#0B2545;
-    --bg-deep:#071A33;
-    --paper:#EAF4FB;
+    --navy:#0B2545;
+    --navy-deep:#081b34;
+    --panel:#102d54;
     --cyan:#4FC3E8;
-    --cyan-dim:#2E6E8E;
-    --dim:#8E9AAF;
-    --amber:#F2B134;
-    --grid: rgba(79,195,232,0.09);
-    --grid-strong: rgba(79,195,232,0.16);
+    --cyan-dim: rgba(79,195,232,0.35);
+    --paper:#EDF2F7;
+    --paper-dim:#B9C7D6;
+    --mono:'IBM Plex Mono', ui-monospace, monospace;
+    --sans:'Space Grotesk', sans-serif;
   }
   *{box-sizing:border-box;}
-  html,body{margin:0;padding:0;}
   body{
-    background:
-      linear-gradient(var(--grid) 1px, transparent 1px) 0 0/40px 40px,
-      linear-gradient(90deg, var(--grid) 1px, transparent 1px) 0 0/40px 40px,
-      var(--bg);
+    margin:0;
+    background:var(--navy);
     color:var(--paper);
-    font-family:'IBM Plex Sans', Arial, sans-serif;
+    font-family:var(--sans);
     line-height:1.55;
-    min-height:100vh;
   }
+  .wrap{max-width:960px;margin:0 auto;padding:0 24px;}
   a{color:var(--cyan);}
 
-  /* ---- corner drafting marks, used a few times on the page ---- */
-  .corner-marks{position:relative;}
-  .corner-marks::before,
-  .corner-marks::after{
-    content:"";
-    position:absolute;
-    width:18px;height:18px;
-    border-top:2px solid var(--cyan-dim);
-    border-left:2px solid var(--cyan-dim);
-    top:0;left:0;
-  }
-  .corner-marks::after{
-    top:auto;left:auto;bottom:0;right:0;
-    border-top:none;border-left:none;
-    border-bottom:2px solid var(--cyan-dim);
-    border-right:2px solid var(--cyan-dim);
+  .blueprint-bg{
+    background-image:
+      linear-gradient(var(--cyan-dim) 1px, transparent 1px),
+      linear-gradient(90deg, var(--cyan-dim) 1px, transparent 1px);
+    background-size:32px 32px;
+    background-color:var(--navy-deep);
+    opacity:0.18;
+    position:absolute; inset:0;
+    pointer-events:none;
   }
 
   header.masthead{
-    border-bottom:1px solid var(--cyan-dim);
-    background:linear-gradient(180deg, var(--bg-deep), var(--bg));
-  }
-  .wrap{max-width:1040px;margin:0 auto;padding:0 24px;}
-  .topbar{
-    display:flex;align-items:center;justify-content:space-between;
-    padding:14px 0;
-    font-family:'IBM Plex Mono', monospace;
-    font-size:12px;
-    letter-spacing:1px;
-    color:var(--dim);
-    border-bottom:1px solid rgba(79,195,232,0.15);
-  }
-  .topbar a{color:var(--dim);text-decoration:none;}
-  .topbar a:hover{color:var(--cyan);}
-
-  .masthead-inner{padding:56px 0 44px;}
-  .eyebrow{
-    font-family:'IBM Plex Mono', monospace;
-    font-size:12px;
-    letter-spacing:3px;
-    color:var(--cyan);
-    text-transform:uppercase;
-    margin-bottom:14px;
-  }
-  h1{
-    font-family:'Space Grotesk', Arial, sans-serif;
-    font-weight:700;
-    font-size:44px;
-    line-height:1.08;
-    margin:0 0 16px;
-    color:var(--paper);
-    max-width:760px;
-  }
-  .dek{
-    font-size:17px;
-    color:var(--dim);
-    max-width:620px;
-    margin:0;
-  }
-
-  /* signature motif: a small ownership-chain diagram, repeated as decoration */
-  .chain-motif{
-    display:flex;align-items:center;gap:6px;
-    margin-top:28px;
-    font-family:'IBM Plex Mono', monospace;
-    font-size:11px;
-    color:var(--cyan-dim);
-  }
-  .chain-node{
-    border:1px solid var(--cyan-dim);
-    padding:5px 10px;
-    border-radius:2px;
-    color:var(--dim);
-    background:rgba(79,195,232,0.04);
-  }
-  .chain-link{color:var(--cyan-dim);}
-
-  main{padding:56px 0 90px;}
-
-  .section-label{
-    font-family:'IBM Plex Mono', monospace;
-    font-size:12px;
-    letter-spacing:2px;
-    color:var(--cyan);
-    text-transform:uppercase;
-    margin-bottom:24px;
-    display:flex;align-items:center;gap:12px;
-  }
-  .section-label::after{
-    content:"";
-    flex:1;height:1px;
-    background:var(--grid-strong);
-  }
-
-  .about-box{
-    border:1px solid var(--cyan-dim);
-    background:rgba(79,195,232,0.03);
-    padding:24px 28px;
-    margin-bottom:56px;
-    font-size:15px;
-    color:var(--paper);
-  }
-  .about-box p{margin:0 0 12px;}
-  .about-box p:last-child{margin-bottom:0;}
-  .about-box strong{color:var(--cyan);}
-
-  .cards{
-    display:grid;
-    grid-template-columns:1fr;
-    gap:20px;
-  }
-  .card{
-    border:1px solid var(--cyan-dim);
-    background:rgba(7,26,51,0.5);
-    padding:26px 28px;
-    text-decoration:none;
-    display:block;
-    color:var(--paper);
-    transition:border-color .15s ease, background .15s ease;
     position:relative;
+    padding:56px 0 40px;
+    border-bottom:1px solid var(--cyan-dim);
+    overflow:hidden;
   }
-  .card:hover{
-    border-color:var(--cyan);
-    background:rgba(79,195,232,0.05);
+  .repo-tag{
+    font-family:var(--mono); font-size:13px; letter-spacing:0.04em;
+    color:var(--cyan); margin-bottom:18px;
   }
-  .card-top{
-    display:flex;
-    justify-content:space-between;
-    align-items:baseline;
-    gap:16px;
-    margin-bottom:10px;
-    font-family:'IBM Plex Mono', monospace;
-    font-size:11px;
-    color:var(--dim);
-    letter-spacing:1px;
+  h1.title{
+    font-size:clamp(30px,5vw,46px);
+    font-weight:700; line-height:1.1; margin:0 0 16px; max-width:18ch;
   }
-  .card-status{
-    color:var(--cyan);
-    border:1px solid var(--cyan-dim);
-    padding:2px 8px;
-    border-radius:2px;
-    white-space:nowrap;
-  }
-  .card h2{
-    font-family:'Space Grotesk', Arial, sans-serif;
-    font-size:24px;
-    margin:0 0 8px;
-    color:var(--paper);
-  }
-  .card .subject{
-    font-size:13px;
-    color:var(--cyan);
-    font-family:'IBM Plex Mono', monospace;
-    margin-bottom:10px;
-  }
-  .card .dek{
-    font-size:15px;
-    color:var(--dim);
-    margin:0 0 16px;
-    max-width:640px;
-  }
-  .card .tags{
-    display:flex;flex-wrap:wrap;gap:8px;
-  }
-  .tag{
-    font-family:'IBM Plex Mono', monospace;
-    font-size:10.5px;
-    letter-spacing:0.5px;
-    color:var(--dim);
-    border:1px solid rgba(142,154,175,0.35);
-    padding:3px 8px;
-    border-radius:2px;
+  p.dek{
+    font-size:18px; color:var(--paper-dim); max-width:60ch; margin:0;
   }
 
-  .empty-slot{
-    border:1px dashed var(--cyan-dim);
-    padding:26px 28px;
-    color:var(--dim);
-    font-family:'IBM Plex Mono', monospace;
-    font-size:13px;
-    text-align:center;
+  .controls{
+    display:flex; gap:12px; flex-wrap:wrap;
+    padding:28px 0; border-bottom:1px solid var(--cyan-dim);
+  }
+  #searchBox{
+    flex:1 1 260px;
+    background:var(--panel); border:1px solid var(--cyan-dim); color:var(--paper);
+    font-family:var(--sans); font-size:15px; padding:10px 14px; border-radius:2px;
+  }
+  #searchBox::placeholder{color:var(--paper-dim);}
+  #searchBox:focus{outline:2px solid var(--cyan); outline-offset:1px;}
+  #countyFilter{
+    background:var(--panel); border:1px solid var(--cyan-dim); color:var(--paper);
+    font-family:var(--mono); font-size:13.5px; padding:10px 14px; border-radius:2px; cursor:pointer;
+  }
+  #resultCount{
+    font-family:var(--mono); font-size:12.5px; color:var(--cyan);
+    align-self:center; margin-left:auto;
+  }
+
+  .case-grid{
+    display:grid; gap:18px;
+    padding:32px 0 64px;
+    grid-template-columns:1fr;
+  }
+  .case-card{
+    display:block; text-decoration:none;
+    border:1px solid var(--cyan-dim); background:var(--panel);
+    padding:24px; transition:border-color .15s;
+  }
+  .case-card:hover{border-color:var(--cyan);}
+  .case-top{
+    display:flex; justify-content:space-between; align-items:baseline;
+    flex-wrap:wrap; gap:8px; margin-bottom:10px;
+  }
+  .case-num{font-family:var(--mono); font-size:12px; color:var(--cyan); letter-spacing:0.05em;}
+  .case-date{font-family:var(--mono); font-size:11.5px; color:var(--paper-dim);}
+  .case-title{font-size:21px; font-weight:700; color:var(--paper); margin:0 0 8px;}
+  .case-summary{font-size:14.5px; color:var(--paper-dim); margin:0 0 14px; max-width:70ch;}
+  .case-meta{display:flex; gap:8px; flex-wrap:wrap; align-items:center;}
+  .county-pill{
+    font-family:var(--mono); font-size:10.5px; letter-spacing:0.04em;
+    color:var(--cyan); background:rgba(79,195,232,0.14); border:1px solid var(--cyan);
+    padding:2px 9px; border-radius:2px;
+  }
+  .tag-pill{
+    font-family:var(--mono); font-size:10.5px;
+    color:var(--paper-dim); background:rgba(185,199,214,0.08); border:1px solid var(--cyan-dim);
+    padding:2px 9px; border-radius:2px;
+  }
+  .no-results{
+    font-family:var(--mono); font-size:14px; color:var(--paper-dim);
+    padding:40px 0; text-align:center;
   }
 
   footer{
+    padding:32px 0 56px; font-family:var(--mono); font-size:12.5px; color:var(--paper-dim);
     border-top:1px solid var(--cyan-dim);
-    padding:32px 0;
-    font-family:'IBM Plex Mono', monospace;
-    font-size:11.5px;
-    color:var(--dim);
-    text-align:center;
   }
-  footer a{color:var(--dim);text-decoration:underline;}
-  footer a:hover{color:var(--cyan);}
 </style>
 </head>
 <body>
 
 <header class="masthead">
-  <div class="wrap topbar">
-    <a href="https://weber-county-hive.github.io/-weber-county-hive-index/">← Master Index</a>
-    <span>THE WEBER COUNTY HIVE / FOLLOW THE DEED</span>
-  </div>
-  <div class="wrap masthead-inner corner-marks">
-    <div class="eyebrow">Case file series</div>
-    <h1>Follow the Deed</h1>
-    <p class="dek">Who's actually behind a piece of Utah land, once you trace the LLCs, the registered agents, and the state paperwork all the way down.</p>
-    <div class="chain-motif">
-      <span class="chain-node">Public land</span>
-      <span class="chain-link">→</span>
-      <span class="chain-node">Option agreement</span>
-      <span class="chain-link">→</span>
-      <span class="chain-node">LLC</span>
-      <span class="chain-link">→</span>
-      <span class="chain-node">LLC</span>
-      <span class="chain-link">→</span>
-      <span class="chain-node">Delaware</span>
-      <span class="chain-link">→</span>
-      <span class="chain-node">?</span>
-    </div>
+  <div class="blueprint-bg"></div>
+  <div class="wrap">
+    <div class="repo-tag">FOLLOW THE DEED</div>
+    <h1 class="title">Who's behind the deed, and what did they get</h1>
+    <p class="dek">Person- and entity-centered case files tracing LLC ownership chains behind Utah land deals — public land, county land, and everything in between.</p>
   </div>
 </header>
 
-<main>
-  <div class="wrap">
-
-    <div class="about-box">
-      <p><strong>What this is.</strong> Utah's public land — trust land managed for schools, county-owned parcels, state-brokered deals — regularly ends up in the hands of developers who operate through a stack of LLCs, often several layers deep, often routed through Delaware or another state that doesn't require ownership to be disclosed.</p>
-      <p>Each case file here starts from public records only — the Utah Division of Corporations, state agency board packets, county filings — and follows the chain as far as it can be followed. Where the chain dead-ends, we say so plainly, rather than guessing at who's on the other side.</p>
-    </div>
-
-    <div class="section-label">Case files</div>
-
-    <div class="cards" id="cards"></div>
-    <div class="empty-slot" id="empty-slot" style="display:none;">Next case file in progress.</div>
-
+<div class="wrap">
+  <div class="controls">
+    <input type="text" id="searchBox" placeholder="Search titles, summaries, tags…">
+    <select id="countyFilter">
+      <option value="all">All counties</option>
+    </select>
+    <span id="resultCount"></span>
   </div>
-</main>
+
+  <div class="case-grid" id="caseGrid"></div>
+</div>
 
 <footer>
   <div class="wrap">
-    THE WEBER COUNTY HIVE — INDEPENDENT ACCOUNTABILITY JOURNALISM<br>
-    <a href="https://webercountyhive.substack.com">webercountyhive.substack.com</a> ·
-    <a href="https://weber-county-hive.github.io/-weber-county-hive-index/">Master Index</a>
+    <p>The Weber County Hive — accountability journalism for Weber County, Utah. We report the filings. You decide what they mean.</p>
   </div>
 </footer>
 
-<script src="weber-hive-followthedeed-data.js?v=1"></script>
+<script src="followthedeed-data.js"></script>
 <script>
-  const container = document.getElementById('cards');
-  FOLLOW_THE_DEED_CASES.forEach(c => {
-    const a = document.createElement('a');
-    a.className = 'card';
-    a.href = c.file;
-    a.innerHTML = `
-      <div class="card-top">
-        <span>${c.location} · ADDED ${c.dateAdded}</span>
-        <span class="card-status">${c.status.toUpperCase()}</span>
-      </div>
-      <h2>${c.title}</h2>
-      <div class="subject">${c.subject}</div>
-      <p class="dek">${c.dek}</p>
-      <div class="tags">${c.tags.map(t => `<span class="tag">${t}</span>`).join('')}</div>
-    `;
-    container.appendChild(a);
-  });
+  (function(){
+    var grid = document.getElementById('caseGrid');
+    var search = document.getElementById('searchBox');
+    var countySel = document.getElementById('countyFilter');
+    var count = document.getElementById('resultCount');
+
+    // Populate county dropdown from data
+    var counties = Array.from(new Set(FOLLOWTHEDEED_CASES.map(function(c){ return c.county; }))).sort();
+    counties.forEach(function(c){
+      var opt = document.createElement('option');
+      opt.value = c; opt.textContent = c + ' County';
+      countySel.appendChild(opt);
+    });
+
+    function fmtDate(iso){
+      var d = new Date(iso + 'T00:00:00');
+      return d.toLocaleDateString('en-US', { year:'numeric', month:'short', day:'numeric' });
+    }
+
+    function render(){
+      var q = search.value.trim().toLowerCase();
+      var countyVal = countySel.value;
+      var sorted = FOLLOWTHEDEED_CASES.slice().sort(function(a,b){ return b.dateAdded.localeCompare(a.dateAdded); });
+      var matches = sorted.filter(function(c){
+        var countyOk = (countyVal === 'all') || (c.county === countyVal);
+        if(!countyOk) return false;
+        if(!q) return true;
+        var haystack = (c.title + ' ' + c.summary + ' ' + c.tags.join(' ') + ' ' + c.county).toLowerCase();
+        return haystack.indexOf(q) !== -1;
+      });
+
+      count.textContent = matches.length + ' of ' + FOLLOWTHEDEED_CASES.length + ' cases';
+      grid.innerHTML = '';
+      if(matches.length === 0){
+        grid.innerHTML = '<div class="no-results">No cases match that search.</div>';
+        return;
+      }
+      matches.forEach(function(c){
+        var a = document.createElement('a');
+        a.className = 'case-card';
+        a.href = c.file;
+        var tagsHtml = c.tags.map(function(t){ return '<span class="tag-pill">' + t + '</span>'; }).join('');
+        a.innerHTML =
+          '<div class="case-top">' +
+            '<span class="case-num">CASE ' + c.caseNumber + '</span>' +
+            '<span class="case-date">Added ' + fmtDate(c.dateAdded) + '</span>' +
+          '</div>' +
+          '<div class="case-title">' + c.title + '</div>' +
+          '<p class="case-summary">' + c.summary + '</p>' +
+          '<div class="case-meta">' +
+            '<span class="county-pill">' + c.county + ' County</span>' +
+            tagsHtml +
+          '</div>';
+        grid.appendChild(a);
+      });
+    }
+
+    search.addEventListener('input', render);
+    countySel.addEventListener('change', render);
+    render();
+  })();
 </script>
 
 </body>
