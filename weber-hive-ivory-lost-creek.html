@@ -1,0 +1,1197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Backstop That Became a Bypass — Follow the Deed</title>
+<meta name="description" content="Ivory Homes used a landowner LLC and a 2024 state law to seek a town of its own in Summit County. The vote to add county oversight failed by one.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0B2545;
+    --navy-deep:#081b34;
+    --panel:#102d54;
+    --cyan:#4FC3E8;
+    --cyan-dim: rgba(79,195,232,0.35);
+    --paper:#EDF2F7;
+    --paper-dim:#B9C7D6;
+    --nay:#E8A24F;
+    --yea:#4FC3E8;
+    --abs:#7A8CA3;
+    --mono:'IBM Plex Mono', ui-monospace, monospace;
+    --sans:'Space Grotesk', sans-serif;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--navy);
+    color:var(--paper);
+    font-family:var(--sans);
+    line-height:1.55;
+  }
+  .wrap{max-width:900px;margin:0 auto;padding:0 24px;}
+  a{color:var(--cyan);}
+
+  /* --- blueprint grid backdrop --- */
+  .blueprint-bg{
+    background-image:
+      linear-gradient(var(--cyan-dim) 1px, transparent 1px),
+      linear-gradient(90deg, var(--cyan-dim) 1px, transparent 1px);
+    background-size:32px 32px;
+    background-color:var(--navy-deep);
+    opacity:0.18;
+    position:absolute;
+    inset:0;
+    pointer-events:none;
+  }
+
+  /* --- masthead --- */
+  header.masthead{
+    position:relative;
+    padding:64px 0 48px;
+    border-bottom:1px solid var(--cyan-dim);
+    overflow:hidden;
+  }
+  .case-tag{
+    font-family:var(--mono);
+    font-size:13px;
+    letter-spacing:0.04em;
+    color:var(--cyan);
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:22px;
+  }
+  .case-tag .reg-mark{
+    width:9px;height:9px;border:1px solid var(--cyan);border-radius:50%;
+    position:relative;
+  }
+  .case-tag .reg-mark::after{
+    content:"";position:absolute;top:50%;left:50%;
+    width:14px;height:1px;background:var(--cyan);
+    transform:translate(-50%,-50%);
+  }
+  .case-tag .reg-mark::before{
+    content:"";position:absolute;top:50%;left:50%;
+    width:1px;height:14px;background:var(--cyan);
+    transform:translate(-50%,-50%);
+  }
+  h1.title{
+    font-size:clamp(32px,5vw,52px);
+    font-weight:700;
+    line-height:1.08;
+    margin:0 0 20px;
+    max-width:16ch;
+  }
+  p.dek{
+    font-size:19px;
+    color:var(--paper-dim);
+    max-width:56ch;
+    margin:0 0 28px;
+  }
+  .byline{
+    font-family:var(--mono);
+    font-size:13px;
+    color:var(--paper-dim);
+    border-top:1px dashed var(--cyan-dim);
+    padding-top:16px;
+    display:flex;
+    gap:24px;
+    flex-wrap:wrap;
+  }
+
+  /* --- sections --- */
+  section{padding:56px 0;position:relative;}
+  section + section{border-top:1px solid var(--cyan-dim);}
+  .sec-num{
+    font-family:var(--mono);
+    font-size:13px;
+    color:var(--cyan);
+    letter-spacing:0.05em;
+    margin-bottom:10px;
+  }
+  h2{
+    font-size:clamp(24px,3.4vw,32px);
+    margin:0 0 18px;
+    max-width:22ch;
+  }
+  p{max-width:68ch;}
+  .lede{font-size:17px;color:var(--paper-dim);}
+
+  /* --- entity chain diagram (horizontal flow on wide screens) --- */
+  .chain{
+    display:flex;
+    flex-direction:row;
+    align-items:stretch;
+    gap:0;
+    margin:36px 0;
+    max-width:100%;
+  }
+  .chain-node{
+    border:1px solid var(--cyan-dim);
+    background:var(--panel);
+    padding:16px 16px;
+    position:relative;
+    flex:1 1 0;
+    min-width:0;
+  }
+  .chain-node .label{
+    font-family:var(--mono);
+    font-size:10.5px;
+    color:var(--cyan);
+    letter-spacing:0.05em;
+    text-transform:uppercase;
+    margin-bottom:6px;
+  }
+  .chain-node .name{font-weight:600;font-size:15px;margin-bottom:4px;line-height:1.3;}
+  .chain-node .meta{font-size:12.5px;color:var(--paper-dim);}
+  .chain-connector{
+    flex:0 0 auto;
+    width:28px;
+    align-self:center;
+    height:1px;
+    background:repeating-linear-gradient(to right, var(--cyan) 0 4px, transparent 4px 9px);
+    position:relative;
+  }
+  .chain-connector::after{
+    content:"▶";
+    position:absolute;
+    top:-5px;
+    right:-2px;
+    font-size:9px;
+    color:var(--cyan);
+  }
+  @media (max-width:760px){
+    .chain{flex-direction:column;}
+    .chain-node{flex:1 1 auto;}
+    .chain-connector{
+      width:1px; height:28px; align-self:flex-start; margin-left:24px;
+      background:repeating-linear-gradient(to bottom, var(--cyan) 0 4px, transparent 4px 9px);
+    }
+    .chain-connector::after{content:"▼"; top:auto; bottom:-2px; left:-5px; right:auto;}
+  }
+
+  /* --- stat row --- */
+  .stat-row{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(130px,1fr));
+    gap:1px;
+    background:var(--cyan-dim);
+    margin:28px 0;
+    border:1px solid var(--cyan-dim);
+  }
+  .stat{
+    background:var(--panel);
+    padding:18px 16px;
+  }
+  .stat .num{font-family:var(--mono);font-size:24px;color:var(--cyan);font-weight:600;}
+  .stat .lbl{font-size:12.5px;color:var(--paper-dim);margin-top:4px;}
+
+  /* --- quote block --- */
+  blockquote{
+    margin:28px 0;
+    padding:18px 22px;
+    border-left:2px solid var(--cyan);
+    background:var(--panel);
+    font-size:16.5px;
+    color:var(--paper);
+  }
+  blockquote cite{
+    display:block;
+    margin-top:10px;
+    font-family:var(--mono);
+    font-size:12.5px;
+    color:var(--paper-dim);
+    font-style:normal;
+  }
+
+  /* --- vote table --- */
+  .vote-table-wrap{overflow-x:auto;margin:28px 0;}
+  table.votes{
+    border-collapse:collapse;
+    width:100%;
+    min-width:560px;
+    font-size:14px;
+  }
+  table.votes th{
+    font-family:var(--mono);
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:0.04em;
+    color:var(--cyan);
+    text-align:left;
+    padding:10px 12px;
+    border-bottom:1px solid var(--cyan-dim);
+  }
+  table.votes td{
+    padding:10px 12px;
+    border-bottom:1px solid rgba(79,195,232,0.15);
+    vertical-align:top;
+  }
+  table.votes tr.flagged td{background:rgba(232,162,79,0.08);}
+  .pill{
+    font-family:var(--mono);
+    font-size:11px;
+    font-weight:600;
+    padding:2px 8px;
+    border-radius:2px;
+    display:inline-block;
+    letter-spacing:0.03em;
+  }
+  .pill.yea{background:rgba(79,195,232,0.16);color:var(--yea);border:1px solid var(--yea);}
+  .pill.nay{background:rgba(232,162,79,0.16);color:var(--nay);border:1px solid var(--nay);}
+  .pill.abs{background:rgba(122,140,163,0.16);color:var(--abs);border:1px solid var(--abs);}
+
+  /* --- rubric methodology box --- */
+  .rubric-box{
+    border:1px dashed var(--cyan-dim);
+    background:rgba(79,195,232,0.05);
+    padding:16px 20px;
+    margin:24px 0;
+  }
+  .rubric-kicker{
+    font-family:var(--mono);
+    font-size:10.5px;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    color:var(--cyan);
+    margin-bottom:8px;
+  }
+  .rubric-box p{
+    font-size:14px;
+    color:var(--paper-dim);
+    margin:0;
+  }
+
+  /* --- grade box --- */
+  .grade-box{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:1px;
+    background:var(--cyan-dim);
+    border:1px solid var(--cyan-dim);
+    margin:28px 0;
+  }
+  .grade-panel{background:var(--panel);padding:22px 20px;}
+  .grade-panel .gp-kicker{
+    font-family:var(--mono);
+    font-size:11px;
+    letter-spacing:0.05em;
+    text-transform:uppercase;
+    color:var(--cyan);
+    margin-bottom:12px;
+  }
+  .grade-panel .gp-row{display:flex;align-items:baseline;gap:14px;margin-bottom:10px;}
+  .grade-letter{
+    font-family:var(--mono);
+    font-size:36px;
+    font-weight:600;
+    line-height:1;
+  }
+  .grade-letter.good{color:var(--yea);}
+  .grade-letter.bad{color:var(--nay);}
+  .grade-label{
+    font-family:var(--mono);
+    font-size:12px;
+    letter-spacing:0.04em;
+    padding:3px 9px;
+    border-radius:2px;
+  }
+  .grade-label.good{background:rgba(79,195,232,0.16);color:var(--yea);border:1px solid var(--yea);}
+  .grade-label.bad{background:rgba(232,162,79,0.16);color:var(--nay);border:1px solid var(--nay);}
+  .grade-panel p{font-size:13.5px;color:var(--paper-dim);margin:0;max-width:none;}
+  @media (max-width:600px){.grade-box{grid-template-columns:1fr;}}
+
+  /* --- vote filter dropdown --- */
+  .vote-controls{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin:24px 0 4px;
+    flex-wrap:wrap;
+  }
+  .vote-controls label{
+    font-family:var(--mono);
+    font-size:12.5px;
+    color:var(--paper-dim);
+  }
+  select.vote-filter{
+    background:var(--panel);
+    color:var(--paper);
+    border:1px solid var(--cyan-dim);
+    font-family:var(--mono);
+    font-size:13.5px;
+    padding:8px 12px;
+    border-radius:2px;
+    cursor:pointer;
+  }
+  select.vote-filter:focus{outline:2px solid var(--cyan);outline-offset:1px;}
+  .vote-count{
+    font-family:var(--mono);
+    font-size:12.5px;
+    color:var(--cyan);
+  }
+  tr.vote-row.is-hidden{display:none;}
+  .tag-donee{
+    font-family:var(--mono);
+    font-size:11px;
+    color:var(--nay);
+  }
+  .tag-notchecked{
+    font-family:var(--mono);
+    font-size:11px;
+    color:var(--abs);
+  }
+
+  /* --- plain-language callout --- */
+  .plain{
+    background:rgba(79,195,232,0.08);
+    border-left:3px solid var(--cyan);
+    padding:14px 18px;
+    margin:20px 0 28px;
+    font-size:16px;
+  }
+  .plain .plain-label{
+    font-family:var(--mono);
+    font-size:10.5px;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    color:var(--cyan);
+    display:block;
+    margin-bottom:6px;
+  }
+
+  /* --- timeline strip --- */
+  .timeline{
+    display:flex;
+    overflow-x:auto;
+    gap:0;
+    margin:32px 0;
+    padding-bottom:8px;
+  }
+  .tl-item{
+    flex:0 0 auto;
+    min-width:150px;
+    padding:0 18px 0 0;
+    position:relative;
+  }
+  .tl-item::before{
+    content:"";
+    position:absolute;
+    top:8px; left:0; right:18px;
+    height:2px;
+    background:var(--cyan-dim);
+  }
+  .tl-item:last-child::before{display:none;}
+  .tl-dot{
+    width:9px;height:9px;border-radius:50%;
+    background:var(--cyan);
+    margin-bottom:10px;
+    position:relative;
+    z-index:1;
+  }
+  .tl-date{font-family:var(--mono);font-size:11.5px;color:var(--cyan);margin-bottom:4px;}
+  .tl-label{font-size:13px;color:var(--paper-dim);line-height:1.4;}
+
+  /* --- icon grid (4 applicants) --- */
+  .icon-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(190px,1fr));
+    gap:14px;
+    margin:28px 0;
+  }
+  .icon-card{
+    border:1px solid var(--cyan-dim);
+    background:var(--panel);
+    padding:18px;
+    cursor:pointer;
+    transition:border-color .15s;
+  }
+  .icon-card:hover, .icon-card:focus{border-color:var(--cyan);outline:none;}
+  .icon-card .icon-glyph{font-size:28px;line-height:1;margin-bottom:10px;}
+  .icon-card .icon-name{font-weight:600;font-size:15px;margin-bottom:6px;}
+  .icon-card .icon-status{
+    font-family:var(--mono);font-size:11px;letter-spacing:0.04em;
+    padding:2px 8px;border-radius:2px;display:inline-block;margin-bottom:10px;
+  }
+  .icon-card .icon-status.ok{background:rgba(79,195,232,0.16);color:var(--yea);border:1px solid var(--yea);}
+  .icon-card .icon-status.no{background:rgba(232,162,79,0.16);color:var(--nay);border:1px solid var(--nay);}
+  .icon-card .icon-detail{
+    font-size:13.5px;color:var(--paper-dim);
+    max-height:0; overflow:hidden;
+    transition:max-height .2s ease;
+  }
+  .icon-card.open .icon-detail{max-height:200px;margin-top:4px;}
+  .icon-card .icon-hint{font-family:var(--mono);font-size:10.5px;color:var(--cyan);opacity:.8;}
+
+  /* --- vote gauge --- */
+  .gauge-wrap{margin:28px 0;}
+  .gauge-track{
+    position:relative;
+    height:40px;
+    background:var(--panel);
+    border:1px solid var(--cyan-dim);
+    overflow:visible;
+  }
+  .gauge-fill{
+    position:absolute; top:0; left:0; bottom:0;
+    background:var(--yea);
+    opacity:.55;
+    transition:width .25s ease;
+  }
+  .gauge-threshold{
+    position:absolute; top:-6px; bottom:-6px;
+    width:2px;
+    background:var(--paper);
+  }
+  .gauge-threshold::after{
+    content:"NEEDS 15";
+    position:absolute; top:-22px; left:50%;
+    transform:translateX(-50%);
+    font-family:var(--mono); font-size:10px; color:var(--paper);
+    white-space:nowrap;
+  }
+  .gauge-label{
+    font-family:var(--mono); font-size:13px; color:var(--cyan);
+    margin-top:28px; margin-bottom:8px;
+  }
+  .gauge-count{font-size:15px;color:var(--paper);}
+  .gauge-hint{font-size:12.5px;color:var(--paper-dim);margin-top:6px;}
+  .flip-btn{
+    font-family:var(--mono);
+    font-size:11px;
+    background:transparent;
+    border:1px solid var(--nay);
+    color:var(--nay);
+    padding:1px 7px;
+    border-radius:2px;
+    cursor:pointer;
+    margin-left:8px;
+  }
+  .flip-btn:hover{background:rgba(232,162,79,0.16);}
+  .flip-btn.flipped{border-color:var(--yea);color:var(--yea);}
+  .flip-btn.flipped:hover{background:rgba(79,195,232,0.16);}
+
+  /* --- diversion chart --- */
+  .diversion-chart{margin:32px 0;}
+  .div-bar-row{margin-bottom:26px;}
+  .div-bar-label{
+    font-family:var(--mono); font-size:12px; color:var(--paper-dim);
+    margin-bottom:8px;
+  }
+  .div-bar{
+    display:flex; height:44px; border:1px solid var(--cyan-dim); overflow:hidden;
+  }
+  .div-seg{
+    display:flex; align-items:center; justify-content:center;
+    font-family:var(--mono); font-size:11px; color:var(--navy-deep); font-weight:600;
+  }
+  .div-seg.county{background:var(--cyan);}
+  .div-seg.school{background:#7FD8A0;}
+  .div-seg.fire{background:#E8D24F;}
+  .div-seg.bond{background:var(--nay); color:var(--navy-deep);}
+  .div-legend{
+    display:flex; gap:16px; flex-wrap:wrap; margin-top:10px;
+    font-family:var(--mono); font-size:11px; color:var(--paper-dim);
+  }
+  .div-legend span{display:inline-flex; align-items:center; gap:5px;}
+  .div-legend .dot{width:9px;height:9px;display:inline-block;}
+
+  /* --- two-law icon comparison --- */
+  .compare-row{
+    display:grid;
+    grid-template-columns:1fr auto 1fr;
+    gap:16px;
+    align-items:center;
+    margin:32px 0;
+  }
+  .compare-card{
+    border:1px solid var(--cyan-dim);
+    background:var(--panel);
+    padding:20px;
+    text-align:center;
+  }
+  .compare-card .cc-glyph{font-size:32px;margin-bottom:10px;}
+  .compare-card .cc-title{font-weight:600;font-size:15px;margin-bottom:6px;}
+  .compare-card .cc-desc{font-size:13px;color:var(--paper-dim);}
+  .compare-eq{
+    font-family:var(--mono);
+    font-size:22px;
+    color:var(--cyan);
+    text-align:center;
+  }
+  @media (max-width:600px){
+    .compare-row{grid-template-columns:1fr;}
+    .compare-eq{transform:rotate(90deg);}
+  }
+
+  /* --- chain node toggle --- */
+  .chain-node{cursor:pointer;}
+  .chain-node .meta{
+    max-height:0; overflow:hidden;
+    transition:max-height .2s ease;
+    margin-top:0;
+  }
+  .chain-node.open .meta{max-height:220px;margin-top:6px;}
+  .chain-node .tap-hint{
+    font-family:var(--mono);font-size:10.5px;color:var(--cyan);opacity:.75;
+  }
+
+  /* --- fix cards (what would make it better) --- */
+  .fix-section{
+    margin:28px 0;
+    border:1px solid var(--nay);
+    background:rgba(232,162,79,0.06);
+    padding:26px 24px 22px;
+  }
+  .fix-section .fix-kicker{
+    font-family:var(--mono);
+    font-size:11px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--nay);
+    margin-bottom:8px;
+  }
+  .fix-section h3{
+    font-size:22px;
+    margin:0 0 6px;
+    color:var(--paper);
+  }
+  .fix-section .fix-sub{
+    font-size:14.5px;
+    color:var(--paper-dim);
+    margin-bottom:22px;
+  }
+  .fix-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(260px,1fr));
+    gap:16px;
+  }
+  .fix-card{
+    background:var(--panel);
+    border:1px solid var(--nay);
+    border-left:4px solid var(--nay);
+    padding:18px 18px 16px;
+  }
+  .fix-card .fix-num{
+    font-family:var(--mono);
+    font-size:11px;
+    color:var(--nay);
+    letter-spacing:0.05em;
+    margin-bottom:8px;
+  }
+  .fix-card .fix-title{
+    font-weight:700;
+    font-size:16.5px;
+    color:var(--paper);
+    margin-bottom:8px;
+    line-height:1.3;
+  }
+  .fix-card .fix-desc{
+    font-size:14px;
+    color:var(--paper-dim);
+    line-height:1.5;
+  }
+  .fix-card .fix-status{
+    display:inline-block;
+    margin-top:12px;
+    font-family:var(--mono);
+    font-size:10.5px;
+    letter-spacing:0.04em;
+    color:var(--nay);
+    background:rgba(232,162,79,0.14);
+    border:1px solid var(--nay);
+    padding:2px 8px;
+    border-radius:2px;
+  }
+
+  .src-dropdown ul{list-style:none;padding:0;margin:0;font-family:var(--mono);}
+  .src-dropdown ul li{margin-bottom:8px;font-size:11.5px;color:var(--paper-dim);line-height:1.5;}
+  .src-dropdown summary{padding:0 0 4px;}
+
+  .margin-note{
+    font-family:var(--mono);
+    font-size:13px;
+    color:var(--cyan);
+    border:1px dashed var(--cyan-dim);
+    padding:14px 16px;
+    margin:24px 0;
+  }
+
+  /* --- cross-link card --- */
+  .crosslink{
+    display:flex;
+    gap:18px;
+    align-items:flex-start;
+    border:1px solid var(--cyan-dim);
+    background:var(--panel);
+    padding:22px;
+    margin:30px 0;
+    text-decoration:none;
+  }
+  .crosslink .glyph{
+    font-family:var(--mono);
+    font-size:22px;
+    color:var(--cyan);
+    line-height:1;
+    margin-top:2px;
+  }
+  .crosslink .ct-title{font-weight:600;font-size:16.5px;color:var(--paper);margin-bottom:4px;}
+  .crosslink .ct-desc{font-size:14px;color:var(--paper-dim);}
+  .crosslink:hover{border-color:var(--cyan);}
+
+  details{
+    margin:20px 0;
+    border:1px solid var(--cyan-dim);
+    background:var(--panel);
+    padding:0;
+  }
+  details summary{
+    cursor:pointer;
+    padding:14px 18px;
+    font-family:var(--mono);
+    font-size:13.5px;
+    color:var(--cyan);
+    list-style:none;
+  }
+  details summary::-webkit-details-marker{display:none;}
+  details summary::before{content:"▸ ";}
+  details[open] summary::before{content:"▾ ";}
+  details .details-body{padding:0 18px 18px;font-size:14.5px;color:var(--paper-dim);}
+  details .details-body ul{padding-left:20px;}
+
+  footer{
+    padding:48px 0 64px;
+    font-family:var(--mono);
+    font-size:12.5px;
+    color:var(--paper-dim);
+    border-top:1px solid var(--cyan-dim);
+  }
+  footer a{color:var(--cyan);}
+  footer .foot-grid{
+    display:flex;
+    flex-wrap:wrap;
+    gap:24px;
+    margin-bottom:24px;
+  }
+  footer .foot-col{min-width:180px;}
+  footer .foot-col h4{
+    color:var(--paper);
+    font-family:var(--sans);
+    font-size:13px;
+    margin:0 0 8px;
+  }
+  footer .foot-col ul{list-style:none;padding:0;margin:0;}
+  footer .foot-col li{margin-bottom:6px;}
+
+  @media (max-width:640px){
+    header.masthead{padding:44px 0 32px;}
+    section{padding:40px 0;}
+  }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="blueprint-bg"></div>
+  <div class="wrap">
+    <div class="case-tag"><span class="reg-mark"></span> FOLLOW THE DEED — CASE 02</div>
+    <h1 class="title">The Backstop That Became a Bypass</h1>
+    <p class="dek">A homebuilder used a family ranch, two landowner LLCs, and a 2024 state law to try to create its own town in Summit County. The bill that would have given the county a say failed in the Senate by a single vote.</p>
+    <div class="byline">
+      <span>The Weber County Hive</span>
+      <span>Source: disclosures.utah.gov, le.utah.gov, Utah Division of Corporations, Park Record, KPCW</span>
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <div class="sec-num">00 — THE BILL</div>
+    <h2>H.B. 510, "Municipal Incorporation Modifications" (2026)</h2>
+    <p class="lede">Sponsored by <strong>Rep. Tiara Auxier</strong> (R-Morgan/Rich/Summit) in the House and <strong>Sen. Kirk Cullimore</strong> (R-SD 19) in the Senate.</p>
+    <div class="plain"><span class="plain-label">In plain English</span>Imagine a law that lets someone build a whole new town without ever asking the county for permission. This bill would have made them at least talk to the county first — but the county still couldn't say no.</div>
+    <p>H.B. 510 would have given counties a formal role before a "preliminary municipality" petition — the tool Ivory Homes used at Lost Creek and Philo Development used at Wasatch Highlands — could move forward. It did not give counties a vote or veto over whether the town gets created; that decision stays with the Lieutenant Governor's office either way. What it added was friction: a required coordination period, the right to commission a traffic study, and the right to audit and dispute the feasibility numbers.</p>
+    <div class="stat-row">
+      <div class="stat"><div class="num">68–0–7</div><div class="lbl">House floor vote (unanimous among those voting)</div></div>
+      <div class="stat"><div class="num">14–12–3</div><div class="lbl">Senate floor vote — failed, one Yea short</div></div>
+    </div>
+    <p style="font-size:14px;color:var(--paper-dim);">By the time it reached the Senate floor, the bill had already been narrowed by a substitute — see Section 03 below for what got stripped out before the vote that failed.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-num">01 — WHO OWNS WHAT</div>
+    <h2>The land, the LLCs, the developer</h2>
+    <p class="lede">Lost Creek isn't Ivory Homes' land. It's a family ranch, held by two LLCs formed five months before the paperwork was filed, with Ivory's own development arm running the project.</p>
+    <div class="plain"><span class="plain-label">In plain English</span>A ranching family owns the land. Two paperwork companies were created just to file this request. A homebuilder is the one actually running the show.</div>
+
+    <div class="timeline">
+      <div class="tl-item"><div class="tl-dot"></div><div class="tl-date">8/25/2025</div><div class="tl-label">GRR-Lost Creek &amp; E B R Management LLCs formed</div></div>
+      <div class="tl-item"><div class="tl-dot"></div><div class="tl-date">1/1/2026</div><div class="tl-label">Preliminary municipality petition filed</div></div>
+      <div class="tl-item"><div class="tl-dot"></div><div class="tl-date">2/5/2026</div><div class="tl-label">State declines — statewide cap already reached</div></div>
+      <div class="tl-item"><div class="tl-dot"></div><div class="tl-date">2026</div><div class="tl-label">Ivory pivots to a standard county rezone request</div></div>
+      <div class="tl-item"><div class="tl-dot"></div><div class="tl-date">8/7/2026</div><div class="tl-label">Rezone gets a negative planning commission vote</div></div>
+    </div>
+
+    <p style="font-size:12.5px;color:var(--paper-dim);">Tap any box below for detail.</p>
+    <div class="chain">
+      <div class="chain-node" tabindex="0" role="button">
+        <div class="label">The landowner</div>
+        <div class="name">Garff Rogers Ranch <span class="tap-hint">(tap)</span></div>
+        <div class="meta">A working cattle ranch in Browns Canyon, Summit County — once 15,000 acres, now roughly 7,000. Matthew Garff (Ken Garff Automotive Group co-owner) is the family's named contact on state water-rights records.</div>
+      </div>
+      <div class="chain-connector"></div>
+      <div class="chain-node" tabindex="0" role="button">
+        <div class="label">The applicants of record</div>
+        <div class="name">GRR-Lost Creek, LLC &amp; E B R Management, LLC <span class="tap-hint">(tap)</span></div>
+        <div class="meta">Formed 8/25/2025 — four months before the petition was filed. Part of a family of four near-identical "GRR-" entities (Kamas, Lost Creek, Summit, Wasatch), same registered agent, same Salt Lake City address.</div>
+      </div>
+      <div class="chain-connector"></div>
+      <div class="chain-node" tabindex="0" role="button">
+        <div class="label">The operator / primary sponsor</div>
+        <div class="name">Ivory Development (Chris Gamvroulas, President) <span class="tap-hint">(tap)</span></div>
+        <div class="meta">Not the landowner — the company running the project and speaking for it publicly. Gamvroulas has repeatedly called the preliminary-municipality filing a "backstop" in case the county's own rezone process wasn't "timely and predictable."</div>
+      </div>
+      <div class="chain-connector"></div>
+      <div class="chain-node" tabindex="0" role="button">
+        <div class="label">The filing</div>
+        <div class="name">Lost Creek preliminary municipality petition <span class="tap-hint">(tap)</span></div>
+        <div class="meta">Filed 1/1/2026. 490.53 acres, Browns Canyon, near Park City/Hideout.</div>
+      </div>
+    </div>
+    <script>
+      document.querySelectorAll('.chain-node').forEach(function(node){
+        function toggle(){ node.classList.toggle('open'); }
+        node.addEventListener('click', toggle);
+        node.addEventListener('keypress', function(e){ if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); toggle(); } });
+      });
+    </script>
+
+    <div class="margin-note">Timeline check: the water-rights lawsuit filed by an unrelated Garff-linked company, Mango-Spiral Jetty LLC, landed one week after this petition — 1/8/2026. No ownership link between the two has been established; noted here only because both surfaced from the same family's land dealings in the same short window.</div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-num">02 — THE BID AND THE FALLBACK</div>
+    <h2>What got filed, and what happened when it didn't work</h2>
+    <div class="plain"><span class="plain-label">In plain English</span>Utah only allows two of these town-requests per year, like tickets to a concert. Ivory Homes showed up after the tickets sold out.</div>
+    <p>Utah accepts only two preliminary-municipality petitions per year, statewide. Lost Creek was filed after that cap had already been reached — the state declined even to start a feasibility study.</p>
+
+    <div class="stat-row">
+      <div class="stat"><div class="num">490.5</div><div class="lbl">acres, Browns Canyon</div></div>
+      <div class="stat"><div class="num">642</div><div class="lbl">residents at full buildout (petitioned plan)</div></div>
+      <div class="stat"><div class="num">565</div><div class="lbl">homes/townhomes/cottages proposed</div></div>
+      <div class="stat"><div class="num">2/yr</div><div class="lbl">statewide cap Lost Creek fell outside of</div></div>
+    </div>
+
+    <p>Declined for a preliminary municipality, Ivory pivoted to something bigger, pursued the ordinary way: a standard Summit County rezone request covering up to 3,000 units across 407–600 acres, called the "Lost Creek Community Zone." That request received a <strong>negative planning commission recommendation</strong> on 8/7/2026, after 31 residents spoke against it at the hearing.</p>
+
+    <blockquote>
+      "It's a backstop — in case the county process isn't timely and predictable."
+      <cite>Chris Gamvroulas, President, Ivory Homes — quote repeated consistently across Park Record coverage, Feb.–Aug. 2026</cite>
+    </blockquote>
+
+    <p style="font-size:12.5px;color:var(--paper-dim);">Tap any town below to see why it succeeded or failed.</p>
+    <div class="icon-grid">
+      <div class="icon-card" tabindex="0" role="button" data-name="Wasatch Highlands">
+        <div class="icon-glyph">🏘️</div>
+        <div class="icon-name">Wasatch Highlands (Philo Development)</div>
+        <div class="icon-status ok">ACCEPTED</div>
+        <div class="icon-detail">Filed early enough in the year and met the technical filing requirements. Still moving forward.</div>
+        <div class="icon-hint">tap for detail</div>
+      </div>
+      <div class="icon-card" tabindex="0" role="button" data-name="Bear Canyon">
+        <div class="icon-glyph">🗺️</div>
+        <div class="icon-name">Bear Canyon (Ault family)</div>
+        <div class="icon-status no">REJECTED</div>
+        <div class="icon-detail">A mapping technicality — one boundary strip failed the statutory contiguity requirement.</div>
+        <div class="icon-hint">tap for detail</div>
+      </div>
+      <div class="icon-card" tabindex="0" role="button" data-name="Lost Creek">
+        <div class="icon-glyph">⏱️</div>
+        <div class="icon-name">Lost Creek (Ivory Homes)</div>
+        <div class="icon-status no">REJECTED</div>
+        <div class="icon-detail">Filed after the state's 2-per-year statewide cap was already used up. Pure timing.</div>
+        <div class="icon-hint">tap for detail</div>
+      </div>
+      <div class="icon-card" tabindex="0" role="button" data-name="Smooth Hollow">
+        <div class="icon-glyph">⏱️</div>
+        <div class="icon-name">Smooth Hollow</div>
+        <div class="icon-status no">REJECTED</div>
+        <div class="icon-detail">Same cap, also filed too late in the year.</div>
+        <div class="icon-hint">tap for detail</div>
+      </div>
+    </div>
+    <script>
+      document.querySelectorAll('.icon-card').forEach(function(card){
+        function toggle(){ card.classList.toggle('open'); }
+        card.addEventListener('click', toggle);
+        card.addEventListener('keypress', function(e){ if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); toggle(); } });
+      });
+    </script>
+    <p><strong>None of these four outcomes turned on a county's opinion of the project.</strong> A filing-order quota and a map line decided three of them. Nothing has decided the fourth yet — and nothing currently in Utah law, including every version of H.B. 510 discussed below, would have given a county the power to decide it either. If Ivory Homes had simply filed a few weeks earlier, before the statewide cap filled, nothing on the books would have stopped Lost Creek — it would likely be sitting exactly where Wasatch Highlands is now.</p>
+
+    <details>
+      <summary>What "preliminary municipality" actually means under Utah law</summary>
+      <div class="details-body">
+        <p>A 2024 state law (S.B. 258) lets landowners — one, two, or three of them, no more — petition the Lieutenant Governor's office directly to form a new town, bypassing the county's own planning and zoning process entirely. The state, not the county, decides whether the new town is "feasible."</p>
+        <p>Full statutory history, the four 2026 Wasatch Back applicants, and the fight over reforming this law live in the companion Bill-Tracker case file — see below.</p>
+      </div>
+    </details>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-num">03 — THE VOTE</div>
+    <h2>One more "yes" would have added a county check. It didn't come.</h2>
+    <div class="plain"><span class="plain-label">In plain English</span>The bill needed 15 yeses to pass. It got 14. One more yes, from anyone, would have changed the outcome.</div>
+    <p>H.B. 510 (2026) would have added friction to that process — a coordination period, a traffic study right, an audit-and-dispute right — but never gave counties an actual vote over whether the town gets created. It passed the House 68–0. In the Senate, it failed <strong>14–12</strong>, one vote short of the 15 needed.</p>
+
+    <p>Four sitting senators who personally took campaign checks from Ivory Homes voted against the bill. A fifth didn't vote at all. Ivory Homes' own Senate sponsor for the bill voted yes.</p>
+
+    <div class="gauge-wrap">
+      <div class="gauge-label">Yea votes: <span class="gauge-count" id="gaugeCount">14</span> of 29 (15 needed to pass)</div>
+      <div class="gauge-track">
+        <div class="gauge-fill" id="gaugeFill" style="width:48.3%;"></div>
+        <div class="gauge-threshold" style="left:51.7%;"></div>
+      </div>
+      <div class="gauge-hint" id="gaugeHint">Click "flip" next to any Nay senator in the table below to see what one changed vote would have done.</div>
+    </div>
+
+    <div class="rubric-box">
+      <div class="rubric-kicker">How this is graded</div>
+      <p>This isn't a personal opinion of the bill. The grade below asks two questions, applied the same way to every bill in this series — not whether any one person likes the outcome:</p>
+      <p><strong>1. Power:</strong> does it add or remove a check on power that the public, collectively, would otherwise have no say over?</p>
+      <p><strong>2. Transparency:</strong> does it add or remove what the public can actually see about the process — posted studies, public hearings, disclosure requirements — regardless of who ends up holding the final decision?</p>
+      <p>Design and outcome are graded separately because a bill can be structurally sound and still fail to become law, or vice versa; collapsing the two into one score would hide which one actually happened.</p>
+    </div>
+
+    <div class="grade-box">
+      <div class="grade-panel">
+        <div class="gp-kicker">If it had passed — the bill's design</div>
+        <div class="gp-row">
+          <span class="grade-letter" style="color:var(--nay);">C+</span>
+          <span class="grade-label" style="background:rgba(232,162,79,0.16);color:var(--nay);border:1px solid var(--nay);">PARTIAL — ADDS FRICTION, NOT A VOTE</span>
+        </div>
+        <p>Even in its strongest form, this bill never gave the county a vote or veto over whether the town gets created — that decision stays with the Lieutenant Governor's office either way. On power, that's the core failure. On transparency, it does better: even the weakened Senate substitute kept the requirement that a county post the feasibility study online, and the original bill would have added a public traffic study and a formal dispute record. Real transparency gains — but they don't translate into anyone actually holding decision-making power over the outcome.</p>
+      </div>
+      <div class="grade-panel">
+        <div class="gp-kicker">What actually happened — the outcome</div>
+        <div class="gp-row">
+          <span class="grade-letter bad">F</span>
+          <span class="grade-label bad">NO CHANGE FOR THE PUBLIC</span>
+        </div>
+        <p>Failed 14–12, one vote short of a majority. The underlying law is unchanged: up to three landowners can still bypass county planning to create a town, with no added county consultation, audit, or dispute right.</p>
+      </div>
+    </div>
+
+    <div class="vote-controls">
+      <label for="voteFilter">Show:</label>
+      <select id="voteFilter" class="vote-filter">
+        <option value="all">All 29 senators</option>
+        <option value="yea">Voted Yea (14)</option>
+        <option value="nay">Voted Nay (12)</option>
+        <option value="abs">Absent (3)</option>
+        <option value="donee">Ivory Homes donees only (5)</option>
+      </select>
+      <span class="vote-count" id="voteCount">29 shown</span>
+    </div>
+
+    <div class="vote-table-wrap">
+      <table class="votes" id="voteTable">
+        <thead>
+          <tr><th>Senator</th><th>Vote</th><th>Ivory Homes donation on file</th></tr>
+        </thead>
+        <tbody>
+          <tr class="vote-row" data-vote="yea"><td>Adams, J.S.</td><td><span class="pill yea">YEA</span></td><td><span class="tag-notchecked">Not individually checked</span></td></tr>
+          <tr class="vote-row" data-vote="yea"><td>Balderree, H.</td><td><span class="pill yea">YEA</span></td><td><span class="tag-notchecked">Not individually checked</span></td></tr>
+          <tr class="vote-row" data-vote="yea"><td>Blouin, N.</td><td><span class="pill yea">YEA</span></td><td><span class="tag-notchecked">Not individually checked</span></td></tr>
+          <tr class="vote-row" data-vote="yea"><td>Buss, E.</td><td><span class="pill yea">YEA</span></td><td><span class="tag-notchecked">Not individually checked</span></td></tr>
+          <tr class="vote-row flagged" data-vote="yea" data-donee="true"><td>Cullimore, K.A. <span style="color:var(--paper-dim);font-size:12px;">— bill's Senate sponsor</span></td><td><span class="pill yea">YEA</span></td><td><span class="tag-donee">$1,000 (12/27/2023)</span></td></tr>
+          <tr class="vote-row" data-vote="yea"><td>Grover, K.</td><td><span class="pill yea">YEA</span></td><td><span class="tag-notchecked">Not individually checked</span></td></tr>
+          <tr class="vote-row" data-vote="yea"><td>Hinkins, D.</td><td><span class="pill yea">YEA</span></td><td><span class="tag-notchecked">Not individually checked</span></td></tr>
+          <tr class="vote-row" data-vote="yea"><td>Johnson, J.</td><td><span class="pill yea">YEA</span></td><td><span class="tag-notchecked">Not individually checked</span></td></tr>
+          <tr class="vote-row" data-vote="yea"><td>McCay, D.</td><td><span class="pill yea">YEA</span></td><td><span class="tag-notchecked">Not individually checked</span></td></tr>
+          <tr class="vote-row" data-vote="yea"><td>Pitcher, S.</td><td><span class="pill yea">YEA</span></td><td><span class="tag-notchecked">Not individually checked</span></td></tr>
+          <tr class="vote-row" data-vote="yea"><td>Plumb, J.</td><td><span class="pill yea">YEA</span></td><td><span class="tag-notchecked">Not individually checked</span></td></tr>
+          <tr class="vote-row" data-vote="yea"><td>Stratton, K.</td><td><span class="pill yea">YEA</span></td><td><span class="tag-notchecked">Not individually checked</span></td></tr>
+          <tr class="vote-row" data-vote="yea"><td>Weiler, T.</td><td><span class="pill yea">YEA</span></td><td><span class="tag-notchecked">Not individually checked</span></td></tr>
+          <tr class="vote-row" data-vote="yea"><td>Winterton, R.</td><td><span class="pill yea">YEA</span></td><td><span class="tag-notchecked">Not individually checked</span></td></tr>
+
+          <tr class="vote-row flagged" data-vote="nay" data-donee="true"><td>Brammer, B.</td><td><span class="pill nay">NAY</span><button class="flip-btn" data-row="1">flip</button></td><td><span class="tag-donee">$500 (9/20/2024)</span></td></tr>
+          <tr class="vote-row" data-vote="nay"><td>Harper, W.</td><td><span class="pill nay">NAY</span><button class="flip-btn" data-row="2">flip</button></td><td><span class="tag-notchecked">Not individually checked</span></td></tr>
+          <tr class="vote-row" data-vote="nay"><td>Ipson, D.</td><td><span class="pill nay">NAY</span><button class="flip-btn" data-row="3">flip</button></td><td><span class="tag-notchecked">Not individually checked</span></td></tr>
+          <tr class="vote-row" data-vote="nay"><td>Kwan, K.</td><td><span class="pill nay">NAY</span><button class="flip-btn" data-row="4">flip</button></td><td><span class="tag-notchecked">Not individually checked</span></td></tr>
+          <tr class="vote-row" data-vote="nay"><td>McKell, M.</td><td><span class="pill nay">NAY</span><button class="flip-btn" data-row="5">flip</button></td><td><span class="tag-notchecked">Not individually checked</span></td></tr>
+          <tr class="vote-row flagged" data-vote="nay" data-donee="true"><td>Millner, A.</td><td><span class="pill nay">NAY</span><button class="flip-btn" data-row="6">flip</button></td><td><span class="tag-donee">$2,000 total (2022–2024)</span></td></tr>
+          <tr class="vote-row" data-vote="nay"><td>Musselman, C.R.</td><td><span class="pill nay">NAY</span><button class="flip-btn" data-row="7">flip</button></td><td><span class="tag-notchecked">Not individually checked</span></td></tr>
+          <tr class="vote-row" data-vote="nay"><td>Owens, D.R.</td><td><span class="pill nay">NAY</span><button class="flip-btn" data-row="8">flip</button></td><td><span class="tag-notchecked">Not individually checked</span></td></tr>
+          <tr class="vote-row" data-vote="nay"><td>Riebe, K.</td><td><span class="pill nay">NAY</span><button class="flip-btn" data-row="9">flip</button></td><td><span class="tag-notchecked">Not individually checked</span></td></tr>
+          <tr class="vote-row" data-vote="nay"><td>Sandall, S.</td><td><span class="pill nay">NAY</span><button class="flip-btn" data-row="10">flip</button></td><td><span class="tag-notchecked">Not individually checked</span></td></tr>
+          <tr class="vote-row flagged" data-vote="nay" data-donee="true"><td>Stevenson, J.</td><td><span class="pill nay">NAY</span><button class="flip-btn" data-row="11">flip</button></td><td><span class="tag-donee">$1,000 (4/27/2022)</span></td></tr>
+          <tr class="vote-row flagged" data-vote="nay" data-donee="true"><td>Vickers, E.</td><td><span class="pill nay">NAY</span><button class="flip-btn" data-row="12">flip</button></td><td><span class="tag-donee">$1,000 (5/6/2022)</span></td></tr>
+
+          <tr class="vote-row" data-vote="abs"><td>Escamilla, L.</td><td><span class="pill abs">ABSENT</span><button class="flip-btn" data-row="13">flip</button></td><td><span class="tag-notchecked">Not individually checked</span></td></tr>
+          <tr class="vote-row flagged" data-vote="abs" data-donee="true"><td>Fillmore, L.</td><td><span class="pill abs">ABSENT</span><button class="flip-btn" data-row="14">flip</button></td><td><span class="tag-donee">$500 (7/19/2023)</span></td></tr>
+          <tr class="vote-row" data-vote="abs"><td>Wilson, C.</td><td><span class="pill abs">ABSENT</span><button class="flip-btn" data-row="15">flip</button></td><td><span class="tag-notchecked">Not individually checked</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:13.5px;color:var(--paper-dim);">"Not individually checked" means that senator hasn't been run through disclosures.utah.gov for Ivory Homes donations specifically — it is not a confirmed zero. The House vote sequence and the weakened Senate substitute's specific text changes are in the companion Bill-Tracker case file.</p>
+
+    <script>
+      (function(){
+        var baseYea = 14;
+        var total = 29;
+        var threshold = 15;
+        var flipped = new Set();
+        var fill = document.getElementById('gaugeFill');
+        var count = document.getElementById('gaugeCount');
+        var hint = document.getElementById('gaugeHint');
+        document.querySelectorAll('.flip-btn').forEach(function(btn){
+          btn.addEventListener('click', function(){
+            var id = btn.getAttribute('data-row');
+            var pill = btn.previousElementSibling;
+            if(flipped.has(id)){
+              flipped.delete(id);
+              btn.classList.remove('flipped');
+              btn.textContent = 'flip';
+              pill.textContent = pill.classList.contains('nay') ? 'NAY' : 'ABSENT';
+            } else {
+              flipped.add(id);
+              btn.classList.add('flipped');
+              btn.textContent = 'undo';
+              pill.textContent = 'YEA (flipped)';
+            }
+            var newYea = baseYea + flipped.size;
+            count.textContent = newYea;
+            fill.style.width = ((newYea/total)*100).toFixed(1) + '%';
+            if(newYea >= threshold){
+              hint.textContent = 'At ' + newYea + ' Yeas, this bill would have passed.';
+            } else {
+              hint.textContent = 'Still ' + (threshold-newYea) + ' short of passing. Click another "flip" to test it.';
+            }
+          });
+        });
+      })();
+    </script>
+
+    <script>
+      (function(){
+        var sel = document.getElementById('voteFilter');
+        var rows = document.querySelectorAll('#voteTable .vote-row');
+        var count = document.getElementById('voteCount');
+        function applyFilter(){
+          var v = sel.value;
+          var shown = 0;
+          rows.forEach(function(r){
+            var match = (v === 'all')
+              || (v === 'donee' && r.getAttribute('data-donee') === 'true')
+              || (v !== 'donee' && r.getAttribute('data-vote') === v);
+            r.classList.toggle('is-hidden', !match);
+            if(match) shown++;
+          });
+          count.textContent = shown + ' shown';
+        }
+        sel.addEventListener('change', applyFilter);
+        applyFilter();
+      })();
+    </script>
+
+    <div class="margin-note">What this does and doesn't show: it shows that senators who took Ivory Homes money voted against adding oversight to the tool Ivory Homes used. It does not show why any individual senator voted the way they did, and Cullimore — also an Ivory Homes donee — was the bill's own sponsor and voted for it. Any single vote switching would have passed the bill.</div>
+    <div class="fix-section">
+      <div class="fix-kicker">The gap</div>
+      <h3>What would have actually made this better for the public</h3>
+      <p class="fix-sub">None of this was ever on the table in 2026 — missing from both the original H.B. 510 and the weaker Senate substitute that failed.</p>
+      <div class="fix-grid">
+        <div class="fix-card">
+          <div class="fix-num">01</div>
+          <div class="fix-title">A binding county vote before incorporation</div>
+          <div class="fix-desc">Every version of this bill left final approval with the Lieutenant Governor's office. Real oversight means the county's legislative body affirmatively approves — not just gets consulted, audited, or given a chance to object.</div>
+          <span class="fix-status">missing from both versions</span>
+        </div>
+        <div class="fix-card">
+          <div class="fix-num">02</div>
+          <div class="fix-title">A dispute that actually stops the process</div>
+          <div class="fix-desc">The original bill's audit-and-dispute mechanism could pause the clock while a third-party evaluator reviewed a disagreement — but even a county that won that dispute couldn't block the town, only force a redo of the numbers.</div>
+          <span class="fix-status">toothless even in the original bill</span>
+        </div>
+        <div class="fix-card">
+          <div class="fix-num">03</div>
+          <div class="fix-title">No path around county land use authority at all</div>
+          <div class="fix-desc">The most direct fix — and the one Wasatch and Summit counties are actually asking the Legislature for — is repealing the preliminary-municipality mechanism outright and routing incorporation back through ordinary county zoning, where "no" means no.</div>
+          <span class="fix-status">what the counties are asking for now</span>
+        </div>
+        <div class="fix-card">
+          <div class="fix-num">04</div>
+          <div class="fix-title">The $50K filing fee funding the county's side</div>
+          <div class="fix-desc">As written, the fee only covers the state's own processing costs. It could instead fund the county's ability to hire its own experts to contest a feasibility study on equal footing with the applicant's consultants.</div>
+          <span class="fix-status">money already collected, pointed the wrong way</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-num">04 — THE NEXT STEP THIS LAW MAKES EASY</div>
+    <h2>The same small ownership that bypasses zoning also makes a tax district trivial to form</h2>
+    <p class="lede">Two separate Utah laws share the same structural quirk — and it isn't a coincidence worth ignoring.</p>
+    <div class="plain"><span class="plain-label">In plain English</span>If you and two friends own an empty field, you can vote to turn it into its own town. Then you can vote again — just the three of you — to add a tax bill to it. Nobody else ever gets a vote, either time.</div>
+
+    <div class="compare-row">
+      <div class="compare-card">
+        <div class="cc-glyph">🏘️</div>
+        <div class="cc-title">Form a town</div>
+        <div class="cc-desc">≤3 landowners can petition the state to incorporate a preliminary municipality (§10-2a-502(2)(d))</div>
+      </div>
+      <div class="compare-eq">=</div>
+      <div class="compare-card">
+        <div class="cc-glyph">🧾</div>
+        <div class="cc-title">Tax that town</div>
+        <div class="cc-desc">100% of surface owners must consent to form a PID (§17D-4-201) — trivial when it's the same ≤3 people</div>
+      </div>
+    </div>
+    <p>A preliminary municipality, by law, can only be formed by <strong>one, two, or three landowners</strong> (Utah Code §10-2a-502(2)(d)) — that's what lets a company like Ivory Homes or Philo Development create one without going through a county at all.</p>
+    <p>Separately, forming a <strong>Public Infrastructure District (PID)</strong> — a body that can levy a special property tax on homeowners and issue bonds against it — requires a petition signed by <strong>100% of surface property owners</strong> within the proposed district (Utah Code §17D-4-201).</p>
+    <p>In an existing neighborhood, getting 100% of owners to agree to a new tax on themselves is a high bar. On land that hasn't been sold to anyone yet — where the only owners are the same one, two, or three people who just formed the town — "100% consent" is nothing more than those same people signing twice. The preliminary-municipality law's small-ownership requirement and the PID law's unanimous-consent requirement fit together by construction: whoever controls enough land to form the town controls enough land to tax it, before a single resident ever gets a vote.</p>
+
+    <div class="margin-note">This is a structural observation about how two Utah laws interact, not a claim that Ivory Homes or Philo Development has filed, or intends to file, a PID on this land. Neither Lost Creek nor Wasatch Highlands has a confirmed PID on record as of this writing. The mechanism is available; whether it gets used here hasn't been shown.</div>
+
+    <p>The pattern is already live elsewhere in the same city: Heber City approved three PIDs on Sept. 1, 2026 for a separate, unrelated project — D.R. Horton's "The Highlands" — financing $22 million of a $40 million infrastructure cost through 31 years of special assessments on homeowners, in exchange for a non-binding promise to cut $40,000 off each home's advertised price.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-num">05 — THE PID QUESTION: WHO ACTUALLY PAYS</div>
+    <h2>Even a "straight" PID doesn't make the public whole</h2>
+    <div class="plain"><span class="plain-label">In plain English</span>A PID makes new homeowners pay extra property tax for their own streets and pipes. That sounds fair on its own. But it usually only covers what's inside the development's fence line — the county still has to pay for the road connecting it to everything else, and there's rarely enough left over to grow fire and police coverage to match.</div>
+
+    <p>There are two separate mechanisms people mean when they say "PID," and they matter differently here:</p>
+
+    <div class="compare-row">
+      <div class="compare-card">
+        <div class="cc-glyph">🏠</div>
+        <div class="cc-title">A "straight" PID assessment</div>
+        <div class="cc-desc">An extra property tax, capped at 15 mills, paid only by homeowners inside the district. Funds bonds for infrastructure inside the district's own boundary. Doesn't redirect money away from the county, school, or fire district.</div>
+      </div>
+      <div class="compare-eq">≠</div>
+      <div class="compare-card">
+        <div class="cc-glyph">↩️</div>
+        <div class="cc-title">Tax increment financing (TIF)</div>
+        <div class="cc-desc">Freezes a base year, then redirects the growth in tax revenue above that baseline into a bond fund — instead of letting the county, school district, or fire district collect it. A real diversion. Not every PID has this; only ones structured with a tax-increment component do.</div>
+      </div>
+    </div>
+
+    <p>Here's the part that survives even if no TIF is ever attached: a straight PID typically pays only for infrastructure <em>inside</em> its own boundary. It does not typically cover the county road that connects the development to everywhere else, regional water-source development, or the added strain on countywide services like fire and sheriff coverage — those still land on whoever was already paying for them, unless every applicable impact fee gets fully assessed and actually collected.</p>
+
+    <p style="font-weight:600;">Be blunt about what a TIF diversion actually does: when a county, school district, or fire district gets that growth revenue taken away, there are exactly two ways to close the gap — raise the tax rate on everyone who isn't inside the district, or cut the services that revenue would have paid for. There is no third option. In practice, both happen.</p>
+
+    <p>This isn't hypothetical. In Weber County's Nordic Village PID, an interlocal agreement pledges up to <strong>$30 million</strong> in future growth revenue from the school district and <strong>$6 million</strong> from the fire district into the PID's own bond fund. Neither entity gets that money back. They either serve the same growing population with less funding than they'd otherwise have, or they raise rates on every other taxpayer in the district — including people who live nowhere near the development — to make up the difference.</p>
+
+    <div class="diversion-chart">
+      <div class="div-bar-row">
+        <div class="div-bar-label">WHERE A DOLLAR OF NEW GROWTH REVENUE GOES — NO TIF</div>
+        <div class="div-bar">
+          <div class="div-seg county" style="width:40%;">County 40%</div>
+          <div class="div-seg school" style="width:40%;">School 40%</div>
+          <div class="div-seg fire" style="width:20%;">Fire 20%</div>
+        </div>
+      </div>
+      <div class="div-bar-row">
+        <div class="div-bar-label">WHERE IT GOES — WITH A TIF-BACKED PID (illustrative, based on the Nordic Village interlocal split)</div>
+        <div class="div-bar">
+          <div class="div-seg bond" style="width:85%;">Bond debt service 85%</div>
+          <div class="div-seg school" style="width:10%;">10%</div>
+          <div class="div-seg fire" style="width:5%;">5%</div>
+        </div>
+      </div>
+      <div class="div-legend">
+        <span><span class="dot" style="background:var(--cyan);"></span>County general fund</span>
+        <span><span class="dot" style="background:#7FD8A0;"></span>School district</span>
+        <span><span class="dot" style="background:#E8D24F;"></span>Fire district</span>
+        <span><span class="dot" style="background:var(--nay);"></span>PID bond debt service</span>
+      </div>
+      <p style="font-size:12px;color:var(--paper-dim);margin-top:10px;">Proportions above are illustrative, built to show the shape of the Nordic Village split (75% county / 50% school / 50% fire pledged to the PID) — not a claim that Lost Creek or Wasatch Highlands has this exact structure. Neither project has a confirmed TIF-backed PID on record as of this writing (see Section 04).</p>
+    </div>
+
+    <p>Wasatch County Manager Dustin Grabau said exactly this, on the record, about the Wasatch Highlands proposal specifically:</p>
+    <blockquote>
+      "That road has never been planned and does not have adequate right of way to accommodate a significant increase in traffic. If that's not included in the analysis, and they go ahead and proceed to build without making regional transportation improvements, that puts a burden on all the county residents to the benefit of three property owners."
+      <cite>Dustin Grabau, Wasatch County Manager — Park Record, Clara Hatcher, 2/20/2026</cite>
+    </blockquote>
+    <p>Grabau also said the county has no adequate water/sewer infrastructure for this density and is under no legal obligation to build it, since the project sits outside the county's own projected growth area: <em>"Honestly, I don't know that we would have the ability even if we wanted to."</em> He separately noted that if impact fees like the Wasatch County Fire District's aren't assessed on the new development, "that may put a proportionate burden on the rest of the county through other tax sources to make up the difference of the increased service level."</p>
+
+    <div class="margin-note">The throughline: whether or not a PID or TIF ever formally attaches to Lost Creek or Wasatch Highlands, the same shape keeps showing up. New development creates real infrastructure and service costs. A PID assessment can cover some of it — the part inside the fence line. Everything outside that line, and everything a missed impact fee should have covered, gets paid by people who were already there, whether or not any tax-increment mechanism is ever used.</div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-num">06 — NOT JUST IVORY</div>
+    <h2>Same law, same state, different family</h2>
+    <a class="crosslink" href="https://weber-county-hive.github.io/followthedeed/weber-hive-philo-wasatch-highlands.html">
+      <div class="glyph">→</div>
+      <div>
+        <div class="ct-title">The Chain Behind Wasatch Highlands</div>
+        <div class="ct-desc">Philo Development used the same preliminary-municipality law on 2,700 acres near Heber — plus a separate 720-acre SITLA lease with a sitting Cox staffer on the board that oversees it. Read the companion case file.</div>
+      </div>
+    </a>
+    <a class="crosslink" href="https://weber-county-hive.github.io/Bill-Tracker/weber-hive-bill-docket.html">
+      <div class="glyph">§</div>
+      <div>
+        <div class="ct-title">One Vote, Four Checks</div>
+        <div class="ct-desc">The full legislative history of S.B. 258 (2024) and H.B. 510 (2026) — every applicant, the complete Senate roll call, and how the reform bill got weakened before it ever reached the floor.</div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-col">
+        <details class="src-dropdown">
+          <summary>Sources (13 — tap to expand)</summary>
+          <ul style="margin-top:10px;">
+            <li>disclosures.utah.gov, Individual/Entity Contributions, 2018–2026 (Ivory Homes/Development/Southern, Kem Gardner, Christian Gardner, Clark Ivory, Ellis Ivory)</li>
+            <li>le.utah.gov, H.B. 510 official House &amp; Senate roll calls, 2/27/2026 &amp; 3/6/2026</li>
+            <li>le.utah.gov, HB0510-vs-HB0510S03 official bill comparison document</li>
+            <li>Utah Division of Purchasing, Wasatch Highlands Feasibility Consultant RFSQ #FB2630</li>
+            <li>Utah Division of Corporations, entity filings (Philo Development Group, Philo Venture Management/Partners, GRR- LLC family, Mountain Venture Studio Management)</li>
+            <li>OpenCorporates, officer/address searches</li>
+            <li>waterrights.utah.gov, address-change records (Exchange E5496)</li>
+            <li>Utah Code §10-2a-501 through §10-2a-511 (preliminary municipality statute); §17D-4-201 (PID formation)</li>
+            <li>Park Record, multiple bylines 2026 (Clara Hatcher)</li>
+            <li>KPCW, multiple bylines 2026 (Grace Doerfler)</li>
+            <li>SAM.gov, federal vendor registration (Garff Ranch Operations)</li>
+            <li>House Political Subdivisions Committee hearing record, 2/25/2026</li>
+            <li>Utah County Assessor / Summit County planning commission record, negative recommendation 8/7/2026</li>
+          </ul>
+        </details>
+      </div>
+      <div class="foot-col">
+        <h4>Related</h4>
+        <ul>
+          <li><a href="https://weber-county-hive.github.io/followthedeed/weber-hive-philo-wasatch-highlands.html">Follow the Deed: Wasatch Highlands</a></li>
+          <li><a href="https://weber-county-hive.github.io/Bill-Tracker/weber-hive-bill-docket.html">Bill Tracker: One Vote, Four Checks</a></li>
+          <li><a href="https://weber-county-hive.github.io/PIDS-Utah/pid_mechanism_map.html">PIDS-Utah: How PIDs Actually Work</a></li>
+          <li><a href="https://weber-county-hive.github.io/-weber-county-hive-index/">Master index</a></li>
+        </ul>
+      </div>
+    </div>
+    <p>The Weber County Hive — accountability journalism for Weber County, Utah. We report the filings. You decide what they mean.</p>
+  </div>
+</footer>
+
+</body>
+</html>
