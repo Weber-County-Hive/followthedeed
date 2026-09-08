@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Applicant Holds Those Rights — Follow the Deed — The Weber County Hive</title>
+<meta name="description" content="Speaker Mike Schultz's water rights, a 1959 corporation, and a signed state order with a factual error.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0B2545; --navy-deep:#081b34; --panel:#102d54;
+    --cyan:#4FC3E8; --cyan-dim: rgba(79,195,232,0.35);
+    --paper:#EDF2F7; --paper-dim:#B9C7D6;
+    --amber:#E8A94F; --rust:#E8704F;
+    --mono:'IBM Plex Mono', ui-monospace, monospace;
+    --sans:'Space Grotesk', sans-serif;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--navy);color:var(--paper);font-family:var(--sans);line-height:1.6;}
+  .wrap{max-width:880px;margin:0 auto;padding:0 24px;}
+  a{color:var(--cyan);}
+
+  .blueprint-bg{
+    background-image:linear-gradient(var(--cyan-dim) 1px, transparent 1px),linear-gradient(90deg, var(--cyan-dim) 1px, transparent 1px);
+    background-size:32px 32px;background-color:var(--navy-deep);opacity:0.18;position:absolute;inset:0;pointer-events:none;
+  }
+  header.masthead{position:relative;padding:52px 0 36px;border-bottom:1px solid var(--cyan-dim);overflow:hidden;}
+  .repo-tag{font-family:var(--mono);font-size:12.5px;letter-spacing:0.04em;color:var(--cyan);margin-bottom:16px;}
+  h1.title{font-size:clamp(28px,4.6vw,42px);font-weight:700;line-height:1.14;margin:0 0 14px;max-width:22ch;position:relative;}
+  p.dek{font-size:17px;color:var(--paper-dim);max-width:64ch;margin:0;position:relative;}
+
+  section{padding:36px 0;border-bottom:1px solid var(--cyan-dim);}
+  h2{font-family:var(--sans);font-size:1.35rem;font-weight:700;margin:0 0 14px;color:var(--paper);}
+  h3{font-family:var(--sans);font-size:1.05rem;font-weight:700;margin:22px 0 8px;color:var(--cyan);}
+  p{margin:0 0 14px;max-width:74ch;color:var(--paper-dim);font-size:15.5px;}
+  p b{color:var(--paper);}
+
+  .start-here{background:var(--panel);border-left:3px solid var(--cyan);padding:18px 22px;}
+  .start-here h2{color:var(--cyan);font-size:1.1rem;}
+  .start-here p:last-child{margin-bottom:0;}
+
+  .who-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px;margin-top:16px;}
+  .who-card{perspective:800px;height:190px;cursor:pointer;}
+  .who-face{
+    position:absolute;inset:0;backface-visibility:hidden;border:1px solid var(--cyan-dim);
+    border-radius:2px;padding:16px;display:flex;flex-direction:column;justify-content:center;
+    transition:transform 0.5s;overflow:auto;
+  }
+  .who-card{position:relative;transform-style:preserve-3d;}
+  .who-front{background:var(--panel);}
+  .who-name{font-family:var(--sans);font-weight:700;font-size:1.05rem;color:var(--paper);display:block;margin-bottom:6px;}
+  .who-hint{font-family:var(--mono);font-size:0.72rem;color:var(--cyan);}
+  .who-back{background:var(--navy-deep);color:var(--paper-dim);font-size:0.86rem;line-height:1.45;transform:rotateY(180deg);}
+  .who-card.flipped .who-front{transform:rotateY(180deg);}
+  .who-card.flipped .who-back{transform:rotateY(0deg);}
+
+  .entity-chain{background:var(--panel);border:1px solid var(--cyan-dim);padding:20px;margin:16px 0;}
+  .ec-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:8px;}
+  .ec-node{font-family:var(--mono);font-size:12.5px;background:rgba(79,195,232,0.12);border:1px solid var(--cyan);color:var(--cyan);padding:6px 12px;border-radius:2px;}
+  .ec-arrow{color:var(--paper-dim);font-size:14px;}
+
+  .mini-timeline{position:relative;margin:16px 0 4px;padding-left:20px;border-left:2px solid var(--cyan-dim);}
+  .mt-item{position:relative;padding-bottom:16px;}
+  .mt-item:last-child{padding-bottom:0;}
+  .mt-dot{position:absolute;left:-25px;top:3px;width:9px;height:9px;border-radius:50%;background:var(--cyan);}
+  .mt-date{font-family:var(--mono);font-weight:700;font-size:0.82rem;color:var(--amber);display:block;margin-bottom:2px;}
+  .mt-text{font-size:0.92rem;color:var(--paper-dim);}
+
+  .callout{background:var(--navy-deep);border-left:4px solid var(--amber);padding:16px 20px;margin:14px 0;font-size:0.92rem;}
+  .callout b{color:var(--amber);}
+  .callout-quote{background:var(--navy-deep);border-left:4px solid var(--rust);padding:18px 22px;margin:14px 0;font-size:1.02rem;font-style:italic;color:var(--paper);}
+  .callout-quote .attrib{display:block;margin-top:10px;font-family:var(--mono);font-size:0.75rem;font-style:normal;color:var(--rust);}
+
+  .caution-box{background:rgba(232,112,79,0.08);border:1px solid var(--rust);padding:14px 18px;margin:14px 0;font-size:0.88rem;color:var(--paper-dim);}
+  .caution-box .label{font-family:var(--mono);font-size:0.72rem;letter-spacing:0.05em;color:var(--rust);display:block;margin-bottom:6px;font-weight:700;}
+
+  .net-table{width:100%;border-collapse:collapse;margin:16px 0;font-size:0.88rem;}
+  .net-table th{background:var(--navy-deep);color:var(--cyan);text-align:left;padding:10px 12px;font-family:var(--mono);font-weight:600;font-size:0.75rem;}
+  .net-table td{padding:11px 12px;border-bottom:1px solid var(--cyan-dim);background:var(--panel);vertical-align:top;color:var(--paper-dim);}
+  .net-table tr td:first-child{font-weight:700;color:var(--paper);width:20%;}
+
+  .fix-table{width:100%;border-collapse:collapse;margin:16px 0;font-size:0.86rem;}
+  .fix-table th{background:var(--navy-deep);color:var(--cyan);text-align:left;padding:10px 12px;font-family:var(--mono);font-weight:600;font-size:0.75rem;}
+  .fix-table td{padding:11px 12px;border-bottom:1px solid var(--cyan-dim);vertical-align:top;color:var(--paper-dim);}
+  .fix-table tr td:first-child{background:rgba(232,112,79,0.08);border-right:3px solid var(--rust);width:44%;}
+  .fix-table tr td:last-child{background:var(--panel);border-left:3px solid #4FE88A;}
+
+  .job-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin:14px 0;}
+  .job-card{background:var(--panel);border:1px solid var(--cyan-dim);padding:14px 16px;}
+  .job-title{font-family:var(--mono);font-size:0.72rem;color:var(--cyan);margin-bottom:6px;}
+  .job-card p{font-size:0.88rem;margin-bottom:0;}
+
+  .questions-box{background:var(--navy-deep);border-left:4px solid var(--rust);padding:26px;}
+  .questions-box .qw-label{font-family:var(--mono);color:var(--rust);font-size:0.78rem;letter-spacing:0.06em;margin-bottom:14px;}
+  .questions-box ol{margin:0;padding-left:20px;}
+  .questions-box li{font-size:1rem;color:var(--paper);margin-bottom:14px;}
+
+  details.sources-toggle{background:var(--panel);border:1px solid var(--cyan-dim);margin:10px 0;}
+  details.sources-toggle summary{cursor:pointer;padding:12px 16px;font-weight:700;color:var(--cyan);list-style:none;font-family:var(--mono);font-size:0.85rem;}
+  details.sources-toggle summary::-webkit-details-marker{display:none;}
+  details.sources-toggle summary::before{content:"+ ";}
+  details.sources-toggle[open] summary::before{content:"\2212 ";}
+  details.sources-toggle .body{padding:0 16px 16px;font-size:0.85rem;color:var(--paper-dim);}
+  details.sources-toggle ul{margin:0;padding-left:18px;}
+  details.sources-toggle li{margin-bottom:6px;}
+
+  footer{padding:30px 0 56px;font-family:var(--mono);font-size:12px;color:var(--paper-dim);}
+  ul{padding-left:20px;color:var(--paper-dim);font-size:15.5px;}
+  li{margin-bottom:6px;}
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="blueprint-bg"></div>
+  <div class="wrap">
+    <div class="repo-tag">FOLLOW THE DEED &middot; CASE 04</div>
+    <h1 class="title">The Applicant Holds Those Rights</h1>
+    <p class="dek">Speaker Mike Schultz's ranching corporation won new water near the Great Salt Lake the same year he chief-sponsored the state's water bill — approved by a state engineer who acknowledged it might impair existing rights, because the applicant himself held those rights. The signed order also says a hearing wasn't held. One was.</p>
+  </div>
+</header>
+
+<div class="wrap">
+
+<section>
+  <div class="start-here">
+    <h2>Start here</h2>
+    <p><b>What is this?</b> In 2023, Keller Cattle Corporation — a 1959 Utah corporation now controlled by House Speaker Mike Schultz — applied for 556.70 acre-feet of new water rights on the Promontory Mountains, seven miles from the Great Salt Lake shore. The Utah Rivers Council formally protested. The State Engineer approved both applications anyway, reasoning in writing that even though approval might impair existing rights, it was acceptable because the applicant held those rights himself.</p>
+    <p><b>What's the goal?</b> Not to argue new water rights are inherently wrong. It's to test a specific record against the process meant to protect it: did a sitting official's own applications get the same scrutiny anyone else's would, and does the state's own paperwork on this specific approval hold up.</p>
+  </div>
+</section>
+
+<section>
+  <h2>Who's who</h2>
+  <p>Click a card to flip it.</p>
+  <div class="who-grid">
+    <div class="who-card" data-flip>
+      <div class="who-face who-front"><span class="who-name">Mike Schultz</span><span class="who-hint">click for role</span></div>
+      <div class="who-face who-back">Speaker of the Utah House since Nov. 2023. Registered agent of Keller Cattle Corporation. Chief sponsor of H.B. 491, the state's own Great Salt Lake water-policy bill.</div>
+    </div>
+    <div class="who-card" data-flip>
+      <div class="who-face who-front"><span class="who-name">Keller Cattle Corp</span><span class="who-hint">click for role</span></div>
+      <div class="who-face who-back">A Utah corporation registered in 1959 — not formed by Schultz, acquired. Owns the water applications and the land they sit on, 1877 W 4000 S, Roy.</div>
+    </div>
+    <div class="who-card" data-flip>
+      <div class="who-face who-front"><span class="who-name">Teresa Wilhelmsen</span><span class="who-hint">click for role</span></div>
+      <div class="who-face who-back">Utah State Engineer. Signed the July 18, 2024 Order approving both applications — the order that states no hearing was held.</div>
+    </div>
+    <div class="who-card" data-flip>
+      <div class="who-face who-front"><span class="who-name">Zachary Frankel</span><span class="who-hint">click for role</span></div>
+      <div class="who-face who-back">Executive Director, Utah Rivers Council. Filed the sole timely protest, naming Schultz personally in the filing.</div>
+    </div>
+    <div class="who-card" data-flip>
+      <div class="who-face who-front"><span class="who-name">Farmland Reserve Inc.</span><span class="who-hint">click for role</span></div>
+      <div class="who-face who-back">The LDS Church's farmland investment arm. Holds senior, certificated water rights dating to 1940 inside the same Promontory footprint. Did not oppose — asked for scrutiny of the applications instead.</div>
+    </div>
+    <div class="who-card" data-flip>
+      <div class="who-face who-front"><span class="who-name">Kyle Palmer</span><span class="who-hint">click for role</span></div>
+      <div class="who-face who-back">Treasurer of House Speaker Leadership PAC, owner of Irish Elk LLC. Confirmed recipient of roughly $200,000 combined from Schultz's PAC network across 2024-2026.</div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>The rubric</h2>
+  <p>What benefits the public collectively, not any one actor's reputation or track record, and not a personal opinion about who's involved.</p>
+  <div class="entity-chain">
+    <p style="margin-bottom:10px;"><b>1. Power</b> — Does it add or remove a check on power that the public, collectively, would otherwise have no say over?</p>
+    <p style="margin-bottom:10px;"><b>2. Transparency</b> — Can the public actually see the process: posted hearings, itemized financials, disclosed conflicts — regardless of who ends up holding the final decision?</p>
+    <p style="margin-bottom:10px;"><b>3. Financial accountability</b> — Who actually pays, who's protected from paying, and is that structure disclosed plainly or buried in a bundled figure?</p>
+    <p style="margin-bottom:10px;"><b>4. Environmental impact</b> — What's the effect on water, wetlands, and wildlife, and does the process treat that as a real constraint or a box to check?</p>
+    <p style="margin-bottom:0;"><b>5. Community impact</b> — Who bears the cost or holds a historical/cultural stake in this decision, and did the process give them real standing to be heard, or was their interest treated as a formality?</p>
+  </div>
+</section>
+
+<section>
+  <h2>The entity chain</h2>
+  <div class="entity-chain">
+    <div class="ec-row">
+      <span class="ec-node">Keller Cattle Corp (1959)</span>
+      <span class="ec-arrow">&rarr;</span>
+      <span class="ec-node">Applications 13-4099 / 13-4100 (2023)</span>
+      <span class="ec-arrow">&rarr;</span>
+      <span class="ec-node">556.70 acre-feet approved (2024)</span>
+    </div>
+  </div>
+  <p>Schultz did not form Keller Cattle Corporation — he acquired a 66-year-old existing Utah corporation. "Keller" is the original family's name, not his. Buying the corporation rather than the land directly carries over everything it already held, and keeps the acquisition out of a deed search under his own name. Both water applications list Keller Cattle as owner at 1877 W 4000 S, Roy — the same hub address used by nearly all of his other current entities (Sawmill Ranch LLC, Mike Schultz Inc). Land ownership on both applications: "Yes."</p>
+
+  <h3>The two applications, side by side</h3>
+  <table class="net-table">
+    <tr><th></th><th>13-4099 (A83920)</th><th>13-4100 (A83921)</th></tr>
+    <tr><td>Quantity</td><td>278.35 acre-feet</td><td>278.35 acre-feet</td></tr>
+    <tr><td>Filed</td><td>8/25/2023</td><td>8/25/2023</td></tr>
+    <tr><td>Wells</td><td>3, all 10" (proposed)</td><td>5 &mdash; including one <b>16-inch, 540-foot well marked "Existing"</b></td></tr>
+    <tr><td>Springs authorized</td><td>6</td><td>9</td></tr>
+    <tr><td>Protests</td><td>Farmland Reserve only (late)</td><td>Utah Rivers Council (timely) + Farmland Reserve (late)</td></tr>
+    <tr><td>Status</td><td>Approved 7/18/2024</td><td>Approved 7/18/2024</td></tr>
+  </table>
+
+  <div class="callout">
+    <b>The 16-inch well:</b> production/industrial scale, far beyond stock-water capacity — every other well on either application is 8 or 10 inches. It's marked "Existing," meaning it was already in the ground before the applications were filed, and no well log is on file for it. Utah requires licensed drillers to file logs. Under what authority it was drilled, and when, is a specific, checkable open question.
+  </div>
+</section>
+
+<section>
+  <h2>What Schultz told the public vs. what he authorized</h2>
+  <p>Schultz told <i>FenceLines</i> (a ranching trade publication) in Winter 2024 that he'd developed "over 45 springs," 30 miles of pipeline, and roughly 45 tire troughs on Promontory in a single year. The two applications together authorize <b>15</b> spring diversions — a three-fold gap between what he described publicly and what's on file with the state. It's possible the larger system draws on older, separately-held rights rather than these two applications alone; that hasn't been resolved and isn't asserted as a discrepancy in his favor or against him here.</p>
+
+  <h3>Why water for land that's mostly not farmable</h3>
+  <p>Both applications state that irrigation covers just 80 acres each — and by the applications' own numbers, less than 10% of the watered fields are planted in alfalfa, the only crop named. Yet each application authorizes <b>1,000 ELUs of stock water, year-round</b> — a livestock/wildlife water budget, not a crop-irrigation one. That combination — barely any cropland, but a large, year-round animal-water allocation — is consistent with land managed primarily for a resident wildlife population rather than farming, which is exactly what a Cooperative Wildlife Management Unit requires to qualify: enrolled private land sustains deer, elk, or other game, and the landowner is entitled in return to sell a portion of the state's hunting tags for that unit. Sawmill Ranch is a confirmed guide operator on the Chimney Rock CWMU in Northern Utah, marketing guided elk hunts through public auction.</p>
+  <div class="caution-box">
+    <span class="label">WHAT'S NOT YET CONFIRMED</span>
+    Whether the Chimney Rock CWMU's boundary actually overlaps these specific well and spring parcels on Promontory, or sits on a different piece of Schultz's land, hasn't been checked against Utah DWR's own published CWMU boundary maps. If it does overlap, the water use pattern and the commercial hunting operation are the same story. Stated here as a strong, checkable pattern — not asserted as confirmed overlap.
+  </div>
+</section>
+
+<section>
+  <h2>The hearing that the signed order says didn't happen</h2>
+  <p>A hearing was held December 14, 2023, 9:00 AM, in the Box Elder County Commission Chambers, Brigham City — confirmed by a hearing report, two pages of handwritten notes, and an audio recording, all on file. Regional Engineer Witt Atkin presided; Keller Cattle Corporation appeared and was represented; Zachary Frankel appeared for the Utah Rivers Council. The recorded comments include the applicant arguing well depth means no effect on the lake, and the protestant focusing on the Great Salt Lake's condition.</p>
+  <p>The State Engineer's signed Order, dated July 18, 2024, states plainly that <b>a hearing was not held.</b></p>
+  <div class="callout">
+    <b>This is a factual error in a signed state document on a protested application</b> — not a matter of interpretation. A hearing occurred, with named state staff and both parties present, and it generated a paper and audio record. Whether this reflects a clerical mistake in drafting the Order or something else hasn't been established, and isn't asserted here. It's a direct, answerable question for the Division of Water Rights.
+  </div>
+
+  <h3>The reasoning the Order does give</h3>
+  <div class="callout-quote">
+    "...even though approval may impair existing water rights, the applicant holds those water rights."
+    <span class="attrib">— Order of the State Engineer, July 18, 2024</span>
+  </div>
+  <p>The State Engineer's own written reasoning: unappropriated water exists, and approval was granted despite acknowledging it may impair existing rights, because the applicant himself holds the rights that would be impaired. What the Order does not address, on its face: the Utah Rivers Council's protest specifically invoked Utah Code &sect;73-3-8(1)(b), which requires the State Engineer to withhold approval until she investigates whether an application may unreasonably affect public recreation, the natural stream environment, or public welfare. No such investigation appears in the Order's stated reasoning.</p>
+</section>
+
+<section>
+  <h2>Farmland Reserve — senior rights, no opposition, no scrutiny either</h2>
+  <p>Two of the wells in these applications — including the 16-inch well — sit inside a documented water system called "Promontory Ranch," served by fifteen interconnected water rights. Those rights belong to <b>Farmland Reserve Inc.</b>, the LDS Church's farmland investment arm — not to Keller Cattle. Farmland Reserve's anchor right in that system dates to <b>1940</b> and is fully certificated (perfected); Schultz's 2023 applications are junior and unperfected, with proof of beneficial use not due until 2031.</p>
+  <p>Farmland Reserve did not oppose the applications. Its letter asked the State Engineer to weigh senior rights in the area and specifically warned that some proposed points of diversion might already be double-counted under existing rights with the same uses — a request to check whether the applications' "sole supply" designations were accurate. The DWR's own tables list every use on both applications as "Sole Supply." The Order does not address Farmland Reserve's warning.</p>
+</section>
+
+<section>
+  <h2>The vote on the same county's biggest project</h2>
+  <p>On August 21, 2023 — four days before filing these water applications — Schultz voted as a member of the Utah Inland Port Authority board to create the <b>Golden Spike Inland Port Project Area</b> in Box Elder County, the same county as his Promontory land, along with a $219 million incentive package. He did not recuse. His 2023 UIPA conflict-of-interest disclosure lists board positions as "None," despite active UIPA board service that year — the same answer his 2026 disclosure gives to a separate board-seat question, discussed below.</p>
+  <p>Separately: the Speaker of the House appoints one member to MIDA's board — the authority that approved the Stratos data center project area, also in Box Elder County, in April 2026. Whether any Schultz-controlled parcel sits inside or adjacent to either the Golden Spike or Stratos project area boundaries has not been confirmed with a parcel-level overlay and is stated here as an open question, not a finding.</p>
+</section>
+
+<section>
+  <h2>The disclosure pattern</h2>
+  <p>Schultz's official House bio says he "owned and operated several small businesses, including his home building company, which he stepped away from in 2023." His 2026 financial disclosure lists Castle Creek Homes LLC and Mike Schultz Construction Inc as currently owned <b>and</b> as sources of $5,000+ income in the preceding year — three years after the bio says he stepped away. Utah's own corporate registry confirms Original Castle Creek Homes LLC remains active.</p>
+
+  <div class="job-cards">
+    <div class="job-card">
+      <div class="job-title">2019 disclosure</div>
+      <p>Board seats affirmatively listed: NWHBA (board member), First National Bank (board member).</p>
+    </div>
+    <div class="job-card">
+      <div class="job-title">2023 UIPA disclosure</div>
+      <p>Board positions: "None" — despite active UIPA board service that same year.</p>
+    </div>
+    <div class="job-card">
+      <div class="job-title">2026 disclosure</div>
+      <p>Item 5A board/leadership positions: "None" — despite corporate registry records showing him as an officer or director on at least two active homeowners' associations.</p>
+    </div>
+  </div>
+  <p>The 2019 form shows he understood board seats to be reportable, and reported them. The later "None" answers are worth reading against that baseline rather than in isolation.</p>
+</section>
+
+<section>
+  <h2>The PAC money</h2>
+  <p>House Speaker Leadership PAC's treasurer, Kyle Palmer, also owns Irish Elk LLC. Across confirmed 2024-2026 filings, combined payments to Palmer personally and to Irish Elk LLC from HSLPAC alone total roughly <b>$200,000</b>. The PAC has separately funded other Republican candidates directly — $10,000 each to Logan Monson and Jordan Teuscher in a single 2026 reporting period, among others — while GH4 Consulting, an LLC paid $4,933.10 by HSLPAC in December 2024, is confirmed to include former House Speaker Greg Hughes and Greg Hartley, the operative who has managed every campaign for Schultz himself.</p>
+</section>
+
+<section>
+  <h2>What this means for the public — graded by topic</h2>
+  <table class="net-table">
+    <tr><th>Topic</th><th>Power</th><th>Transparency</th><th>Financial accountability</th><th>Environmental impact</th><th>Community impact</th><th>Grade</th></tr>
+    <tr><td>Water rights approval</td><td>Bad &mdash; approved on reasoning that accepted potential impairment because the applicant holds the affected rights himself</td><td>Bad &mdash; the signed Order contains a factual error (claims no hearing was held; one was, on the record)</td><td>Not applicable &mdash; not a public financing question</td><td>Bad &mdash; approved 7 miles from a lake in documented ecological decline, with no addressed investigation of the public-welfare question the protest raised</td><td>Neutral &mdash; the process followed statutory notice and protest procedure; the outcome for the protesting parties is the separate finding above</td><td>D</td></tr>
+    <tr><td>Farmland Reserve's warning</td><td>Not applicable</td><td>Bad &mdash; a specific, written warning about double-counted "sole supply" designations went unaddressed in the Order</td><td>Not applicable</td><td>Not applicable to this specific finding</td><td>Neutral &mdash; Farmland Reserve chose not to oppose, only asked for scrutiny; it received the process it was owed procedurally, just not the substantive answer it asked for</td><td>C&ndash;</td></tr>
+    <tr><td>Golden Spike UIPA vote</td><td>Bad &mdash; voted on a project area in his own county of landholding without recusing</td><td>Bad &mdash; same-year disclosure lists board positions as "None" despite active service</td><td>Bad &mdash; approved a $219M incentive package the same period</td><td>Not applicable to this specific finding</td><td>Not applicable to this specific finding</td><td>D</td></tr>
+    <tr><td>Business portfolio disclosure</td><td>Neutral &mdash; no power specifically transferred by the disclosure gaps themselves</td><td>Bad &mdash; a public bio claim ("stepped away") contradicted by the same year's own financial disclosure</td><td>Neutral &mdash; income is disclosed, just alongside a contradicting public claim</td><td>Not applicable</td><td>Not applicable</td><td>C&ndash;</td></tr>
+    <tr><td>PAC finance network</td><td>Neutral &mdash; legal campaign finance activity</td><td>Good &mdash; itemized, publicly filed disclosures make this traceable</td><td>Bad &mdash; roughly $200,000 to one treasurer/vendor relationship, concentrated rather than distributed</td><td>Not applicable</td><td>Not applicable</td><td>C</td></tr>
+  </table>
+  <p>The water-rights approval and the Golden Spike vote are the worst-graded items here, and for a specific, shared reason: both involve Schultz's own interests sitting inside a process he or a state official acting on his behalf had discretion over, without disclosure or recusal removing that overlap.</p>
+
+  <h3 style="margin-top:0;">What would have earned a passing grade</h3>
+  <table class="fix-table">
+    <tr><th>What actually happened</th><th>What would have kept the same goal, without the opacity</th></tr>
+    <tr>
+      <td>The signed Order states a hearing was not held, when one demonstrably was, on the record</td>
+      <td>A basic accuracy check on signed agency orders before they're issued on a protested application</td>
+    </tr>
+    <tr>
+      <td>Approval reasoning accepted potential impairment because "the applicant holds those water rights," without separately addressing Farmland Reserve's senior rights in the same footprint</td>
+      <td>Address every named party's specific rights and warnings in the written reasoning, not just the applicant's own</td>
+    </tr>
+    <tr>
+      <td>Every use on both applications is marked "Sole Supply," despite Farmland Reserve's written warning that some diversion points may already serve the same uses under other rights</td>
+      <td>Resolve the double-counting question before designating sole supply, given a specific warning was already on file</td>
+    </tr>
+    <tr>
+      <td>Board-seat disclosure answers moved from affirmatively listing NWHBA and First National Bank in 2019 to "None" in later years, including a year of active UIPA board service</td>
+      <td>Consistent board-seat reporting year over year, with a plain-language rule on whether public-authority appointments count</td>
+    </tr>
+  </table>
+</section>
+
+<section>
+  <div class="questions-box">
+    <div class="qw-label">QUESTIONS WORTH ASKING</div>
+    <ol>
+      <li>Under what authority was the 16-inch, 540-foot well drilled before the application that would have authorized it was even filed?</li>
+      <li>Why does the signed Order state no hearing was held, when a hearing report, notes, and recording all confirm one occurred on December 14, 2023?</li>
+      <li>Did the State Engineer's office evaluate Farmland Reserve's senior rights, or the double-counting warning in its letter, anywhere outside the Order's written reasoning?</li>
+      <li>Does any Schultz-controlled parcel sit inside or adjacent to the Golden Spike or Stratos project area boundaries he had a role in creating or overseeing?</li>
+      <li>Why do board-seat disclosure answers move from affirmatively listing positions in 2019 to "None" in later years that include documented active service?</li>
+    </ol>
+  </div>
+</section>
+
+<section>
+  <details class="sources-toggle">
+    <summary>Sources</summary>
+    <div class="body">
+      <ul>
+        <li>Utah Division of Water Rights, applications 13-4099/A83920 and 13-4100/A83921, full document folders including the Order of the State Engineer (7/18/2024), Hearing Report and notes (12/14/2023), and both protest filings</li>
+        <li>Utah Rivers Council protest filing, 10/10/2023</li>
+        <li>Farmland Reserve Inc. letter, 1/15/2024</li>
+        <li>Utah Division of Corporations entity filings: Keller Cattle Corporation, Sawmill Ranch LLC, and related entities</li>
+        <li>Mike Schultz financial disclosure forms, 2019, 2023 (UIPA), and 2026, Utah House of Representatives</li>
+        <li><i>FenceLines</i> magazine, Winter 2024, Schultz interview</li>
+        <li>House Speaker Leadership PAC and UHREC campaign finance disclosures, disclosures.utah.gov</li>
+      </ul>
+    </div>
+  </details>
+</section>
+
+</div>
+
+<footer>
+  <div class="wrap">
+    The Weber County Hive — accountability journalism for Weber County, Utah. We report the filings. You decide what they mean.
+  </div>
+</footer>
+
+<script>
+  document.querySelectorAll('.who-card[data-flip]').forEach(function(card){
+    card.addEventListener('click', function(){
+      card.classList.toggle('flipped');
+    });
+  });
+</script>
+
+</body>
+</html>
