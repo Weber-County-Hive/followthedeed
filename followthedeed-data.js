@@ -40,5 +40,15 @@ const FOLLOWTHEDEED_CASES = [
     dateAdded: "2026-09-08",
     summary: "House Speaker Mike Schultz's ranching corporation won new water rights near the Great Salt Lake, approved by a state engineer who acknowledged impairment risk because the applicant held those rights himself — and a signed order that says a hearing wasn't held, when one was.",
     tags: ["Mike Schultz", "Keller Cattle Corp", "water rights", "Promontory", "Great Salt Lake", "State Engineer", "Farmland Reserve", "Golden Spike", "UIPA"]
+  },
+  {
+    id: "nordic-village-froerer",
+    title: "The Trustee Signed His Own Deal",
+    file: "weber-hive-nordic-village-froerer.html",
+    caseNumber: "05",
+    county: "Weber",
+    dateAdded: "2026-09-08",
+    summary: "A county commissioner's entity transferred land for zero dollars, then dissolved. A PID trustee signed the same land into the district he oversees for ten dollars, on behalf of his own employer. And the resort's real owner — a French regional president co-leading his country's 2030 Olympic bid — never disclosed it to his own government.",
+    tags: ["Nordic Village", "Froerer", "PID", "Jouffray", "Henrie", "Muselier", "Mediapart", "Sorep", "Olympics"]
   }
 ];
