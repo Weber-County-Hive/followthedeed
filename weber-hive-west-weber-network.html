@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>More Lots, Same Playbook — Follow the Deed — The Weber County Hive</title>
+<meta name="description" content="Tracing Black Pine, Pat Burns, and Nilson Homes across West Weber's zoning and land-assembly network.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0B2545; --navy-deep:#081b34; --panel:#102d54;
+    --cyan:#4FC3E8; --cyan-dim: rgba(79,195,232,0.35);
+    --paper:#EDF2F7; --paper-dim:#B9C7D6;
+    --amber:#E8A94F; --rust:#E8704F;
+    --mono:'IBM Plex Mono', ui-monospace, monospace;
+    --sans:'Space Grotesk', sans-serif;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--navy);color:var(--paper);font-family:var(--sans);line-height:1.6;}
+  .wrap{max-width:880px;margin:0 auto;padding:0 24px;}
+  a{color:var(--cyan);}
+
+  .blueprint-bg{
+    background-image:linear-gradient(var(--cyan-dim) 1px, transparent 1px),linear-gradient(90deg, var(--cyan-dim) 1px, transparent 1px);
+    background-size:32px 32px;background-color:var(--navy-deep);opacity:0.18;position:absolute;inset:0;pointer-events:none;
+  }
+  header.masthead{position:relative;padding:52px 0 36px;border-bottom:1px solid var(--cyan-dim);overflow:hidden;}
+  .repo-tag{font-family:var(--mono);font-size:12.5px;letter-spacing:0.04em;color:var(--cyan);margin-bottom:16px;}
+  h1.title{font-size:clamp(28px,4.6vw,42px);font-weight:700;line-height:1.14;margin:0 0 14px;max-width:20ch;position:relative;}
+  p.dek{font-size:17px;color:var(--paper-dim);max-width:64ch;margin:0;position:relative;}
+
+  section{padding:36px 0;border-bottom:1px solid var(--cyan-dim);}
+  h2{font-family:var(--sans);font-size:1.35rem;font-weight:700;margin:0 0 14px;color:var(--paper);}
+  h3{font-family:var(--sans);font-size:1.05rem;font-weight:700;margin:22px 0 8px;color:var(--cyan);}
+  p{margin:0 0 14px;max-width:74ch;color:var(--paper-dim);font-size:15.5px;}
+  p b{color:var(--paper);}
+
+  .start-here{background:var(--panel);border-left:3px solid var(--cyan);padding:18px 22px;}
+  .start-here h2{color:var(--cyan);font-size:1.1rem;}
+  .start-here p:last-child{margin-bottom:0;}
+
+  .who-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px;margin-top:16px;}
+  .who-card{perspective:800px;height:190px;cursor:pointer;}
+  .who-face{
+    position:absolute;inset:0;backface-visibility:hidden;border:1px solid var(--cyan-dim);
+    border-radius:2px;padding:16px;display:flex;flex-direction:column;justify-content:center;
+    transition:transform 0.5s;overflow:auto;
+  }
+  .who-card{position:relative;transform-style:preserve-3d;}
+  .who-front{background:var(--panel);}
+  .who-name{font-family:var(--sans);font-weight:700;font-size:1.05rem;color:var(--paper);display:block;margin-bottom:6px;}
+  .who-hint{font-family:var(--mono);font-size:0.72rem;color:var(--cyan);}
+  .who-back{background:var(--navy-deep);color:var(--paper-dim);font-size:0.86rem;line-height:1.45;transform:rotateY(180deg);}
+  .who-card.flipped .who-front{transform:rotateY(180deg);}
+  .who-card.flipped .who-back{transform:rotateY(0deg);}
+
+  .entity-chain{background:var(--panel);border:1px solid var(--cyan-dim);padding:20px;margin:16px 0;}
+  .ec-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:8px;}
+  .ec-node{font-family:var(--mono);font-size:12.5px;background:rgba(79,195,232,0.12);border:1px solid var(--cyan);color:var(--cyan);padding:6px 12px;border-radius:2px;}
+  .ec-arrow{color:var(--paper-dim);font-size:14px;}
+
+  .mini-timeline{position:relative;margin:16px 0 4px;padding-left:20px;border-left:2px solid var(--cyan-dim);}
+  .mt-item{position:relative;padding-bottom:16px;}
+  .mt-item:last-child{padding-bottom:0;}
+  .mt-dot{position:absolute;left:-25px;top:3px;width:9px;height:9px;border-radius:50%;background:var(--cyan);}
+  .mt-date{font-family:var(--mono);font-weight:700;font-size:0.82rem;color:var(--amber);display:block;margin-bottom:2px;}
+  .mt-text{font-size:0.92rem;color:var(--paper-dim);}
+
+  .price-table{width:100%;border-collapse:collapse;margin:16px 0;font-size:0.9rem;}
+  .price-table th{background:var(--navy-deep);color:var(--cyan);text-align:left;padding:10px 12px;font-family:var(--mono);font-weight:600;font-size:0.78rem;letter-spacing:0.03em;}
+  .price-table td{padding:12px;border-bottom:1px solid var(--cyan-dim);background:var(--panel);vertical-align:top;color:var(--paper-dim);}
+  .price-table td.market{color:var(--rust);font-weight:700;}
+  .price-table td.attain{color:var(--amber);font-weight:700;}
+
+  .callout{background:var(--navy-deep);border-left:4px solid var(--amber);padding:16px 20px;margin:14px 0;font-size:0.92rem;}
+  .callout b{color:var(--amber);}
+
+  .caution-box{background:rgba(232,112,79,0.08);border:1px solid var(--rust);padding:14px 18px;margin:14px 0;font-size:0.88rem;color:var(--paper-dim);}
+  .caution-box .label{font-family:var(--mono);font-size:0.72rem;letter-spacing:0.05em;color:var(--rust);display:block;margin-bottom:6px;font-weight:700;}
+
+  .net-table{width:100%;border-collapse:collapse;margin:16px 0;font-size:0.88rem;}
+  .net-table th{background:var(--navy-deep);color:var(--cyan);text-align:left;padding:10px 12px;font-family:var(--mono);font-weight:600;font-size:0.75rem;}
+  .net-table td{padding:11px 12px;border-bottom:1px solid var(--cyan-dim);background:var(--panel);vertical-align:top;color:var(--paper-dim);}
+  .net-table tr td:first-child{font-weight:700;color:var(--paper);width:22%;}
+
+  .fix-table{width:100%;border-collapse:collapse;margin:16px 0;font-size:0.86rem;}
+  .fix-table th{background:var(--navy-deep);color:var(--cyan);text-align:left;padding:10px 12px;font-family:var(--mono);font-weight:600;font-size:0.75rem;}
+  .fix-table td{padding:11px 12px;border-bottom:1px solid var(--cyan-dim);vertical-align:top;color:var(--paper-dim);}
+  .fix-table tr td:first-child{background:rgba(232,112,79,0.08);border-right:3px solid var(--rust);width:44%;}
+  .fix-table tr td:last-child{background:var(--panel);border-left:3px solid #4FE88A;}
+
+  .chart-box{background:var(--panel);border:1px solid var(--cyan-dim);padding:18px 20px;margin:16px 0;}
+  .chart-title{font-family:var(--mono);font-size:0.78rem;letter-spacing:0.04em;color:var(--cyan);margin-bottom:10px;}
+  .chart-box svg{width:100%;height:auto;display:block;}
+  .chart-label{font-size:11px;fill:var(--paper);font-family:var(--sans);}
+  .chart-value{font-size:11px;fill:var(--paper-dim);font-family:var(--mono);}
+  .chart-note{font-size:0.78rem;color:var(--paper-dim);margin-top:10px;font-style:italic;}
+
+  .grade-box{display:flex;gap:14px;align-items:center;background:var(--panel);border:1px solid var(--cyan-dim);padding:16px 20px;margin:16px 0;}
+  .grade-box .letter{font-family:var(--mono);font-size:2rem;font-weight:700;color:var(--amber);line-height:1;}
+  .grade-box .desc{font-size:0.9rem;color:var(--paper-dim);}
+
+  .questions-box{background:var(--navy-deep);border-left:4px solid var(--rust);padding:26px;}
+  .questions-box .qw-label{font-family:var(--mono);color:var(--rust);font-size:0.78rem;letter-spacing:0.06em;margin-bottom:14px;}
+  .questions-box ol{margin:0;padding-left:20px;}
+  .questions-box li{font-size:1rem;color:var(--paper);margin-bottom:14px;}
+
+  details.sources-toggle{background:var(--panel);border:1px solid var(--cyan-dim);margin:10px 0;}
+  details.sources-toggle summary{cursor:pointer;padding:12px 16px;font-weight:700;color:var(--cyan);list-style:none;font-family:var(--mono);font-size:0.85rem;}
+  details.sources-toggle summary::-webkit-details-marker{display:none;}
+  details.sources-toggle summary::before{content:"+ ";}
+  details.sources-toggle[open] summary::before{content:"\2212 ";}
+  details.sources-toggle .body{padding:0 16px 16px;font-size:0.85rem;color:var(--paper-dim);}
+  details.sources-toggle ul{margin:0;padding-left:18px;}
+  details.sources-toggle li{margin-bottom:6px;}
+
+  footer{padding:30px 0 56px;font-family:var(--mono);font-size:12px;color:var(--paper-dim);}
+  ul{padding-left:20px;color:var(--paper-dim);font-size:15.5px;}
+  li{margin-bottom:6px;}
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="blueprint-bg"></div>
+  <div class="wrap">
+    <div class="repo-tag">FOLLOW THE DEED &middot; CASE 03</div>
+    <h1 class="title">More Lots, Same Playbook</h1>
+    <p class="dek">Two developer networks, one UIPA project area, and the same move repeated across both: get a rezone or a density amendment, add units, and let a public label — "affordable," "attainable" — do the political work of getting it approved.</p>
+  </div>
+</header>
+
+<div class="wrap">
+
+<section>
+  <div class="start-here">
+    <h2>Start here</h2>
+    <p><b>What is this?</b> Two separate development networks operating inside and around the same West Weber corridor — one built around Pat Burns/Lync and Black Pine's Bennet LLC assembly, the other around Nilson Homes' JDC Ranch — both using the same basic move: get more units approved on the same acreage, market part of it as affordable, and let elected officials champion the label on the record.</p>
+    <p><b>What's the goal?</b> Not to argue that density itself is bad, or that "affordable housing" language is dishonest by definition. It's to test a specific claim against the record: does adding units to get a project approved actually lower prices for buyers, or does it mostly mean more total units sold at prices close to market rate?</p>
+  </div>
+</section>
+
+<section>
+  <h2>The rubric</h2>
+  <p>This piece touches both kinds of decisions this project tracks — legislative/regulatory authority and public financing structures — so it's graded against all five questions, not a subset. Each one is scored <b>Good, Neutral, or Bad for the public</b> — not for any one actor's reputation or track record, and not a personal opinion about who's involved.</p>
+  <div class="entity-chain">
+    <p style="margin-bottom:10px;"><b>1. Power</b> — Does it add or remove a check on power that the public, collectively, would otherwise have no say over?</p>
+    <p style="margin-bottom:10px;"><b>2. Transparency</b> — Can the public actually see the process: posted hearings, itemized financials, disclosed conflicts — regardless of who ends up holding the final decision?</p>
+    <p style="margin-bottom:10px;"><b>3. Financial accountability</b> — Who actually pays, who's protected from paying, and is that structure disclosed plainly or buried in a bundled figure?</p>
+    <p style="margin-bottom:10px;"><b>4. Environmental impact</b> — What's the effect on water, wetlands, and wildlife, and does the process treat that as a real constraint or a box to check?</p>
+    <p style="margin-bottom:0;"><b>5. Community impact</b> — Who bears the cost or holds a historical/cultural stake in this decision — tribal or otherwise — and did the process give them real standing to be heard, or was their interest treated as a formality?</p>
+  </div>
+  <p>Below, each topic in this piece gets its own grade across all five, rather than one score for the whole thing — they don't all land the same way, and flattening them into a single verdict would hide that.</p>
+</section>
+
+<section>
+  <h2>Who's who</h2>
+  <p>Click a card to flip it. These are the recurring names across both networks below — worth knowing before the entity chains and timelines start piling up.</p>
+  <div class="who-grid" id="whoGrid">
+    <div class="who-card" data-flip>
+      <div class="who-face who-front"><span class="who-name">Pat Burns</span><span class="who-hint">click for role</span></div>
+      <div class="who-face who-back">Owner of Lync Construction/Lync Development. Developer behind Herrick Estates, West Creek, Sage Creek, and the 2020 LLC land assembled into LMSA — appointed to LMSA's own board in 2024. Also a Builder Director on the Northern Wasatch Home Builders Association board — the same trade association Mike Schultz previously led.</div>
+    </div>
+    <div class="who-card" data-flip>
+      <div class="who-face who-front"><span class="who-name">Jon Beesley</span><span class="who-hint">click for role</span></div>
+      <div class="who-face who-back">Plain City Mayor, Jan. 2018–Jan. 2026. Worked for Pat Burns's Lync Construction during his tenure; multiple undisclosed-employment gaps on his own COI filings.</div>
+    </div>
+    <div class="who-card" data-flip>
+      <div class="who-face who-front"><span class="who-name">Stephanie Russell</span><span class="who-hint">click for role</span></div>
+      <div class="who-face who-back">Weber County Economic Development Director, LMSA's own Manager, and a paid lobbyist for LMSA through her own DBA — three roles, one person.</div>
+    </div>
+    <div class="who-card" data-flip>
+      <div class="who-face who-front"><span class="who-name">Daniel Stephens</span><span class="who-hint">click for role</span></div>
+      <div class="who-face who-back">Principal behind the "Black Pine" brand (Bennet LLC and related entities). Personally attended and spoke at UIPA board meetings shaping the West Weber project area.</div>
+    </div>
+    <div class="who-card" data-flip>
+      <div class="who-face who-front"><span class="who-name">Katrina Gibson</span><span class="who-hint">click for role</span></div>
+      <div class="who-face who-back">2026 Weber County Commission candidate. Her own family parcel transferred to Bennet LLC (Black Pine) the same day she filed her candidacy.</div>
+    </div>
+    <div class="who-card" data-flip>
+      <div class="who-face who-front"><span class="who-name">Kerry Gibson</span><span class="who-hint">click for role</span></div>
+      <div class="who-face who-back">Katrina's husband, former County Commissioner. Held a paid lobbying contract with Plain City under Beesley for 3.5+ years; Partner at Lincoln Hill Partners, the firm Plain City hired the same period.</div>
+    </div>
+    <div class="who-card" data-flip>
+      <div class="who-face who-front"><span class="who-name">Sharon Bolos</span><span class="who-hint">click for role</span></div>
+      <div class="who-face who-back">Weber County Commissioner. Undisclosed family connection to Nilson Homes VP Bryan Arrington; publicly championed the JDC Ranch "attainable" density amendment.</div>
+    </div>
+    <div class="who-card" data-flip>
+      <div class="who-face who-front"><span class="who-name">Laura Warburton</span><span class="who-hint">click for role</span></div>
+      <div class="who-face who-back">Runs Utah Forward PAC — funded by both Nilson Homes and the Lewis/Dunleavy network already tied to Nordic Village and Eden Crossing.</div>
+    </div>
+    <div class="who-card" data-flip>
+      <div class="who-face who-front"><span class="who-name">Steve Waldrip</span><span class="who-hint">click for role</span></div>
+      <div class="who-face who-back">Gov. Cox's senior housing adviser, expanded statutory authority under H.B. 68. Personally worked with Nilson Homes on the JDC Ranch "attainable homes" pitch.</div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Network one: Black Pine, Pat Burns, and the Gibson land</h2>
+
+  <div class="entity-chain">
+    <div class="ec-row">
+      <span class="ec-node">Gibson Farms (family land)</span>
+      <span class="ec-arrow">&rarr;</span>
+      <span class="ec-node">Bennet LLC / Black Pine</span>
+      <span class="ec-arrow">&rarr;</span>
+      <span class="ec-node">550-ac "Bennet Farms" TN/FB rezone</span>
+    </div>
+  </div>
+
+  <p>Weber County's own May 2025 hearing notice confirms the entire 550-acre Bennet Farms assembly is "formerly Gibson Farms" — and it's not a standard rezone into an existing density tier. Filed as <b>ZMA2024-16 / ZTA2024-07</b>, the application asks the county to create a <b>new zone district</b>, "Traditional Neighborhood" (TN), dual-zoned with the county's existing "Form-Based" (FB) designation — a category built for this project rather than an existing one the land already qualified for. The land's current zoning is a patchwork (A-1, A-2, R1-15, R-3, per county staff), not uniformly agricultural. One real mitigating detail: the proposal also includes an <b>Open Space (O-1)</b> zone specifically along the Weber River Corridor, and per local reporting the attached development agreement runs <b>30 years</b> — longer than any other single agreement documented in this piece — with a "town-architect review process" written in to enforce design standards over that span.</p>
+
+  <div class="mini-timeline">
+    <div class="mt-item"><div class="mt-dot"></div><span class="mt-date">Jan. 8, 2026</span><div class="mt-text">Katrina Gibson's own parcel (15-326-0001) transfers to Bennet LLC — the same day she files her County Commission candidacy</div></div>
+    <div class="mt-item"><div class="mt-dot"></div><span class="mt-date">~Jan. 2026</span><div class="mt-text">GGA LLC — the Gibson family's own dairy-farm entity — also transfers land to Bennet LLC</div></div>
+    <div class="mt-item"><div class="mt-dot"></div><span class="mt-date">On file</span><div class="mt-text">Andrea Gibson (Kerry Gibson's brother's wife) is a named Owner on the Bennet development agreement itself</div></div>
+  </div>
+
+  <h3>The same developer, smaller projects, same move</h3>
+  <p><b>Herrick Estates (Bitton Dee rezone)</b> — agricultural (A-1) to R1-15, grew from 91 lots on 30.65 acres at the Planning Commission stage to <b>93 lots on 32.112 acres</b> by the time it reached the County Commission — lots added mid-process, not reduced. Lot sizes in the final subdivision range from 6,000 sq ft up to roughly 25,000 sq ft, with density concentrated at the smaller end. <b>West Creek Subdivision</b> — same developer, same ag-to-R1-15 move. <b>Sage Creek Subdivision</b> (Plain City, 30 lots) — same pattern again, plus a road-cost-sharing agreement that puts the county on the hook for baseline repairs while the developer's own cost-share only kicks in at Phase Four.</p>
+
+  <p>At the November 18, 2025 Western Weber Planning Commission meeting approving the project's later phases (now filed as "Bitton Estates," a further name variant on the same development), a neighboring property owner, Alan Franke, raised a concern on the record: an irrigation ditch running through "the Herrick property" feeds his own land to the north, and despite raising this with Burns directly back in March and with the project's engineer more recently, the engineer wasn't even aware the ditch served properties farther north. A promised follow-up visit to walk the property hadn't happened by the time of this meeting. The Commission approved the phase 7&ndash;0 regardless, with staff noting the concern would be "reviewed at future steps."</p>
+</section>
+
+<section>
+  <h2>Three financing districts, three very different structures</h2>
+  <p>This network isn't running one type of public financing tool — it's running at least three, with very different consequences for who actually pays and who actually governs. Worth being precise about the differences rather than treating every district the same way.</p>
+
+  <div class="chart-box">
+    <div class="chart-title">Debt / cost ceiling, by district</div>
+    <svg viewBox="0 0 700 180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Bar chart comparing debt or cost ceilings: PCC PID 150 million, Sage Creek IFD 8.155 million, Longhorn IFD over 1 million">
+      <line x1="160" y1="20" x2="160" y2="150" stroke="#D8CFB2" stroke-width="1"/>
+      <line x1="160" y1="150" x2="680" y2="150" stroke="#D8CFB2" stroke-width="1"/>
+      <text x="155" y="45" class="chart-label" text-anchor="end">PCC PID</text>
+      <rect x="165" y="30" width="500" height="26" fill="#9C4B2E"/>
+      <text x="675" y="47" class="chart-value" text-anchor="end">$150,000,000</text>
+      <text x="155" y="95" class="chart-label" text-anchor="end">Sage Creek IFD</text>
+      <rect x="165" y="80" width="27" height="26" fill="#4FE88A"/>
+      <text x="200" y="97" class="chart-value" text-anchor="start">$8,155,000</text>
+      <text x="155" y="145" class="chart-label" text-anchor="end">Longhorn IFD</text>
+      <rect x="165" y="130" width="4" height="16" fill="#E8A94F"/>
+      <text x="180" y="142" class="chart-value" text-anchor="start">$1,000,000+ (certified minimum)</text>
+    </svg>
+    <div class="chart-note">Not a direct apples-to-apples comparison &mdash; PCC PID and Sage Creek figures are hard debt/bond ceilings; Longhorn's is the engineer-certified minimum infrastructure cost, not a debt limit. Shown to scale to make the order of magnitude visible, not to imply identical mechanisms.</div>
+  </div>
+
+  <table class="net-table">
+    <tr><th></th><th>PCC PID (Districts 1, 2, 3)</th><th>Sage Creek IFD</th><th>Longhorn IFD</th></tr>
+    <tr><td>Who's behind it</td><td>Wadeland Dairy land → PCC LAND LLC, managed by Christian Gardner and Daniel Stephens (Black Pine)</td><td>Pat Burns, contact sponsor — tied to the Hartley brothers' Sage Government Solutions IFD network (also behind Dakota Pacific, Vineyard City)</td><td>Petitioners: <b>2020, LLC</b> (Nathan Combs, Manager) and <b>Red Lync II &ndash; Meibos, LLC</b> (Pat Burns, Manager) &mdash; a Burns entity not documented anywhere else in this network. Board: Burns and Tom Willis both listed with <b>@lyncconstruction.com</b> addresses as official public contact; Nathan Combs (nathan@micfund.com)</td></tr>
+    <tr><td>Size / cost</td><td>$150,000,000 combined debt limit across the three districts</td><td>$8,155,000 in special assessment bonds</td><td>134.69 acres; engineer's certificate confirms infrastructure costs "exceed $1,000,000"; attached development agreement caps the project at <b>116 single-family lots</b>, rezoned from Agricultural (A-2) to R1-15</td></tr>
+    <tr><td>Who repays it</td><td>Diverts future tax increment from the School District, Fire District, Water District (50% each), and Weber County (75%) for 15 years each — meaning those entities either raise taxes on everyone else or cut services to compensate</td><td>Repaid <b>only</b> by the property owners inside the district's own boundary. No tax increment captured from any taxing entity. No diversion.</td><td>Not fully detailed in the creation documents reviewed; structure is an assessment-based IFD, not a TIF-diversion PID</td></tr>
+    <tr><td>Public contest</td><td>The creation notice's own language: "consent to the creation... and <b>waiver of the protest period</b> has been obtained from all property owners" — the same explicit statutory waiver mechanism found in Longhorn IFD, not just informal pre-consent</td><td>Established with property-owner consent for a self-assessed structure, consistent with what it actually is</td><td>Petitioners represented 100% of surface owners <b>and formally waived the entirety of the statutory protest period</b> under &sect;17B-1-213 &mdash; identical mechanism to PCC PID's</td></tr>
+  </table>
+
+  <p>The attached Development Agreement, "Longhorn Estates Subdivision" &mdash; between Weber County and Pat Burns/2020 LLC, signed March 26, 2024 by then-Commission Chair James H. "Jim" Harvey &mdash; caps the project at 116 lots over a 10-year term, requires a $7,500-per-lot park-district donation, and includes one real safeguard: if the developer defaults, the zoning automatically reverts to Agricultural (A-2). The Board of Trustees transitions from appointed to elected only as certificates of occupancy are issued to 60%, 75%, and 90% of units respectively &mdash; meaning the fully appointed, Lync-dominated board can remain in place for years before any seat becomes elected.</p>
+
+  <div class="callout">
+    <b>This is a pattern, not a one-off:</b> PCC PID's own 2023 creation notice uses nearly identical language &mdash; "consent to the creation... and waiver of the protest period has been obtained from all property owners." The same formal legal mechanism, an explicit written waiver of the public's statutory objection window under the Local District Act, appears in two separate districts built by two separate developer networks in this file. Worth checking every other Weber County PID/IFD creation document against this exact clause going forward, rather than treating "no real hearing" as an informal pattern each time it's found.
+  </div>
+
+  <div class="callout">
+    <b>Worth stating plainly:</b> Sage Creek's structure is the honest version of what PID/CRA defenders often claim about their projects generally — "it doesn't cost the schools or the county anything." For Sage Creek, on these numbers, that claim is actually true. For PCC PID, on the same numbers, it isn't. Pat Burns is tied to all three structures. The point isn't that every financing tool in this network is extractive — it's that the same person is behind an honest one, an extractive one by association, and a third whose own governing board is, on paper, mostly his own construction company's staff.
+  </div>
+
+  <h3>Can these districts grow after creation?</h3>
+  <p>Yes, and this isn't hypothetical for at least one of them. PCC PID's Governing Document has already been amended <b>twice</b> to expand the Districts' Annexation Area — most recently August 12, 2025, following the Districts' own board resolution, and once before that. Each expansion adds territory to the same $150M debt structure without a new petition or a new public hearing; the district's own board resolves to expand, and the county commission ratifies it.</p>
+  <p>Longhorn IFD's Governing Document has the same mechanism built in from the start: a section titled "Original District Boundaries; <b>Designated Expansion Area</b>," and a separate provision stating the Governing Document "may be amended by passage of a resolution of the Board approving such amendment" — no new petition, no new protest-period waiver, because that mechanism is only required once, at creation. The same board that's two-thirds Lync Construction controls whether and how the district grows from here.</p>
+
+  <div class="callout">
+    <b>Why this matters beyond the district's own boundary:</b> this project has already documented the general mechanism elsewhere &mdash; when a PID or TIF-capturing district's footprint grows, the future tax-value growth on that added land gets captured by the district's own restricted structure instead of flowing to the county, school district, and fire district's general funds the normal way. Those entities still have to provide services &mdash; roads, sheriff patrol, fire response, schools &mdash; to the growing population inside the expanding boundary, while the added tax growth that would normally help fund those services is redirected instead. Whether PCC PID's own annexation-area expansions specifically overlap with the larger UIPA West Weber tax-differential capture zone documented elsewhere in this project has not been confirmed and isn't asserted here &mdash; but the underlying mechanism (board-controlled growth, no new public process, added service burden without matching added general-fund revenue) is the same pattern already established for TIF/PID structures generally, and it applies at the county level, not just within whichever boundary a given district's own materials describe.
+  </div>
+
+  <p>Longhorn IFD directly connects to a finding already documented elsewhere in this record: two LMSA annexation resolutions (both dated 3/11/25) show Pat Burns/his "2020 LLC" petitioning to annex parcels named "Longhorn I" and "Longhorn II" into LMSA — with no public hearing required, since the petitioner and the property owner were the same person. The district's actual creation petition confirms this directly: parcels #10-036-0066 and #10-177-0017 are the exact "Longhorn I" parcels, and #10-035-0072 is the same "2020 LLC" Section 13 parcel already tracked elsewhere in this network — three previously separate threads converging into one district.</p>
+
+  <p>Note also: "Sage" appears in two unrelated places in this file and should not be conflated. <b>Sage Government Solutions</b> (Hartley brothers, tied to Sage Creek's IFD) is a separate entity from <b>Sage Development Group</b> — Stephanie Russell's own DBA, used for her LMSA lobbying work. Same word, two different operations, no confirmed connection between them beyond the name.</p>
+
+  <p>One more connection worth stating: Pat Burns/Lync Construction sits as a <b>Builder Director</b> on the board of the Northern Wasatch Home Builders Association — the same trade association Mike Schultz, chief sponsor of H.B. 491 elsewhere in this project's Great Salt Lake research, previously led. Burns was newly elected to that board for the 2025 term, per NWHBA's own announcement — the same general window as his LMSA board appointment (June 2024) and the rest of this network's activity. That's a direct tie between the two men through an industry board seat, separate from and in addition to anything documented above.</p>
+</section>
+
+<section>
+  <h2>Jon Beesley — the undisclosed employment side</h2>
+  <p>Beesley served as Plain City mayor through January 2026. A tipster's text message (verified by the recipient) describes his role at Pat Burns's Lync Construction as "superintendent" on a specific municipal infrastructure project — language that doesn't match his own disclosure forms, which consistently say "consulted on projects."</p>
+
+  <table class="net-table">
+    <tr><th>Filing</th><th>What it shows</th></tr>
+    <tr><td>2021 county COI disclosure</td><td>Employer field left completely blank</td></tr>
+    <tr><td>2025 Plain City COI disclosure</td><td>Current employer: <b>MSCI Builds</b> (project manager) &mdash; confirmed as an Assumed Name/DBA (Entity #6201594-0151, filed 2006) belonging to <b>Merrill Sheriff Construction Inc.</b>, principal Jacob Merrill Sheriff, Centerville UT. No connection found to Pat Burns, Lync, or any other entity in this network. Previous employer: <b>JDB Company</b> (project manager) &mdash; also listed as an entity Beesley personally owns/officers, "consulting on construction projects." Separately discloses $5,000+ in income from Lync Construction ("consulted on projects") and a board seat on Bona Vista Water ("board approvals and such").</td></tr>
+    <tr><td>2025 Weber County candidate disclosure</td><td>Omits the same Lync income and Bona Vista Water seat that his own Plain City form, filed the same year, discloses &mdash; plus his mayoral salary and a blank spousal page. Four omissions on one form, none of them omitted on the other.</td></tr>
+  </table>
+
+  <p>The gap between "consultant" and "superintendent" is itself confirmed — the tipster's text describing Beesley's on-site superintendent role was verified directly through the recipient, not a secondhand or anonymous claim. What's <i>not</i> confirmed is why the gap exists. JDB Company is worth flagging as one plausible explanation: it's Beesley's own consulting entity, doing construction-project consulting, disclosed the same year he separately reports $5,000+ in Lync Construction income for the same kind of work. Whether JDB Company was the actual vehicle for that Lync work isn't stated in the document itself — worth checking Utah Division of Corporations for JDB Company's registration and any Lync-linked filings, but the underlying "consultant" vs. "superintendent" contradiction doesn't depend on that answer either way.</p>
+
+  <p>Separately: <b>Kerry Gibson held a paid legislative consulting contract directly with Plain City, under Beesley, for at least 3.5 years</b> — confirmed on the record in Plain City Council minutes (May 15, 2025), running back to roughly late 2021, the same window Lync's "Burns Plain City" project was an active item before Beesley's own Planning Commission. Kerry Gibson is also a named Partner at Lincoln Hill Partners, the lobbying firm Plain City itself hired in December 2021 — the same firm, not a separate one.</p>
+</section>
+
+<section>
+  <h2>Stephanie Russell — three roles, one file</h2>
+  <div class="job-cards">
+    <div class="job-card">
+      <div class="job-title">Role 1</div>
+      <p><b>Weber County Economic Development Director</b> — approved routing LMSA's ARPA sewer money to PCC PID's lift station.</p>
+    </div>
+    <div class="job-card">
+      <div class="job-title">Role 2</div>
+      <p><b>LMSA's own Manager</b> — the district receiving that same ARPA money.</p>
+    </div>
+    <div class="job-card">
+      <div class="job-title">Role 3</div>
+      <p><b>Paid lobbyist for LMSA</b>, through her own DBA (Sage Development Group).</p>
+    </div>
+  </div>
+  <p>The meeting where she got the ARPA-routing agreement approved is <b>the same meeting Pat Burns was appointed to LMSA's board</b> (Resolution 34-2024, June 25, 2024). Twenty days later, Burns told LMSA his company would front the cost of new sewer infrastructure "with the assumption that LMSA or Central Weber Sewer will take it over" — company fronts the cost, the public district he just joined absorbs it.</p>
+</section>
+
+<section>
+  <h2>UIPA — the authority the whole corridor sits inside</h2>
+  <p>UIPA's West Weber Project Area covers 8,967.74 acres, adopted May 20, 2024 over a 1,515-signature opposition petition. <b>Daniel Stephens — Black Pine's own principal — personally attended and spoke at UIPA board meetings</b> alongside Russell. The Plan itself projects 14,000 housing units as part of this "industrial" project area's eventual buildout, with data centers explicitly named as a targeted recruitment industry.</p>
+
+  <h3>Indigenous heritage — what the record shows, and what it doesn't</h3>
+  <p>This area was historically occupied by Chief Little Soldier's band (the "Weber Utes") down to the Great Salt Lake, part of the Northwestern Band of the Shoshone Nation. <b>No documented claim of a burial ground on the West Weber footprint itself was found</b> in any source checked for this piece — that specific allegation, raised separately, does not have primary-source support here and isn't asserted.</p>
+  <p>What is documented: the Plan's own Cultural Resources/Tribal Lands section consists of one sentence — "Northwestern Band of the Shoshone Nation is located in the vicinity of the project area" — compared to several pages on wetlands treatment in the same document. Tribal contact named: Chairman Dennis Alex. Separately, at UIPA's April 29, 2024 board meeting, Darren Parry (former Chairman, Northwestern Band of the Shoshone) opposed the project on resource-depletion and future-generations grounds — not a burial-ground claim. Brad Parry (current Vice Chairman) has spoken publicly about wetlands and site selection in this same area, also not raising a burial claim.</p>
+  <p>The honest read: whatever the environmental and cultural stakes of this land are, the Plan's own tribal consultation record is thin relative to its treatment of wetlands — one sentence against multiple pages — regardless of whether any specific burial-ground allegation holds up.</p>
+</section>
+
+<section>
+  <h2>Network two: Nilson Homes, JDC Ranch, and the same move on paper</h2>
+  <p>South Ogden-based Nilson Homes proposed a 725-unit development on 240 acres of former farmland at JDC Ranch, near Farr West. In 2024, county commissioners — Sharon Bolos specifically — approved a development agreement amendment adding 275 more units, branded "attainable," bringing the total to <b>1,000 units on the same acreage</b>. Nilson's own VP, Bryan Bayles, told commissioners the plan was developed working with <b>Steve Waldrip, Gov. Cox's senior housing adviser</b> — the same official this project has separately documented threatening a county's funding over local housing opposition, and holding expanded statutory authority under H.B. 68.</p>
+
+  <h3>What "attainable" actually means on paper</h3>
+  <p>JDC Ranch's own current community page (accessed directly, not an aggregator) lists four product lines, all as-of-now for-sale prices, no exclusions noted:</p>
+  <table class="price-table">
+    <tr><th>Product line</th><th>Starting price</th></tr>
+    <tr><td>Grove — single family</td><td class="market">$624,775</td></tr>
+    <tr><td>Creekside — single family</td><td class="market">$529,000</td></tr>
+    <tr><td>Orchards — single family</td><td class="market">$539,775</td></tr>
+    <tr><td>Orchards — townhomes</td><td class="market">$399,975</td></tr>
+    <tr><td>"Attainable Starter Home" (per Nilson's own county presentation)</td><td class="attain">Base capped at $400,000 — <i>excluding garage, basement, landscaping</i></td></tr>
+  </table>
+
+  <div class="callout">
+    <b>The sharper finding:</b> a standard, market-rate <b>townhome</b> in this same development already lists at $399,975 &mdash; complete, no stated exclusions. The "Attainable Starter Home" program's own base price cap is "no more than $400,000," <i>before</i> garage, basement, and landscaping are added back in. On these numbers, the specially-branded "attainable" product isn't meaningfully cheaper than an ordinary market-rate townhome already for sale in the same community &mdash; it may end up costing more once fully built out. The single-family "attainable" price is a real discount only against the single-family market-rate lines (Grove, Creekside, Orchards single-family, $529K&ndash;$625K), not against the townhome tier already on the market at essentially the same starting number. This isn't just an asterisk in Nilson's own marketing &mdash; a Weber County Planning Division staffer, Tammy Aydelotte, described the units on the record to county commissioners at the time of approval: "These are starter homes. They are around 900 square feet, no garages, either no basement or no finished basement in there." At the same 2024 meeting, the attainable units were quoted at $330,000&ndash;$400,000 against $500,000+ for the development's market-rate homes &mdash; and one real, positive detail worth including: the attainable units carry a 10-year deed restriction meant to keep them out of corporate/rental hands.
+  </div>
+
+  <p>Nilson Homes is also the first builder in the state to use a new $300 million low-interest builder-loan program specifically created for "affordable" housing, with Gov. Cox personally appearing at a company event to promote it. Current marketing for other Nilson communities advertises payments "starting as low as $1,984/month" — based on a 3-2-1 interest-rate buydown, a temporary financing structure, not a reduced sale price.</p>
+</section>
+
+<section>
+  <h2>The same names, different developments</h2>
+  <table class="net-table">
+    <tr><th>Name</th><th>Role</th></tr>
+    <tr><td>Sharon Bolos</td><td>Weber County Commissioner; undisclosed family connection to Nilson Homes VP Bryan Arrington; voted on Nilson agreements without disclosing it; publicly championed the JDC Ranch "attainable" amendment</td></tr>
+    <tr><td>Laura Warburton</td><td>Runs Utah Forward PAC — funded significantly by <b>both</b> Nilson Homes and the Lewis/Dunleavy network already tied to Nordic Village and Eden Crossing. Not two separate funding streams — one PAC funding both sides of this file</td></tr>
+    <tr><td>Steve Waldrip</td><td>Gov. Cox's senior housing adviser, expanded authority under H.B. 68; personally worked with Nilson on the JDC Ranch "attainable homes" plan</td></tr>
+    <tr><td>Kerry Gibson</td><td>Paid Plain City lobbying contract under Beesley (3.5+ yrs); Partner at Lincoln Hill Partners, hired by Plain City the same period; brother's wife Andrea named Owner on the Bennet development agreement</td></tr>
+  </table>
+</section>
+
+<section>
+  <h2>What this means for the public — graded by topic</h2>
+
+  <table class="net-table">
+    <tr><th>Topic</th><th>Power</th><th>Transparency</th><th>Financial accountability</th><th>Environmental impact</th><th>Community impact</th><th>Grade</th></tr>
+    <tr><td>Bennet Farms TN/FB rezone</td><td>Bad — a zone category built for one developer, not fitted into an existing tier</td><td>Neutral — the hearing itself was public, but the Gibson land-transfer timing was never disclosed</td><td>Not established — no PID or other financing-district mechanism found tied to this specific rezone</td><td>Not established — no wetlands or species study found specific to this 550-acre parcel, despite sitting inside the same Weber River corridor as the rest of this network</td><td>Not established — no finding specific to this rezone beyond the land-transfer timing already covered under Transparency</td><td>D+</td></tr>
+    <tr><td>PCC PID</td><td>Bad — consent obtained before the public hearing, foreclosing real contest</td><td>Bad — a $150M debt structure diverting increment from four taxing entities with no itemized per-entity breakdown found</td><td>Bad — same $150M figure, same lack of breakdown</td><td>Not established for this district specifically — its environmental exposure is inherited from the broader West Weber Plan below, not separately assessed</td><td>Not established for this district specifically — see West Weber Plan below for the broader tribal-consultation finding this district sits inside</td><td>D</td></tr>
+    <tr><td>Sage Creek IFD</td><td>Good — structure matches its own stated justification, no discretion transferred beyond it</td><td>Good — self-assessed structure, nothing found withholding it from public view</td><td>Good — $8.155M repaid only by property owners inside the boundary, no increment diverted from any taxing entity</td><td>Not established — no environmental study specific to this district found</td><td>Not established — no community-impact-specific finding for this district</td><td>B+</td></tr>
+    <tr><td>Longhorn IFD</td><td>Bad — governing board is two-thirds staffed by the developer's own company; petitioners formally waived the entire statutory protest period</td><td>Bad — same waived-protest finding; board contact list is publicly posted, but the underlying petition's key public-participation safeguard was explicitly given up</td><td>Neutral — engineer's certificate confirms infrastructure costs exceed $1,000,000, a real disclosed figure; full assessment/repayment structure not detailed in documents reviewed</td><td>Not established — no environmental study found</td><td>Not established — no community-impact-specific finding for this district</td><td>D</td></tr>
+    <tr><td>Beesley / Lync employment</td><td>Neutral — no new power removed, but a public official's own disclosure obligations went unmet</td><td>Bad — blank employer field, four separate 2025 disclosure omissions</td><td>Not applicable — a disclosure failure, not a public-financing structure</td><td>Not applicable</td><td>Not applicable</td><td>D</td></tr>
+    <tr><td>Russell's three roles</td><td>Bad — one person routing public money, managing the receiving district, and lobbying for it, simultaneously</td><td>Neutral — each individual role is a matter of public record; the overlap itself isn't hidden, just unaddressed</td><td>Bad — the same person approved routing public ARPA money into a district she manages and lobbies for</td><td>Not applicable to this specific finding</td><td>Not applicable to this specific finding</td><td>C&ndash;</td></tr>
+    <tr><td>UIPA / West Weber Plan</td><td>Bad — adopted over a 1,515-signature petition; the AIB loan program gets less public scrutiny than the tax-differential mechanism itself</td><td>Neutral — the Plan, hearings, and board minutes are genuinely public; the 40-year total tax-differential term wasn't obvious from headline materials</td><td>Bad — $342.8M net tax differential over 25&ndash;40 years, plus a $65M Authority Infrastructure Bank loan program</td><td>Mixed — a 3% wetlands-mitigation figure is real, but the Plan's own language uses "recommended," not "mandated," for that specific commitment, unlike its "mandated" language for the wetland inventory and buffer-zone requirements. Nine species of conservation concern sit within 2 miles of the boundary</td><td>Bad — the Plan's own tribal-heritage section is a single sentence, versus multiple pages on wetlands, in the same document. No burial-ground claim was substantiated in any source checked for this piece, but the consultation record itself is thin regardless of that separate, unconfirmed allegation</td><td>C&ndash;</td></tr>
+    <tr><td>JDC Ranch density amendment</td><td>Neutral — used the county's existing amendment process correctly, just repeatedly, to add 275 units</td><td>Good — the density increase and the "attainable" label are both openly on the public record</td><td>Neutral — no new public financing mechanism identified, an amendment to an existing agreement</td><td>Not applicable to this specific finding</td><td>Not applicable to this specific finding — see the pricing-claim row below for who the "attainable" label was actually aimed at</td><td>B&ndash;</td></tr>
+    <tr><td>"Attainable" pricing claim</td><td>Not applicable — not a power question</td><td>Bad — base-price cap advertised without the exclusions that determine the real number</td><td>Bad — the same exclusions (garage, basement, landscaping) directly affect what a buyer actually pays</td><td>Not applicable</td><td>Bad — the program is explicitly aimed at first-time buyers, teachers, firefighters, and active-duty military per the county's own presentation; the exclusions that widen the real price gap land hardest on exactly the buyers with the least room to absorb them</td><td>D</td></tr>
+  </table>
+
+  <p>The topics genuinely don't grade the same, and flattening them into one verdict for "this piece" would hide that. Against all five criteria above, Sage Creek's structure passes every one it's assessed on — no power transferred beyond its own stated purpose, no diversion, no hidden figures. PCC PID and the Bennet rezone fail the most criteria, on power and transparency both. The West Weber Plan's environmental grade lands as "mixed" for a specific, checkable reason: its own text makes wetlands-mitigation funding "recommended," while the wetland inventory and 600-ft buffer sit right next to it as "mandated" in the same document. Its community-impact grade is a separate, worse finding: a single-sentence tribal-heritage section against multiple pages on wetlands, in the same Plan.</p>
+
+  <h3 style="margin-top:0;">What would have earned a passing grade</h3>
+  <table class="fix-table">
+    <tr><th>What actually happened</th><th>What would have kept the same goal, without the opacity</th></tr>
+    <tr>
+      <td>The West Weber Plan's own language makes wetlands mitigation "recommended" while the wetland inventory and 600-foot buffer are "mandated"</td>
+      <td>Use the same mandatory language for all three commitments, or state plainly why the funding commitment specifically was left discretionary</td>
+    </tr>
+    <tr>
+      <td>Bennet Farms required creating a brand-new TN/FB zone category for one developer's 550 acres</td>
+      <td>Fit the project into an existing density tier, or require a public finding explaining specifically why no existing category would work</td>
+    </tr>
+    <tr>
+      <td>PCC PID obtained property-owner consent before the public hearing, foreclosing real contest</td>
+      <td>Hold the hearing before consent is finalized, the way a genuinely contestable process would</td>
+    </tr>
+    <tr>
+      <td>PCC PID's financing plan bundles three taxing entities' 50% shares into one number with no per-entity breakdown</td>
+      <td>Publish the school district's, water district's, and fire district's shares separately, the way Sage Creek's own model already demonstrates is possible</td>
+    </tr>
+    <tr>
+      <td>Beesley's employer field sat blank on a public disclosure form for years with no follow-up</td>
+      <td>A basic completeness check on filed COI forms before they're accepted, catching blank required fields at intake</td>
+    </tr>
+    <tr>
+      <td>Russell's three roles (county director, district manager, paid lobbyist) overlap with no public accounting of how she separates them</td>
+      <td>A recusal or dual-role disclosure filed each time one hat's decision affects another — the same fix already suggested elsewhere in this project for similar overlaps</td>
+    </tr>
+    <tr>
+      <td>The "attainable" starter home price is advertised without stating the garage/basement/landscaping exclusions up front</td>
+      <td>State the fully-loaded price alongside the base price in the same materials shown to county commissioners and the public</td>
+    </tr>
+  </table>
+</section>
+
+<section>
+  <div class="questions-box">
+    <div class="qw-label">QUESTIONS WORTH ASKING</div>
+    <ol>
+      <li>What does a JDC Ranch Attainable Starter Home actually cost once garage, basement, and landscaping are added — and how does that compare to the market-rate units in the same development?</li>
+      <li>Did Bennet LLC's custom TN/FB zone request receive different scrutiny than a standard rezone would have, given it required creating a category rather than fitting an existing one?</li>
+      <li>Why did the Gibson family's own parcels transfer to Bennet LLC on the exact day Katrina Gibson filed her candidacy?</li>
+      <li>Has Sharon Bolos ever disclosed her family connection to Nilson Homes VP Bryan Arrington in any vote on a Nilson-related item?</li>
+      <li>Does Steve Waldrip's direct involvement in shaping the JDC Ranch "attainable" pitch reflect a standard part of his state housing-adviser role, or a specific relationship with Nilson Homes worth tracing further?</li>
+    </ol>
+  </div>
+</section>
+
+<section>
+  <details class="sources-toggle">
+    <summary>Sources</summary>
+    <div class="body">
+      <ul>
+        <li>Weber County Commission staff reports and hearing notices: Herrick Estates (ZMA2025-01), Bennet Farms TN/FB rezone (May 2025 notice)</li>
+        <li>Plain City Council/Planning Commission minutes, 2021–2025</li>
+        <li>LMSA board minutes and resolutions, 2024–2026</li>
+        <li>UIPA West Weber Project Area Plan, Amendment #1; UIPA board minutes, May 20 and April 29, 2024</li>
+        <li>KSL: "Weber County development plan calls for 'attainable' homes to spur homeownership," July 2024</li>
+        <li>KSL/KUTV: JD Ranch/JDC Ranch "affordable homes" coverage, 2024–2025</li>
+        <li>Nilson Homes' own presentation to the county (utahlanduse.org), and nilsonhomes.com current listings</li>
+        <li>Redfin/Zillow community listings, Orchards/Grove at JDC Ranch</li>
+        <li>Utah Division of Corporations entity filings (Bennet LLC, Black Pine network, Lync entities)</li>
+      </ul>
+    </div>
+  </details>
+</section>
+
+</div>
+
+<footer>
+  <div class="wrap">
+    The Weber County Hive — accountability journalism for Weber County, Utah. We report the filings. You decide what they mean.
+  </div>
+</footer>
+
+<script>
+  document.querySelectorAll('.who-card[data-flip]').forEach(function(card){
+    card.addEventListener('click', function(){
+      card.classList.toggle('flipped');
+    });
+  });
+</script>
+
+</body>
+</html>
