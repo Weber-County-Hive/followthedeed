@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Trustee Signed His Own Deal — Follow the Deed — The Weber County Hive</title>
+<meta name="description" content="A zero-consideration land transfer, a trustee who signed both sides of a $10 deal, and a French Olympic official's undisclosed ski resort.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0B2545; --navy-deep:#081b34; --panel:#102d54;
+    --cyan:#4FC3E8; --cyan-dim: rgba(79,195,232,0.35);
+    --paper:#EDF2F7; --paper-dim:#B9C7D6;
+    --amber:#E8A94F; --rust:#E8704F;
+    --mono:'IBM Plex Mono', ui-monospace, monospace;
+    --sans:'Space Grotesk', sans-serif;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--navy);color:var(--paper);font-family:var(--sans);line-height:1.6;}
+  .wrap{max-width:880px;margin:0 auto;padding:0 24px;}
+  a{color:var(--cyan);}
+
+  .blueprint-bg{
+    background-image:linear-gradient(var(--cyan-dim) 1px, transparent 1px),linear-gradient(90deg, var(--cyan-dim) 1px, transparent 1px);
+    background-size:32px 32px;background-color:var(--navy-deep);opacity:0.18;position:absolute;inset:0;pointer-events:none;
+  }
+  header.masthead{position:relative;padding:52px 0 36px;border-bottom:1px solid var(--cyan-dim);overflow:hidden;}
+  .repo-tag{font-family:var(--mono);font-size:12.5px;letter-spacing:0.04em;color:var(--cyan);margin-bottom:16px;}
+  h1.title{font-size:clamp(28px,4.6vw,42px);font-weight:700;line-height:1.14;margin:0 0 14px;max-width:22ch;position:relative;}
+  p.dek{font-size:17px;color:var(--paper-dim);max-width:64ch;margin:0;position:relative;}
+
+  section{padding:36px 0;border-bottom:1px solid var(--cyan-dim);}
+  h2{font-family:var(--sans);font-size:1.35rem;font-weight:700;margin:0 0 14px;color:var(--paper);}
+  h3{font-family:var(--sans);font-size:1.05rem;font-weight:700;margin:22px 0 8px;color:var(--cyan);}
+  p{margin:0 0 14px;max-width:74ch;color:var(--paper-dim);font-size:15.5px;}
+  p b{color:var(--paper);}
+
+  .start-here{background:var(--panel);border-left:3px solid var(--cyan);padding:18px 22px;}
+  .start-here h2{color:var(--cyan);font-size:1.1rem;}
+  .start-here p:last-child{margin-bottom:0;}
+
+  .who-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px;margin-top:16px;}
+  .who-card{perspective:800px;height:190px;cursor:pointer;}
+  .who-face{
+    position:absolute;inset:0;backface-visibility:hidden;border:1px solid var(--cyan-dim);
+    border-radius:2px;padding:16px;display:flex;flex-direction:column;justify-content:center;
+    transition:transform 0.5s;overflow:auto;
+  }
+  .who-card{position:relative;transform-style:preserve-3d;}
+  .who-front{background:var(--panel);}
+  .who-name{font-family:var(--sans);font-weight:700;font-size:1.05rem;color:var(--paper);display:block;margin-bottom:6px;}
+  .who-hint{font-family:var(--mono);font-size:0.72rem;color:var(--cyan);}
+  .who-back{background:var(--navy-deep);color:var(--paper-dim);font-size:0.86rem;line-height:1.45;transform:rotateY(180deg);}
+  .who-card.flipped .who-front{transform:rotateY(180deg);}
+  .who-card.flipped .who-back{transform:rotateY(0deg);}
+
+  .entity-chain{background:var(--panel);border:1px solid var(--cyan-dim);padding:20px;margin:16px 0;}
+  .ec-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:8px;}
+  .ec-node{font-family:var(--mono);font-size:12.5px;background:rgba(79,195,232,0.12);border:1px solid var(--cyan);color:var(--cyan);padding:6px 12px;border-radius:2px;}
+  .ec-arrow{color:var(--paper-dim);font-size:14px;}
+
+  .mini-timeline{position:relative;margin:16px 0 4px;padding-left:20px;border-left:2px solid var(--cyan-dim);}
+  .mt-item{position:relative;padding-bottom:16px;}
+  .mt-item:last-child{padding-bottom:0;}
+  .mt-dot{position:absolute;left:-25px;top:3px;width:9px;height:9px;border-radius:50%;background:var(--cyan);}
+  .mt-date{font-family:var(--mono);font-weight:700;font-size:0.82rem;color:var(--amber);display:block;margin-bottom:2px;}
+  .mt-text{font-size:0.92rem;color:var(--paper-dim);}
+
+  .callout{background:var(--navy-deep);border-left:4px solid var(--amber);padding:16px 20px;margin:14px 0;font-size:0.92rem;}
+  .callout b{color:var(--amber);}
+  .callout-quote{background:var(--navy-deep);border-left:4px solid var(--rust);padding:18px 22px;margin:14px 0;font-size:1.02rem;font-style:italic;color:var(--paper);}
+  .callout-quote .attrib{display:block;margin-top:10px;font-family:var(--mono);font-size:0.75rem;font-style:normal;color:var(--rust);}
+
+  .caution-box{background:rgba(232,112,79,0.08);border:1px solid var(--rust);padding:14px 18px;margin:14px 0;font-size:0.88rem;color:var(--paper-dim);}
+  .caution-box .label{font-family:var(--mono);font-size:0.72rem;letter-spacing:0.05em;color:var(--rust);display:block;margin-bottom:6px;font-weight:700;}
+
+  .net-table{width:100%;border-collapse:collapse;margin:16px 0;font-size:0.88rem;}
+  .net-table th{background:var(--navy-deep);color:var(--cyan);text-align:left;padding:10px 12px;font-family:var(--mono);font-weight:600;font-size:0.75rem;}
+  .net-table td{padding:11px 12px;border-bottom:1px solid var(--cyan-dim);background:var(--panel);vertical-align:top;color:var(--paper-dim);}
+  .net-table tr td:first-child{font-weight:700;color:var(--paper);width:18%;}
+
+  .fix-table{width:100%;border-collapse:collapse;margin:16px 0;font-size:0.86rem;}
+  .fix-table th{background:var(--navy-deep);color:var(--cyan);text-align:left;padding:10px 12px;font-family:var(--mono);font-weight:600;font-size:0.75rem;}
+  .fix-table td{padding:11px 12px;border-bottom:1px solid var(--cyan-dim);vertical-align:top;color:var(--paper-dim);}
+  .fix-table tr td:first-child{background:rgba(232,112,79,0.08);border-right:3px solid var(--rust);width:44%;}
+  .fix-table tr td:last-child{background:var(--panel);border-left:3px solid #4FE88A;}
+
+  .chart-box{background:var(--panel);border:1px solid var(--cyan-dim);padding:18px 20px;margin:16px 0;}
+  .chart-title{font-family:var(--mono);font-size:0.78rem;letter-spacing:0.04em;color:var(--cyan);margin-bottom:10px;}
+  .chart-box svg{width:100%;height:auto;display:block;}
+  .chart-label{font-family:var(--sans);fill:var(--paper);}
+  .chart-value{font-family:var(--mono);fill:var(--paper-dim);}
+  .chart-note{font-size:0.78rem;color:var(--paper-dim);margin-top:10px;font-style:italic;}
+
+  details.grade-card{background:var(--panel);border:1px solid var(--cyan-dim);margin:10px 0;border-radius:2px;}
+  details.grade-card summary{cursor:pointer;padding:14px 16px;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:12px;}
+  details.grade-card summary::-webkit-details-marker{display:none;}
+  details.grade-card summary::before{content:"+ ";color:var(--cyan);font-family:var(--mono);margin-right:2px;}
+  details.grade-card[open] summary::before{content:"\2212 ";}
+  .grade-card-topic{font-weight:700;color:var(--paper);font-size:0.95rem;}
+  .grade-card-badge{font-family:var(--mono);font-size:0.85rem;font-weight:700;color:var(--navy);background:var(--cyan);padding:3px 10px;border-radius:2px;white-space:nowrap;}
+  details.grade-card .grade-body{padding:0 16px 16px;border-top:1px solid var(--cyan-dim);}
+  .grade-row{padding:10px 0;border-bottom:1px solid rgba(185,199,214,0.15);font-size:0.86rem;color:var(--paper-dim);}
+  .grade-row:last-child{border-bottom:none;}
+  .grade-row .grade-label{font-family:var(--mono);font-size:0.7rem;letter-spacing:0.04em;color:var(--cyan);display:block;margin-bottom:3px;}
+
+  .questions-box{background:var(--navy-deep);border-left:4px solid var(--rust);padding:26px;}
+  .questions-box .qw-label{font-family:var(--mono);color:var(--rust);font-size:0.78rem;letter-spacing:0.06em;margin-bottom:14px;}
+  .questions-box ol{margin:0;padding-left:20px;}
+  .questions-box li{font-size:1rem;color:var(--paper);margin-bottom:14px;}
+
+  details.sources-toggle{background:var(--panel);border:1px solid var(--cyan-dim);margin:10px 0;}
+  details.sources-toggle summary{cursor:pointer;padding:12px 16px;font-weight:700;color:var(--cyan);list-style:none;font-family:var(--mono);font-size:0.85rem;}
+  details.sources-toggle summary::-webkit-details-marker{display:none;}
+  details.sources-toggle summary::before{content:"+ ";}
+  details.sources-toggle[open] summary::before{content:"\2212 ";}
+  details.sources-toggle .body{padding:0 16px 16px;font-size:0.85rem;color:var(--paper-dim);}
+  details.sources-toggle ul{margin:0;padding-left:18px;}
+  details.sources-toggle li{margin-bottom:6px;}
+
+  footer{padding:30px 0 56px;font-family:var(--mono);font-size:12px;color:var(--paper-dim);}
+  ul{padding-left:20px;color:var(--paper-dim);font-size:15.5px;}
+  li{margin-bottom:6px;}
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="blueprint-bg"></div>
+  <div class="wrap">
+    <div class="repo-tag">FOLLOW THE DEED &middot; CASE 05</div>
+    <h1 class="title">The Trustee Signed His Own Deal</h1>
+    <p class="dek">A Weber County commissioner's own entity transferred land for zero dollars, then dissolved. A PID trustee signed the same land into the district he oversees, for ten dollars, on behalf of his own employer. And the resort's real owner — a sitting French regional president co-leading his country's 2030 Olympic bid — never told his own government he owned it.</p>
+  </div>
+</header>
+
+<div class="wrap">
+
+<section>
+  <div class="start-here">
+    <h2>Start here</h2>
+    <p><b>What is this?</b> Three separate people, three separate roles, all touching the same 512 acres in Ogden Valley: a county commissioner whose own company transferred the land for nothing, then dissolved; a public infrastructure district trustee who signed that land into the district he sits on, for ten dollars, while working for the company on the other side of the deal; and the resort's actual owner, a French official who never disclosed the ownership to his own country's transparency authority.</p>
+    <p><b>What's the goal?</b> Not to argue that Nordic Village shouldn't be developed. It's to test whether the public process that approved $80 million in bonding on this land actually had the disclosures, recusals, and transparency it was supposed to have — regardless of how good or bad the finished resort turns out to be.</p>
+  </div>
+</section>
+
+<section>
+  <h2>Who's who</h2>
+  <p>Click a card to flip it.</p>
+  <div class="who-grid">
+    <div class="who-card" data-flip>
+      <div class="who-face who-front"><span class="who-name">Gage Froerer</span><span class="who-hint">click for role</span></div>
+      <div class="who-face who-back">Weber County Commissioner. Managed the entity whose land transferred for zero consideration. A handwritten note on his 2023 disclosure claims he divested — property and corporate records say otherwise.</div>
+    </div>
+    <div class="who-card" data-flip>
+      <div class="who-face who-front"><span class="who-name">Brandon Henrie</span><span class="who-hint">click for role</span></div>
+      <div class="who-face who-back">Nordic Village PID trustee AND President of Clyde's GWC Capital development division. Personally signed land from his own employer into the district he oversees as trustee, for $10.</div>
+    </div>
+    <div class="who-card" data-flip>
+      <div class="who-face who-front"><span class="who-name">Laurent Jouffray</span><span class="who-hint">click for role</span></div>
+      <div class="who-face who-back">PID trustee and Sorep's US representative. His own disclosure admits Skyline Mountain Base holds a 50% stake in the developer entity he votes to fund as trustee.</div>
+    </div>
+    <div class="who-card" data-flip>
+      <div class="who-face who-front"><span class="who-name">Brook Cole</span><span class="who-hint">click for role</span></div>
+      <div class="who-face who-back">PID trustee and DC-PEG LLC manager. Signed the original PID petition claiming to be the sole 100% surface owner — before the real 45/5/50 ownership split was ever disclosed.</div>
+    </div>
+    <div class="who-card" data-flip>
+      <div class="who-face who-front"><span class="who-name">Renaud Muselier</span><span class="who-hint">click for role</span></div>
+      <div class="who-face who-back">President of France's Provence-Alpes-Côte d'Azur regional council; co-president of Solideo Alpes 2030, organizing France's 2030 Olympic infrastructure. Per Mediapart, the real owner of Nordic Valley since 2014 — disclosed to French authorities only as an unpaid "manager."</div>
+    </div>
+    <div class="who-card" data-flip>
+      <div class="who-face who-front"><span class="who-name">John Lewis &amp; Shane Dunleavy</span><span class="who-hint">click for role</span></div>
+      <div class="who-face who-back">Owned a separate PID parcel through Liberty Village LLC before it passed to Clyde Capital — the same development partnership behind Eden Crossing, now tied directly into Nordic Village's own land.</div>
+    </div>
+    <div class="who-card" data-flip>
+      <div class="who-face who-front"><span class="who-name">Laura Warburton</span><span class="who-hint">click for role</span></div>
+      <div class="who-face who-back">Ogden Valley Planning Commissioner and Utah Forward PAC manager. Voted on developer John Lewis's own rezoning without disclosing her PAC role, then declined to answer when asked directly.</div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>The rubric</h2>
+  <p>What benefits the public collectively, not any one actor's reputation or track record, and not a personal opinion about who's involved.</p>
+  <div class="entity-chain">
+    <p style="margin-bottom:10px;"><b>1. Power</b> — Does it add or remove a check on power that the public, collectively, would otherwise have no say over?</p>
+    <p style="margin-bottom:10px;"><b>2. Transparency</b> — Can the public actually see the process: posted hearings, itemized financials, disclosed conflicts — regardless of who ends up holding the final decision?</p>
+    <p style="margin-bottom:10px;"><b>3. Financial accountability</b> — Who actually pays, who's protected from paying, and is that structure disclosed plainly or buried in a bundled figure?</p>
+    <p style="margin-bottom:10px;"><b>4. Environmental impact</b> — What's the effect on water, wetlands, and wildlife, and does the process treat that as a real constraint or a box to check?</p>
+    <p style="margin-bottom:0;"><b>5. Community impact</b> — Who bears the cost or holds a historical/cultural stake in this decision, and did the process give them real standing to be heard, or was their interest treated as a formality?</p>
+  </div>
+</section>
+
+<section>
+  <h2>The Froerer chain</h2>
+  <div class="entity-chain">
+    <div class="ec-row">
+      <span class="ec-node">Nordic Valley Land Associates LLC</span>
+      <span class="ec-arrow">&rarr;</span>
+      <span class="ec-node">Liens subordinated (1/24/23)</span>
+      <span class="ec-arrow">&rarr;</span>
+      <span class="ec-node">Land transferred, $0 (1/27/23)</span>
+    </div>
+  </div>
+  <p>Nordic Valley Land Associates LLC (NVLA) was managed by two entities — Kier Development LLC and J&amp;G Investment Partnership LLC — both listing <b>Gage Froerer as manager</b>. J&amp;G held trust deed liens on all four Nordic Valley parcels. Those liens were subordinated January 24, 2023, and three days later the property transferred to Nordic Village Venture LLC for <b>zero consideration</b>. Eleven days after that, Froerer personally filed J&amp;G's dissolution. Kier Development and NVLA were both dissolved on the same later date — January 20, 2026 — after the PID bonds had already closed and after Froerer had already voted to authorize them.</p>
+
+  <h3>No disclosure filed for four years, then a false one</h3>
+  <p>Froerer was elected to the Weber County Commission in 2018 and, per the Standard-Examiner's own 2022 reporting, had "been involved in the trust that owns the land for 20 or so years" — meaning the NVLA relationship long predates his time in office. From 2018 through most of 2022, he filed <b>no conflict-of-interest disclosure for this relationship at all</b>. The Nordic Valley village proposal formally emerged in October 2021; he participated in deliberations on it without disclosing or recusing for roughly ten months after that. He recused from a vote for the first time on August 16, 2022 — but still filed no written disclosure. A written disclosure only came on November 20, 2022, and only after a Weber County resident, retired attorney James O'Brien, filed a formal complaint with the Utah State Auditor on October 24, 2022, alleging Froerer had failed to disclose a material conflict. That disclosure revealed a family trust's 16% stake in NVLA — four years into his term, and only once a citizen forced the question.</p>
+
+  <div class="callout-quote">
+    "We have spoken about this in public meetings in the Valley and never hide anything. He talked about it, you reported it several times, we spoke about it &mdash; so it is public knowledge and Gage Froerer recused himself."
+    <span class="attrib">&mdash; Laurent Jouffray, email to the Standard-Examiner, December 19, 2022</span>
+  </div>
+
+  <p>That's Jouffray himself, on the record, four years before telling Shauna Miller in a public exchange that "Froerer was never a partner in the project" — a direct contradiction of his own earlier statement, not just a disputed claim. But Jouffray's "public knowledge" framing leaves out how that knowledge became public: not a disclosure filed at the start of his term, or when the proposal emerged, but only after a citizen's formal complaint to the State Auditor, four years into holding office alongside the relationship.</p>
+
+  <p>What actually changed is the timing: whatever standard the 2022 episode set — disclosure only under pressure, after the fact — wasn't met at all before the vote that mattered most. Froerer filed no conflict-of-interest disclosure before the November 20, 2024 PID creation vote — the same window as the zero-consideration land transfer and, per Shauna Miller's own property and corporate records, a handwritten note on his February 2023 disclosure form falsely claiming he'd divested from NVLA entirely. He hadn't. What isn't established, and remains an open question, is whether he holds any further undisclosed paperwork or partnership interest with Skyline Mountain Base/Sorep or with John Lewis beyond what's documented here — Froerer's relationship with the French-controlled side of this deal predates the false divestment claim by years, which makes it the more likely place to look, though it isn't confirmed.</p>
+
+  <p>The full arc, laid end to end: four years with no disclosure on file, a citizen complaint forces one, and the eventual claim that he'd fixed the underlying problem &mdash; divestment &mdash; doesn't hold up against the property and corporate records. Caught, then only partly corrected, and even that partial correction turns out not to be true.</p>
+</section>
+
+<section>
+  <h2>The Lewis-Dunleavy chain</h2>
+  <div class="entity-chain">
+    <div class="ec-row">
+      <span class="ec-node">D&amp;R Investment Properties (2021)</span>
+      <span class="ec-arrow">&rarr;</span>
+      <span class="ec-node">Liberty Village LLC (2022)</span>
+      <span class="ec-arrow">&rarr;</span>
+      <span class="ec-node">GWC Capital LLC (2024)</span>
+      <span class="ec-arrow">&rarr;</span>
+      <span class="ec-node">Nordic Village PID No. 1 (2026)</span>
+    </div>
+  </div>
+  <p>A separate parcel (220100071, now titled to the PID, valued at $2.637 million) ran through Liberty Village LLC — formed July 2022, dissolved June 2024, existing for exactly the window this parcel was assembled. Its members: <b>Edenview Co.</b> (Shane Dunleavy's entity) and <b>Lewis Group Holdings LLC</b> (John Lewis's own holding company) — the same development partnership already documented behind Eden Crossing and Wolf Creek Resort elsewhere in this project.</p>
+
+  <h3>Who is Clyde?</h3>
+  <p>GWC Capital and Clyde Capital Group are both divisions of <b>Clyde Companies, Inc.</b> — one of the largest, longest-running construction and development conglomerates in Utah. Founded in 1926 as W.W. Clyde &amp; Co., a heavy civil construction firm, the family business grew into a parent company (formed 1997&ndash;98) now spanning eight subsidiaries — including Geneva Rock, Sunroc, Beehive Insurance, and the two capital/development arms named in this piece. Roughly 5,000 employees, an estimated $2.5 billion in annual revenue, still majority family-owned. The founder's brother, George Dewey Clyde, later served as Governor of Utah. This isn't a small local developer — it's one of the state's most established, politically connected construction families, operating a real estate development arm through the same entity structure documented here.</p>
+
+  <h3>The cleanest conflict in the file</h3>
+  <p><b>Brandon Henrie is simultaneously a Nordic Village PID trustee and President of Clyde's GWC Capital development division</b> — not a lower-level manager, the head of the specific division doing this deal, per Clyde's own public statements. He personally signed the transfer of this parcel from GWC Capital into the PID he sits on as trustee — for <b>$10</b>. This isn't a trustee who happens to hold a financial stake in a company voting on a matter that benefits it. This is the same person acting as the seller's signatory and the buyer's trustee in one transaction.</p>
+
+  <h3>A possible eligibility defect, not just a conflict</h3>
+  <p>Utah Code &sect;17B-1-302 requires PID trustees to reside within the district's boundaries. Weber County confirmed, in response to a records request, that Jouffray is registered to vote in <b>Box Elder County</b>, not Weber County. If that residency status holds, it raises a more basic question than any disclosure gap: whether Jouffray was ever legally eligible to serve as a Nordic Village PID trustee at all, separate from and in addition to the ownership-stake conflict already documented above.</p>
+
+  <h3>The lobbyist connection</h3>
+  <p>John Lewis and Shane Dunleavy retain a registered Utah lobbyist: <b>Kerry Gibson</b>, principal of Legislative Solutions, whose confirmed client list includes Wolf Creek Management — Lewis's own entity. Gibson's wife, Katrina Gibson, served as CFO of Utah Forward PAC and ran for Weber County Commission in 2026; her own lobbyist registration was canceled six days after she filed her candidacy. This same Lewis/Dunleavy partnership separately filed a $19.5 million lawsuit in May 2025 against the Wolf Creek Water and Sewer Improvement District over stalled development — the same general area and infrastructure disputes documented elsewhere in this project's Ogden Valley reporting.</p>
+
+  <div class="chart-box">
+    <div class="chart-title">The Lewis/Dunleavy &ndash; Gibson network</div>
+    <svg viewBox="0 0 780 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Network diagram showing John Lewis and Shane Dunleavy connected through Wolf Creek Management to lobbyist Kerry Gibson, married to Katrina Gibson who ran for county commission, and separately to a lawsuit against Wolf Creek Water and Sewer Improvement District">
+
+      <rect x="30" y="20" width="260" height="54" rx="4" fill="rgba(79,195,232,0.12)" stroke="#4FC3E8" stroke-width="1.5"/>
+      <text x="160" y="44" text-anchor="middle" class="chart-label" font-size="14" font-weight="700">John Lewis &amp; Shane Dunleavy</text>
+      <text x="160" y="62" text-anchor="middle" class="chart-value" font-size="11">development partnership</text>
+
+      <line x1="160" y1="74" x2="160" y2="118" stroke="#B9C7D6" stroke-width="1.5"/>
+      <rect x="30" y="118" width="260" height="52" rx="4" fill="var(--navy-deep)" stroke="#B9C7D6" stroke-width="1"/>
+      <text x="160" y="141" text-anchor="middle" class="chart-label" font-size="13">Wolf Creek Management</text>
+      <text x="160" y="159" text-anchor="middle" class="chart-value" font-size="11">Lewis's own entity</text>
+
+      <line x1="290" y1="144" x2="450" y2="144" stroke="#4FC3E8" stroke-width="1.5"/>
+      <text x="370" y="136" text-anchor="middle" class="chart-value" font-size="11">hires</text>
+      <rect x="450" y="115" width="280" height="58" rx="4" fill="rgba(232,169,79,0.14)" stroke="#E8A94F" stroke-width="1.5"/>
+      <text x="590" y="139" text-anchor="middle" class="chart-label" font-size="13" font-weight="700">Kerry Gibson</text>
+      <text x="590" y="158" text-anchor="middle" class="chart-value" font-size="11">Principal, Legislative Solutions</text>
+
+      <line x1="590" y1="173" x2="590" y2="216" stroke="#E8704F" stroke-width="1.5" stroke-dasharray="3,2"/>
+      <text x="612" y="199" class="chart-value" font-size="11">married to</text>
+      <rect x="450" y="216" width="280" height="74" rx="4" fill="rgba(232,112,79,0.10)" stroke="#E8704F" stroke-width="1.5"/>
+      <text x="590" y="238" text-anchor="middle" class="chart-label" font-size="13" font-weight="700">Katrina Gibson</text>
+      <text x="590" y="257" text-anchor="middle" class="chart-value" font-size="11">CFO, Utah Forward PAC</text>
+      <text x="590" y="274" text-anchor="middle" class="chart-value" font-size="11">Ran for Weber Co. Commission 2026</text>
+
+      <line x1="160" y1="170" x2="160" y2="216" stroke="#B9C7D6" stroke-width="1.5"/>
+      <text x="185" y="197" class="chart-value" font-size="11">separately sued (5/2025)</text>
+      <rect x="30" y="216" width="260" height="80" rx="4" fill="var(--navy-deep)" stroke="#B9C7D6" stroke-width="1"/>
+      <text x="160" y="240" text-anchor="middle" class="chart-label" font-size="13">Wolf Creek Water &amp;</text>
+      <text x="160" y="258" text-anchor="middle" class="chart-label" font-size="13">Sewer Improvement District</text>
+      <text x="160" y="278" text-anchor="middle" class="chart-value" font-size="11">$19.5M lawsuit over</text>
+      <text x="160" y="293" text-anchor="middle" class="chart-value" font-size="11">stalled development</text>
+
+      <text x="30" y="345" class="chart-value" font-size="11">Katrina Gibson's own lobbyist registration was canceled six days</text>
+      <text x="30" y="363" class="chart-value" font-size="11">after she filed her 2026 County Commission candidacy.</text>
+    </svg>
+    <div class="chart-note">Solid lines = confirmed business/legal relationships. Dashed line = personal relationship, shown for context only.</div>
+  </div>
+
+  <h3>Where the money actually goes</h3>
+  <p>Utah Forward PAC — the same PAC Katrina Gibson serves as CFO of — completes the loop. The developers whose partnership sits inside this PID funded the PAC; the PAC funded both the commissioner who voted on their PID and Gibson's own campaign.</p>
+
+  <div class="chart-box">
+    <div class="chart-title">Utah Forward PAC &mdash; developer money in, campaign money out</div>
+    <svg viewBox="0 0 780 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Diagram showing John Lewis and Shane Dunleavy donating to Utah Forward PAC, which is chaired by Katrina Gibson as CFO, and which in turn donates to Gage Froerer and to Katrina Gibson's own campaign">
+
+      <rect x="30" y="20" width="220" height="46" rx="4" fill="rgba(232,169,79,0.14)" stroke="#E8A94F" stroke-width="1.5"/>
+      <text x="140" y="40" text-anchor="middle" class="chart-label" font-size="13" font-weight="700">John Lewis</text>
+      <text x="140" y="57" text-anchor="middle" class="chart-value" font-size="11">$5,000 (Aug 2022)</text>
+
+      <rect x="30" y="86" width="220" height="46" rx="4" fill="rgba(232,169,79,0.14)" stroke="#E8A94F" stroke-width="1.5"/>
+      <text x="140" y="106" text-anchor="middle" class="chart-label" font-size="13" font-weight="700">Shane Dunleavy</text>
+      <text x="140" y="123" text-anchor="middle" class="chart-value" font-size="11">$15,000 (Aug 2022)</text>
+
+      <line x1="250" y1="43" x2="330" y2="43" stroke="#4FC3E8" stroke-width="1.5"/>
+      <line x1="250" y1="109" x2="330" y2="109" stroke="#4FC3E8" stroke-width="1.5"/>
+      <line x1="330" y1="43" x2="330" y2="109" stroke="#4FC3E8" stroke-width="1.5"/>
+      <line x1="330" y1="76" x2="380" y2="76" stroke="#4FC3E8" stroke-width="1.5"/>
+
+      <rect x="380" y="46" width="260" height="60" rx="4" fill="rgba(79,195,232,0.12)" stroke="#4FC3E8" stroke-width="1.5"/>
+      <text x="510" y="68" text-anchor="middle" class="chart-label" font-size="14" font-weight="700">Utah Forward PAC</text>
+      <text x="510" y="86" text-anchor="middle" class="chart-value" font-size="11">Katrina Gibson, CFO</text>
+      <text x="510" y="100" text-anchor="middle" class="chart-value" font-size="10">(Kerry Gibson's wife)</text>
+
+      <line x1="450" y1="106" x2="290" y2="180" stroke="#E8704F" stroke-width="1.5"/>
+      <rect x="90" y="180" width="230" height="58" rx="4" fill="rgba(232,112,79,0.10)" stroke="#E8704F" stroke-width="1.5"/>
+      <text x="205" y="203" text-anchor="middle" class="chart-label" font-size="13" font-weight="700">Gage Froerer</text>
+      <text x="205" y="221" text-anchor="middle" class="chart-value" font-size="11">$5,000 (2024)</text>
+      <text x="205" y="234" text-anchor="middle" class="chart-value" font-size="10">Voted on the PID he was funded around</text>
+
+      <line x1="570" y1="106" x2="640" y2="180" stroke="#E8704F" stroke-width="1.5"/>
+      <rect x="530" y="180" width="230" height="58" rx="4" fill="rgba(232,112,79,0.10)" stroke="#E8704F" stroke-width="1.5"/>
+      <text x="645" y="203" text-anchor="middle" class="chart-label" font-size="13" font-weight="700">Katrina Gibson's own campaign</text>
+      <text x="645" y="221" text-anchor="middle" class="chart-value" font-size="11">$2,500 (Dec 2023)</text>
+      <text x="645" y="234" text-anchor="middle" class="chart-value" font-size="10">The PAC she is CFO of</text>
+
+      <text x="30" y="275" class="chart-value" font-size="11">The same PAC Gibson helps run funded both the sitting commissioner who</text>
+      <text x="30" y="291" class="chart-value" font-size="11">later voted on this PID and her own campaign for county commission.</text>
+    </svg>
+    <div class="chart-note">All figures from Utah Forward PAC's own campaign finance filings.</div>
+  </div>
+
+  <h2>Laura Warburton</h2>
+  <p>Warburton managed Keep the Valley PAC (also referred to as "Keep Our Valley Free"), a committee funded by Utah Forward PAC, Wolf Creek Resort, and Warburton herself. In March 2024, the PAC hired Zions Bank for $4,218.75 to review a feasibility study — the same Zions Bank that later became Trustee and Municipal Advisor for Nordic Village PID's $25 million bond issuance, with no competitive bidding documented.</p>
+
+  <div class="mini-timeline">
+    <div class="mt-item"><span class="mt-dot"></span><span class="mt-date">May 20, 2025</span><span class="mt-text">Warburton is appointed to the Ogden Valley Planning Commission, term through June 2028.</span></div>
+    <div class="mt-item"><span class="mt-dot"></span><span class="mt-date">June 24, 2025</span><span class="mt-text">Her first meeting. The chair asks commissioners to declare any conflicts of interest or ex parte communications. Warburton discloses nothing.</span></div>
+    <div class="mt-item"><span class="mt-dot"></span><span class="mt-date">September 23, 2025</span><span class="mt-text">Warburton seconds and votes aye on developer John Lewis's Eden Crossing rezoning, which carries 5&ndash;2. No conflict disclosed.</span></div>
+    <div class="mt-item"><span class="mt-dot"></span><span class="mt-date">October 28, 2025</span><span class="mt-text">Eden Crossing's Phase 1 subdivision application is accepted for review.</span></div>
+    <div class="mt-item"><span class="mt-dot"></span><span class="mt-date">December 2, 2025</span><span class="mt-text">Weber County Commission formally approves the Eden Crossing development agreement &mdash; the same day Froerer's own family entity has a separate development application before the same Planning Commission.</span></div>
+    <div class="mt-item"><span class="mt-dot"></span><span class="mt-date">December 15, 2025</span><span class="mt-text">Eden Crossing Phase 1 receives final approval from the Planning Director.</span></div>
+  </div>
+
+  <p>Every one of these votes happened on a Weber <b>County</b> planning body, under the County Commission's authority — not the new Ogden Valley City's. Voters approved the city's incorporation in November 2024, and Janet Wampler won the first mayoral election in November 2025, but Weber County's own attorney confirmed the county retained full jurisdiction until the city legally existed, which didn't happen until roughly January 2026. Warburton's entire tenure on the Planning Commission &mdash; her appointment through the Eden Crossing votes above &mdash; falls inside that window: elected officials in a soon-to-dissolve county body approving development inside the boundaries of a city that hadn't yet taken over.</p>
+
+  <p>Froerer and Warburton have a documented political relationship dating to 2018. When asked directly whether she'd disclosed her Utah Forward PAC role at her appointment or in any subsequent meeting, Warburton declined to answer and instead accused the reporter of being paid to ask the question &mdash; an on-record non-denial, not a defense. No ethics complaint or formal review of her conduct has been publicly reported as filed.</p>
+
+  <h2>The water itself</h2>
+  <p>The lawsuit isn't a dispute over paperwork — it's a fight over a genuinely scarce resource in a mountain valley with a documented history of running short. The Wolf Creek Water and Sewer Improvement District currently has access to <b>just one culinary water source</b>, the Warm Springs well, though a second is reportedly in progress. Back in 2021, the same district imposed a moratorium on new water-service "can and will serve" letters during drought conditions, halting new home construction on the hillside below Powder Mountain — this isn't a new problem the current lawsuit invented.</p>
+
+  <p>Dunleavy's own public position, on the record to KSL: the district has sufficient capacity but is "just actively choosing not to use it." The district's own statement says otherwise — one working source, a second not yet online. A <b>second, separate developer</b> (P.C. Luminary LLC, pursuing a 60-unit project called Powder Canyon at Wolf Creek) filed a nearly identical lawsuit against the same district the following month, echoing the same complaint. P.C. Luminary is genuinely unconnected to the Lewis/Dunleavy network — Utah corporate records show its own registered agent (Judson Tolman Pitts, Taylorsville) and manager (George Wright, Eagle Mountain), a different address and different principals entirely. Its actual parcel, per Weber County's own plat records, is 220160117 &mdash; 2.735+ acres in the "Village at Wolf Creek" development, inside the same Wolf Creek Water and Sewer Improvement District footprint. Two unrelated developers making the same complaint against the same district within a month of each other is a real pattern in the same water system Nordic Village's own resort development sits inside, not an isolated dispute between one developer and one district.</p>
+
+  <div class="callout">
+    <b>The bigger structural fact behind the scarcity:</b> Pineview Reservoir sits directly in the middle of Ogden Valley — Nordic Village's own footprint — and it is the primary water source for roughly 120,000&ndash;135,000 downstream residents across Ogden, South Ogden, Riverdale, and other parts of Weber County. Ogden City drilled around fifty artesian wells in the valley itself over a century ago; when the reservoir was built in the 1930s, those wells were capped beneath the future lakebed and piped straight into the city's own system. That buried wellfield is the direct ancestor of the pipeline Ogden City is still rebuilding today. In 2026, Weber Basin Water Conservancy District declared a mandatory 20% allocation reduction due to drought. New development competing for water inside the valley isn't just facing general regional scarcity &mdash; it's competing against senior downstream obligations to a much larger city population that were built into this system nearly a century before Nordic Village existed.
+  </div>
+</section>
+
+<section>
+  <h2>The 100% claim</h2>
+  <p>When Brook Cole signed the original PID petition — February 6, 2024, notarized November 14, 2023 — he represented himself as the <b>sole 100% surface property owner</b>. That claim wasn't just later superseded by a more complicated reality — it was already false when he signed it. The Nordic Village Master Development Agreement's own beneficiary identification document, which lays out the real split, is dated <b>March 14, 2023 and October 13, 2023</b>, both months before Cole ever notarized or filed the petition. The real owners' names were kept off the public record while the split that named them already existed on paper.</p>
+
+  <div class="chart-box">
+    <div class="chart-title">Nordic Village Venture LLC &mdash; real ownership vs. what the petition claimed</div>
+    <svg viewBox="0 0 700 320" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Donut chart showing Nordic Village Venture LLC ownership: Skyline Mountain Base 50 percent, Clyde Capital Group 45 percent, John Lewis 5 percent">
+      <circle cx="175" cy="150" r="100" fill="none" stroke="#1a3a63" stroke-width="40"/>
+      <circle cx="175" cy="150" r="100" fill="none" stroke="#E8704F" stroke-width="40"
+        stroke-dasharray="314.159 628.318" stroke-dashoffset="0" transform="rotate(-90 175 150)"/>
+      <circle cx="175" cy="150" r="100" fill="none" stroke="#4FC3E8" stroke-width="40"
+        stroke-dasharray="282.743 628.318" stroke-dashoffset="-314.159" transform="rotate(-90 175 150)"/>
+      <circle cx="175" cy="150" r="100" fill="none" stroke="#E8A94F" stroke-width="40"
+        stroke-dasharray="31.416 628.318" stroke-dashoffset="-596.902" transform="rotate(-90 175 150)"/>
+      <text x="175" y="145" text-anchor="middle" class="chart-value" font-size="13" fill="#EDF2F7">Nordic Village</text>
+      <text x="175" y="162" text-anchor="middle" class="chart-value" font-size="13" fill="#EDF2F7">Venture LLC</text>
+
+      <rect x="380" y="60" width="14" height="14" fill="#E8704F"/>
+      <text x="402" y="72" class="chart-label" font-size="13">Skyline Mountain Base LLC &mdash; 50%</text>
+      <text x="402" y="90" class="chart-value" font-size="11">France (Sorep/Muselier), managed by Jouffray</text>
+
+      <rect x="380" y="115" width="14" height="14" fill="#4FC3E8"/>
+      <text x="402" y="127" class="chart-label" font-size="13">Clyde Capital Group &mdash; 45%</text>
+      <text x="402" y="145" class="chart-value" font-size="11">GWC Capital / Brandon Henrie</text>
+
+      <rect x="380" y="170" width="14" height="14" fill="#E8A94F"/>
+      <text x="402" y="182" class="chart-label" font-size="13">John Lewis &mdash; 5%</text>
+      <text x="402" y="200" class="chart-value" font-size="11">Lewis Group Holdings</text>
+
+      <line x1="380" y1="235" x2="560" y2="235" stroke="#B9C7D6" stroke-width="1"/>
+      <rect x="380" y="250" width="14" height="14" fill="none" stroke="#B9C7D6" stroke-width="1.5" stroke-dasharray="3,2"/>
+      <text x="402" y="262" class="chart-label" font-size="13">What the petition claimed</text>
+      <text x="402" y="280" class="chart-value" font-size="11">Brook Cole &mdash; 100% sole owner</text>
+      <text x="402" y="296" class="chart-value" font-size="11">(filed 2/6/24, months after the real split</text>
+      <text x="402" y="310" class="chart-value" font-size="11">above was already on paper)</text>
+    </svg>
+    <div class="chart-note">Ownership shares per the Nordic Village Master Development Agreement beneficiary document (3/14/23 &amp; 10/13/23). The 100% claim is Brook Cole's own statement on the PID creation petition.</div>
+  </div>
+
+  <p>For roughly the entire petition process, the public saw one owner where there were, at minimum, three — and the largest single stake belonged to the French company whose real beneficial owner, per Mediapart's later reporting, never told his own government he held it.</p>
+</section>
+
+<section>
+  <h2>The France side</h2>
+  <p><i>Mediapart</i>, a major French investigative outlet, published a full account of who actually owns the resort. Its reporting, independently confirmed and safe to cite directly:</p>
+  <div class="callout-quote">
+    Renaud Muselier declared to France's own public transparency authority (HATVP) only that he is an unpaid "manager" of the two US entities that hold Nordic Valley — never disclosing that he owns a ski resort.
+    <span class="attrib">&mdash; Mediapart, Karl Laske</span>
+  </div>
+  <p>Muselier is president of France's Provence-Alpes-Côte d'Azur regional council and co-president of Solideo Alpes 2030, the body organizing infrastructure for France's 2030 Winter Olympics. He has personally led outreach between France's Olympic organizers and Utah's 2034 Olympics organizers — including a January 2024 delegation trip where he met Gov. Cox — while holding this undisclosed stake. Nordic Valley (then called Wolf Mountain) was bought in 2014 for 3&ndash;4 million euros out of a bank following a post-subprime bankruptcy; Sorep, the French company behind the purchase, injected 10.6 million euros into the US holding entities in 2023. A French politician has since publicly called for Muselier's resignation.</p>
+  <p>Laurent Jouffray — the same PID trustee already documented above — is described by Mediapart as a French former chartered accountant who represents Sorep in the US. His own Utah disclosure separately admits Skyline Mountain Base holds a 50% stake in Nordic Village Venture LLC, the developer entity he votes to fund as trustee.</p>
+
+  <h3>The local half of the deal</h3>
+  <p>Sorep didn't buy the resort alone. Utah trade press coverage from the time names <b>Josh Richards</b>, then a 37-year-old Ogden-area entrepreneur, as the local partner who formed the arrangement with Sorep specifically to finance the purchase — the French company came in as the financing partner to a locally-initiated deal, confirmed by Richards himself to the Standard-Examiner at the time. The purchase closed in January 2014, no price disclosed publicly at the time (Mediapart's later reporting puts it at 3&ndash;4 million euros). The resort's own stated pitch at acquisition was explicitly the opposite of what it's become: a "family friendly" resort at "a fair price," positioned deliberately against Powder Mountain and Snowbasin — Richards described those resorts as "Audis or BMWs" next to Wolf Mountain's "Subaru or minivan." The resort's original name, before a 2005 rebrand to Wolf Mountain, was Nordic Valley — the name the current project has since revived.</p>
+
+  <div class="caution-box">
+    <span class="label">A SEPARATE, OLDER OLYMPIC CONNECTION</span>
+    Nordic Valley, under its old name Wolf Mountain, was used as a training venue by the Austrian ski team for the 2002 Salt Lake City Olympics — decades before Muselier's ownership and unrelated to the 2030/2034 conflict above. Worth keeping the two facts distinct.
+  </div>
+</section>
+
+<section>
+  <h2>Who actually pays</h2>
+  <p>The $120,870,032 project is funded through a mix of developer money and public financing mechanisms — and roughly a third of it lands on the public, split between people inside the PID boundary and people who will never live there.</p>
+
+  <table class="net-table">
+    <tr><th>Source</th><th>Amount</th><th>Who pays it</th></tr>
+    <tr><td>Developer equity/debt</td><td>$79,942,771</td><td>The developer, privately</td></tr>
+    <tr><td>PID debt</td><td>$24,355,615</td><td>Property owners <b>inside</b> the PID boundary, via a special levy on top of ordinary property tax</td></tr>
+    <tr><td>Tax increment (School, Water, Fire &mdash; 50% each, 15 yrs)</td><td>$11,525,738</td><td>Diverted from what those three districts would otherwise collect &mdash; not from PID residents specifically</td></tr>
+    <tr><td>Tax increment (Weber County &mdash; 75%, 15 yrs)</td><td>$5,045,908</td><td>Diverted from the county's own general fund growth</td></tr>
+  </table>
+
+  <div class="callout">
+    <b>The Weber Fire District's own 30-year model shows exactly what this costs them:</b> its annual revenue from this land, absent the diversion, would be $856,315/year once the district's participation ends in 2042. During the diversion period (2027&ndash;2041), the district is held to roughly half that, $428,158/year &mdash; the same $856,315 figure only kicks in the year the CRA participation window closes. That doubling, in the district's own published table, <i>is</i> the diversion. Multiply the same structure across the School District and Water District, each also giving up 50% of their own growth on this land for 15 years, and the same pattern repeats.
+  </div>
+
+  <p>This is the indirect mechanism already documented elsewhere in this project: diverting future tax increment from the School District, Fire District, and Water District (50% each) and the County (75%) doesn't take money directly out of anyone's pocket — it takes away growth those entities would otherwise have collected, forcing them to either raise rates on everyone else in their district or cut services to compensate. People who never set foot in Nordic Village, inside the same school, fire, and water districts, absorb part of the cost of a development they have no ownership stake in and, per the record above, weren't even told the true ownership of until well after the county had already committed.</p>
+</section>
+
+<section>
+  <h2>What this means for the public — graded by topic</h2>
+  <p>Tap a topic to see the full breakdown across all five criteria.</p>
+
+  <details class="grade-card">
+    <summary><span class="grade-card-topic">NVLA zero-consideration transfer</span><span class="grade-card-badge">D</span></summary>
+    <div class="grade-body">
+      <div class="grade-row"><span class="grade-label">POWER</span>Bad &mdash; a sitting commissioner's own entity moved the land at no cost, then dissolved</div>
+      <div class="grade-row"><span class="grade-label">TRANSPARENCY</span>Bad &mdash; a disclosure claiming divestment that the underlying records don't support</div>
+      <div class="grade-row"><span class="grade-label">FINANCIAL ACCOUNTABILITY</span>Not applicable to this specific finding</div>
+      <div class="grade-row"><span class="grade-label">ENVIRONMENTAL IMPACT</span>Not applicable</div>
+      <div class="grade-row"><span class="grade-label">COMMUNITY IMPACT</span>Not applicable</div>
+    </div>
+  </details>
+
+  <details class="grade-card">
+    <summary><span class="grade-card-topic">The Henrie transfer</span><span class="grade-card-badge">D</span></summary>
+    <div class="grade-body">
+      <div class="grade-row"><span class="grade-label">POWER</span>Bad &mdash; the same person signed both sides of a $10 transaction as seller's agent and receiving trustee</div>
+      <div class="grade-row"><span class="grade-label">TRANSPARENCY</span>Neutral &mdash; the transaction itself is a matter of recorded public deed, just not flagged as a conflict anywhere in the record</div>
+      <div class="grade-row"><span class="grade-label">FINANCIAL ACCOUNTABILITY</span>Bad &mdash; $10 nominal consideration for land now inside an $80M bonding structure</div>
+      <div class="grade-row"><span class="grade-label">ENVIRONMENTAL IMPACT</span>Not applicable</div>
+      <div class="grade-row"><span class="grade-label">COMMUNITY IMPACT</span>Not applicable</div>
+    </div>
+  </details>
+
+  <details class="grade-card">
+    <summary><span class="grade-card-topic">Jouffray's PID vote</span><span class="grade-card-badge">D+</span></summary>
+    <div class="grade-body">
+      <div class="grade-row"><span class="grade-label">POWER</span>Bad &mdash; voted to authorize public bonding on property he holds a disclosed 50% stake in</div>
+      <div class="grade-row"><span class="grade-label">TRANSPARENCY</span>Neutral &mdash; the stake itself was disclosed on paper; no recusal is documented anywhere</div>
+      <div class="grade-row"><span class="grade-label">FINANCIAL ACCOUNTABILITY</span>Bad &mdash; $80M in public bonding authorized without a recusal on the record</div>
+      <div class="grade-row"><span class="grade-label">ENVIRONMENTAL IMPACT</span>Not applicable to this specific finding</div>
+      <div class="grade-row"><span class="grade-label">COMMUNITY IMPACT</span>Not applicable</div>
+    </div>
+  </details>
+
+  <details class="grade-card">
+    <summary><span class="grade-card-topic">Muselier / Mediapart finding</span><span class="grade-card-badge">C</span></summary>
+    <div class="grade-body">
+      <div class="grade-row"><span class="grade-label">POWER</span>Bad &mdash; a foreign official with Olympic-organizing authority held an undisclosed ownership stake in land benefiting from a Utah public bond</div>
+      <div class="grade-row"><span class="grade-label">TRANSPARENCY</span>Bad &mdash; declared only "unpaid manager" to his own country's transparency authority, not ownership</div>
+      <div class="grade-row"><span class="grade-label">FINANCIAL ACCOUNTABILITY</span>Not applicable to a Utah financial-accountability question specifically</div>
+      <div class="grade-row"><span class="grade-label">ENVIRONMENTAL IMPACT</span>Not applicable to this specific finding</div>
+      <div class="grade-row"><span class="grade-label">COMMUNITY IMPACT</span>Good &mdash; independent public reporting (Mediapart) and a real political consequence (a resignation call) show this reached the public and had consequences, even if the original disclosure didn't</div>
+    </div>
+  </details>
+
+  <details class="grade-card">
+    <summary><span class="grade-card-topic">Lewis/Dunleavy parcel chain</span><span class="grade-card-badge">B&ndash;</span></summary>
+    <div class="grade-body">
+      <div class="grade-row"><span class="grade-label">POWER</span>Neutral &mdash; ordinary land assembly and resale, no vote or public office involved directly</div>
+      <div class="grade-row"><span class="grade-label">TRANSPARENCY</span>Good &mdash; traceable through standard corporate and deed records once pulled</div>
+      <div class="grade-row"><span class="grade-label">FINANCIAL ACCOUNTABILITY</span>Not applicable to the parcel transfer itself</div>
+      <div class="grade-row"><span class="grade-label">ENVIRONMENTAL IMPACT</span>Not applicable</div>
+      <div class="grade-row"><span class="grade-label">COMMUNITY IMPACT</span>Not applicable to the parcel transfer itself</div>
+    </div>
+  </details>
+
+  <details class="grade-card">
+    <summary><span class="grade-card-topic">Lewis/Dunleavy &mdash; lobbyist &amp; lawsuit</span><span class="grade-card-badge">C&ndash;</span></summary>
+    <div class="grade-body">
+      <div class="grade-row"><span class="grade-label">POWER</span>Neutral &mdash; hiring a lobbyist and filing litigation are both ordinary legal rights, not a power grab on their own</div>
+      <div class="grade-row"><span class="grade-label">TRANSPARENCY</span>Good &mdash; the lobbyist registration and the lawsuit are both a matter of public record once checked</div>
+      <div class="grade-row"><span class="grade-label">FINANCIAL ACCOUNTABILITY</span>Bad &mdash; a $19.5M lawsuit against a public water and sewer district exposes ratepayers to real financial risk regardless of how it resolves</div>
+      <div class="grade-row"><span class="grade-label">ENVIRONMENTAL IMPACT</span>Mixed &mdash; the district has a documented single-source water constraint and a 2021 drought moratorium precedent; whether the lawsuit is a legitimate capacity dispute or pressure on a genuinely scarce resource isn't resolved by the record alone, and a second developer's near-identical suit suggests a real pattern either way</div>
+      <div class="grade-row"><span class="grade-label">COMMUNITY IMPACT</span>Bad &mdash; the same community served by that district bears the cost/risk of the litigation, and Katrina Gibson's own PAC and candidacy roles blur private development interests into public elections</div>
+    </div>
+  </details>
+
+  <details class="grade-card">
+    <summary><span class="grade-card-topic">TIF diversion structure</span><span class="grade-card-badge">D+</span></summary>
+    <div class="grade-body">
+      <div class="grade-row"><span class="grade-label">POWER</span>Neutral &mdash; the mechanism itself is a standard, legal state financing tool, not unique misconduct</div>
+      <div class="grade-row"><span class="grade-label">TRANSPARENCY</span>Bad &mdash; the real cost lands on School, Fire, and Water District ratepayers outside the PID who were never part of the approval process</div>
+      <div class="grade-row"><span class="grade-label">FINANCIAL ACCOUNTABILITY</span>Bad &mdash; roughly a third of a $120.87M project financed through public mechanisms, with the Fire District's own model showing its revenue effectively doubling only once the diversion ends</div>
+      <div class="grade-row"><span class="grade-label">ENVIRONMENTAL IMPACT</span>Not applicable to this specific finding</div>
+      <div class="grade-row"><span class="grade-label">COMMUNITY IMPACT</span>Bad &mdash; the community actually bearing the cost is the surrounding school, fire, and water district population, not Nordic Village residents</div>
+    </div>
+  </details>
+
+  <details class="grade-card">
+    <summary><span class="grade-card-topic">Laura Warburton's Planning Commission votes</span><span class="grade-card-badge">D</span></summary>
+    <div class="grade-body">
+      <div class="grade-row"><span class="grade-label">POWER</span>Bad &mdash; voted repeatedly on a developer's own rezoning while managing a PAC that developer's network funded, in a county body operating on borrowed time before a new city took over</div>
+      <div class="grade-row"><span class="grade-label">TRANSPARENCY</span>Bad &mdash; asked directly to declare conflicts at her first meeting and disclosed nothing; later declined to answer when asked directly by a reporter</div>
+      <div class="grade-row"><span class="grade-label">FINANCIAL ACCOUNTABILITY</span>Not applicable to this specific finding</div>
+      <div class="grade-row"><span class="grade-label">ENVIRONMENTAL IMPACT</span>Not applicable</div>
+      <div class="grade-row"><span class="grade-label">COMMUNITY IMPACT</span>Bad &mdash; approvals granted during a jurisdictional handoff window bind the new city to decisions its own residents had no elected voice in yet</div>
+    </div>
+  </details>
+
+  <p>Against all five criteria, the Lewis/Dunleavy parcel transfer itself is the closest thing to routine in this file — ordinary land assembly, traceable through normal records. But the network around it isn't: the same partnership's lobbyist connection and litigation against a public water district still grade badly on financial accountability and community impact. Everything touching an actual PID trustee, county commissioner, or planning commissioner grades badly on power and transparency, for the same underlying reason each time: the person deciding and the person benefiting were the same person, without a disclosed recusal.</p>
+
+  <h3 style="margin-top:0;">What would have earned a passing grade</h3>
+  <table class="fix-table">
+    <tr><th>What actually happened</th><th>What would have kept the same goal, without the opacity</th></tr>
+    <tr>
+      <td>A commissioner's disclosure form claims divestment that property and corporate records don't support</td>
+      <td>A basic cross-check of disclosure claims against the county's own recorder and corporate registry before acceptance</td>
+    </tr>
+    <tr>
+      <td>The same person signed both sides of a $10 land transfer into the district he oversees as trustee</td>
+      <td>A conflict-of-interest recusal requirement whenever a trustee's own employer is a party to a transaction with the district</td>
+    </tr>
+    <tr>
+      <td>A trustee's disclosed 50% ownership stake in the developer entity produced no recorded recusal from the bonding vote</td>
+      <td>Mandatory recusal, not just disclosure, when a trustee's ownership stake and the vote's beneficiary are the same entity</td>
+    </tr>
+    <tr>
+      <td>A foreign official with Olympic-organizing authority disclosed only "unpaid manager," not ownership, to his own transparency authority</td>
+      <td>Independent public reporting is what surfaced this — the fix is upstream, in the disclosure requirement itself being accurate in the first place</td>
+    </tr>
+  </table>
+</section>
+
+<section>
+  <div class="questions-box">
+    <div class="qw-label">QUESTIONS WORTH ASKING</div>
+    <ol>
+      <li>What do Froerer's own property and corporate records show about his continued interest in NVLA, set directly against the handwritten divestment note on his 2023 disclosure?</li>
+      <li>Why did Brandon Henrie's dual role — PID trustee and Clyde Capital manager — never surface as a conflict requiring recusal on the $10 transfer?</li>
+      <li>Has Laurent Jouffray ever recused from a Nordic Village PID vote given his disclosed 50% stake via Skyline Mountain Base?</li>
+      <li>Did Renaud Muselier's undisclosed Nordic Valley ownership ever intersect with his official France-Utah Olympic cooperation work, beyond the January 2024 delegation trip?</li>
+      <li>What happened to the Liberty Village-to-GWC Capital transfer deed and its stated consideration — was this land conveyed at fair market value or another below-cost transfer?</li>
+      <li>Where do Brook Cole, Brandon Henrie, and David Smith actually live, and does their residency satisfy Utah Code &sect;17B-1-302's requirement that PID trustees reside within the district — the same question already confirmed to be a problem for Jouffray?</li>
+    </ol>
+  </div>
+</section>
+
+<section>
+  <details class="sources-toggle">
+    <summary>Sources</summary>
+    <div class="body">
+      <ul>
+        <li>Utah Division of Corporations entity filings: NVLA, Kier Development LLC, J&amp;G Investment Partnership LLC, Liberty Village LLC, GWC Capital LLC</li>
+        <li>Weber County Recorder parcel title abstracts and deed entries, including Entry #3399183</li>
+        <li>Gage Froerer's filed conflict-of-interest disclosure forms, 2023 and later years</li>
+        <li>Nordic Village PID petition, Addendum, and Governing Document (obtained via GRAMA)</li>
+        <li>Nordic Village PID trustee conflict-of-interest disclosures, filed October 7, 2024</li>
+        <li>Nordic Village Financing Plan Review, prepared for Weber County by Lewis Young Robertson and Burningham</li>
+        <li><i>Mediapart</i>, Karl Laske, investigative report on Renaud Muselier and Nordic Valley ownership</li>
+        <li>Standard-Examiner and Park Record coverage of Skyline Mountain Base/Sorep Group ownership, on-record statements from Jouffray and Giocanti</li>
+      </ul>
+    </div>
+  </details>
+</section>
+
+</div>
+
+<footer>
+  <div class="wrap">
+    The Weber County Hive — accountability journalism for Weber County, Utah. We report the filings. You decide what they mean.
+  </div>
+</footer>
+
+<script>
+  document.querySelectorAll('.who-card[data-flip]').forEach(function(card){
+    card.addEventListener('click', function(){
+      card.classList.toggle('flipped');
+    });
+  });
+</script>
+
+</body>
+</html>
