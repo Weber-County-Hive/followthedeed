@@ -18,8 +18,9 @@ const FOLLOWTHEDEED_CASES = [
     caseNumber: "02",
     county: "Summit",
     dateAdded: "2026-09-05",
-    summary: "Ivory Homes used a family ranch, two landowner LLCs, and the same 2024 state law to try to create its own town in Summit County. The bill that would have given the county a say failed in the Senate by one vote.",
-    tags: ["Ivory Homes", "preliminary municipality", "Lost Creek", "HB 510", "Garff Rogers Ranch", "PID"]
+    dateUpdated: "2026-09-17",
+    summary: "Ivory Homes used a family ranch, two landowner LLCs, and the same 2024 state law to try to create its own town in Summit County. The bill that would have given the county a say failed in the Senate by one vote — and the same statute's own eligibility threshold was quietly rewritten a year earlier by a bill its own Senate sponsor later sat out that vote on.",
+    tags: ["Ivory Homes", "preliminary municipality", "Lost Creek", "HB 510", "HB 37", "Garff Rogers Ranch", "PID", "Fillmore", "Waldrip"]
   },
   {
     id: "west-weber-network",
