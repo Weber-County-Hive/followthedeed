@@ -1,0 +1,1128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Lots That Wait | Follow the Deed | Utah Hive Politics</title>
+<meta name="description" content="Osprey Ranch in Eden: the developer's unsold lots carry about $550,000 in unpaid property taxes, the back taxes get paid when a lot sells, and the lots it still held saw their 2026 values drop 13 to 32 percent.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>/* Leaflet 1.9.4 map styles, included in the page */
+/* required styles */
+
+.leaflet-pane,
+.leaflet-tile,
+.leaflet-marker-icon,
+.leaflet-marker-shadow,
+.leaflet-tile-container,
+.leaflet-pane > svg,
+.leaflet-pane > canvas,
+.leaflet-zoom-box,
+.leaflet-image-layer,
+.leaflet-layer {
+	position: absolute;
+	left: 0;
+	top: 0;
+	}
+.leaflet-container {
+	overflow: hidden;
+	}
+.leaflet-tile,
+.leaflet-marker-icon,
+.leaflet-marker-shadow {
+	-webkit-user-select: none;
+	   -moz-user-select: none;
+	        user-select: none;
+	  -webkit-user-drag: none;
+	}
+/* Prevents IE11 from highlighting tiles in blue */
+.leaflet-tile::selection {
+	background: transparent;
+}
+/* Safari renders non-retina tile on retina better with this, but Chrome is worse */
+.leaflet-safari .leaflet-tile {
+	image-rendering: -webkit-optimize-contrast;
+	}
+/* hack that prevents hw layers "stretching" when loading new tiles */
+.leaflet-safari .leaflet-tile-container {
+	width: 1600px;
+	height: 1600px;
+	-webkit-transform-origin: 0 0;
+	}
+.leaflet-marker-icon,
+.leaflet-marker-shadow {
+	display: block;
+	}
+/* .leaflet-container svg: reset svg max-width decleration shipped in Joomla! (joomla.org) 3.x */
+/* .leaflet-container img: map is broken in FF if you have max-width: 100% on tiles */
+.leaflet-container .leaflet-overlay-pane svg {
+	max-width: none !important;
+	max-height: none !important;
+	}
+.leaflet-container .leaflet-marker-pane img,
+.leaflet-container .leaflet-shadow-pane img,
+.leaflet-container .leaflet-tile-pane img,
+.leaflet-container img.leaflet-image-layer,
+.leaflet-container .leaflet-tile {
+	max-width: none !important;
+	max-height: none !important;
+	width: auto;
+	padding: 0;
+	}
+
+.leaflet-container img.leaflet-tile {
+	/* See: https://bugs.chromium.org/p/chromium/issues/detail?id=600120 */
+	mix-blend-mode: plus-lighter;
+}
+
+.leaflet-container.leaflet-touch-zoom {
+	-ms-touch-action: pan-x pan-y;
+	touch-action: pan-x pan-y;
+	}
+.leaflet-container.leaflet-touch-drag {
+	-ms-touch-action: pinch-zoom;
+	/* Fallback for FF which doesn't support pinch-zoom */
+	touch-action: none;
+	touch-action: pinch-zoom;
+}
+.leaflet-container.leaflet-touch-drag.leaflet-touch-zoom {
+	-ms-touch-action: none;
+	touch-action: none;
+}
+.leaflet-container {
+	-webkit-tap-highlight-color: transparent;
+}
+.leaflet-container a {
+	-webkit-tap-highlight-color: rgba(51, 181, 229, 0.4);
+}
+.leaflet-tile {
+	filter: inherit;
+	visibility: hidden;
+	}
+.leaflet-tile-loaded {
+	visibility: inherit;
+	}
+.leaflet-zoom-box {
+	width: 0;
+	height: 0;
+	-moz-box-sizing: border-box;
+	     box-sizing: border-box;
+	z-index: 800;
+	}
+/* workaround for https://bugzilla.mozilla.org/show_bug.cgi?id=888319 */
+.leaflet-overlay-pane svg {
+	-moz-user-select: none;
+	}
+
+.leaflet-pane         { z-index: 400; }
+
+.leaflet-tile-pane    { z-index: 200; }
+.leaflet-overlay-pane { z-index: 400; }
+.leaflet-shadow-pane  { z-index: 500; }
+.leaflet-marker-pane  { z-index: 600; }
+.leaflet-tooltip-pane   { z-index: 650; }
+.leaflet-popup-pane   { z-index: 700; }
+
+.leaflet-map-pane canvas { z-index: 100; }
+.leaflet-map-pane svg    { z-index: 200; }
+
+.leaflet-vml-shape {
+	width: 1px;
+	height: 1px;
+	}
+.lvml {
+	behavior: none;
+	display: inline-block;
+	position: absolute;
+	}
+
+
+/* control positioning */
+
+.leaflet-control {
+	position: relative;
+	z-index: 800;
+	pointer-events: visiblePainted; /* IE 9-10 doesn't have auto */
+	pointer-events: auto;
+	}
+.leaflet-top,
+.leaflet-bottom {
+	position: absolute;
+	z-index: 1000;
+	pointer-events: none;
+	}
+.leaflet-top {
+	top: 0;
+	}
+.leaflet-right {
+	right: 0;
+	}
+.leaflet-bottom {
+	bottom: 0;
+	}
+.leaflet-left {
+	left: 0;
+	}
+.leaflet-control {
+	float: left;
+	clear: both;
+	}
+.leaflet-right .leaflet-control {
+	float: right;
+	}
+.leaflet-top .leaflet-control {
+	margin-top: 10px;
+	}
+.leaflet-bottom .leaflet-control {
+	margin-bottom: 10px;
+	}
+.leaflet-left .leaflet-control {
+	margin-left: 10px;
+	}
+.leaflet-right .leaflet-control {
+	margin-right: 10px;
+	}
+
+
+/* zoom and fade animations */
+
+.leaflet-fade-anim .leaflet-popup {
+	opacity: 0;
+	-webkit-transition: opacity 0.2s linear;
+	   -moz-transition: opacity 0.2s linear;
+	        transition: opacity 0.2s linear;
+	}
+.leaflet-fade-anim .leaflet-map-pane .leaflet-popup {
+	opacity: 1;
+	}
+.leaflet-zoom-animated {
+	-webkit-transform-origin: 0 0;
+	    -ms-transform-origin: 0 0;
+	        transform-origin: 0 0;
+	}
+svg.leaflet-zoom-animated {
+	will-change: transform;
+}
+
+.leaflet-zoom-anim .leaflet-zoom-animated {
+	-webkit-transition: -webkit-transform 0.25s cubic-bezier(0,0,0.25,1);
+	   -moz-transition:    -moz-transform 0.25s cubic-bezier(0,0,0.25,1);
+	        transition:         transform 0.25s cubic-bezier(0,0,0.25,1);
+	}
+.leaflet-zoom-anim .leaflet-tile,
+.leaflet-pan-anim .leaflet-tile {
+	-webkit-transition: none;
+	   -moz-transition: none;
+	        transition: none;
+	}
+
+.leaflet-zoom-anim .leaflet-zoom-hide {
+	visibility: hidden;
+	}
+
+
+/* cursors */
+
+.leaflet-interactive {
+	cursor: pointer;
+	}
+.leaflet-grab {
+	cursor: -webkit-grab;
+	cursor:    -moz-grab;
+	cursor:         grab;
+	}
+.leaflet-crosshair,
+.leaflet-crosshair .leaflet-interactive {
+	cursor: crosshair;
+	}
+.leaflet-popup-pane,
+.leaflet-control {
+	cursor: auto;
+	}
+.leaflet-dragging .leaflet-grab,
+.leaflet-dragging .leaflet-grab .leaflet-interactive,
+.leaflet-dragging .leaflet-marker-draggable {
+	cursor: move;
+	cursor: -webkit-grabbing;
+	cursor:    -moz-grabbing;
+	cursor:         grabbing;
+	}
+
+/* marker & overlays interactivity */
+.leaflet-marker-icon,
+.leaflet-marker-shadow,
+.leaflet-image-layer,
+.leaflet-pane > svg path,
+.leaflet-tile-container {
+	pointer-events: none;
+	}
+
+.leaflet-marker-icon.leaflet-interactive,
+.leaflet-image-layer.leaflet-interactive,
+.leaflet-pane > svg path.leaflet-interactive,
+svg.leaflet-image-layer.leaflet-interactive path {
+	pointer-events: visiblePainted; /* IE 9-10 doesn't have auto */
+	pointer-events: auto;
+	}
+
+/* visual tweaks */
+
+.leaflet-container {
+	background: #ddd;
+	outline-offset: 1px;
+	}
+.leaflet-container a {
+	color: #0078A8;
+	}
+.leaflet-zoom-box {
+	border: 2px dotted #38f;
+	background: rgba(255,255,255,0.5);
+	}
+
+
+/* general typography */
+.leaflet-container {
+	font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-size: 0.75rem;
+	line-height: 1.5;
+	}
+
+
+/* general toolbar styles */
+
+.leaflet-bar {
+	box-shadow: 0 1px 5px rgba(0,0,0,0.65);
+	border-radius: 4px;
+	}
+.leaflet-bar a {
+	background-color: #fff;
+	border-bottom: 1px solid #ccc;
+	width: 26px;
+	height: 26px;
+	line-height: 26px;
+	display: block;
+	text-align: center;
+	text-decoration: none;
+	color: black;
+	}
+.leaflet-bar a,
+.leaflet-control-layers-toggle {
+	background-position: 50% 50%;
+	background-repeat: no-repeat;
+	display: block;
+	}
+.leaflet-bar a:hover,
+.leaflet-bar a:focus {
+	background-color: #f4f4f4;
+	}
+.leaflet-bar a:first-child {
+	border-top-left-radius: 4px;
+	border-top-right-radius: 4px;
+	}
+.leaflet-bar a:last-child {
+	border-bottom-left-radius: 4px;
+	border-bottom-right-radius: 4px;
+	border-bottom: none;
+	}
+.leaflet-bar a.leaflet-disabled {
+	cursor: default;
+	background-color: #f4f4f4;
+	color: #bbb;
+	}
+
+.leaflet-touch .leaflet-bar a {
+	width: 30px;
+	height: 30px;
+	line-height: 30px;
+	}
+.leaflet-touch .leaflet-bar a:first-child {
+	border-top-left-radius: 2px;
+	border-top-right-radius: 2px;
+	}
+.leaflet-touch .leaflet-bar a:last-child {
+	border-bottom-left-radius: 2px;
+	border-bottom-right-radius: 2px;
+	}
+
+/* zoom control */
+
+.leaflet-control-zoom-in,
+.leaflet-control-zoom-out {
+	font: bold 18px 'Lucida Console', Monaco, monospace;
+	text-indent: 1px;
+	}
+
+.leaflet-touch .leaflet-control-zoom-in, .leaflet-touch .leaflet-control-zoom-out  {
+	font-size: 22px;
+	}
+
+
+/* layers control */
+
+.leaflet-control-layers {
+	box-shadow: 0 1px 5px rgba(0,0,0,0.4);
+	background: #fff;
+	border-radius: 5px;
+	}
+.leaflet-control-layers-toggle {
+	background-image: none;
+	width: 36px;
+	height: 36px;
+	}
+.leaflet-retina .leaflet-control-layers-toggle {
+	background-image: none;
+	background-size: 26px 26px;
+	}
+.leaflet-touch .leaflet-control-layers-toggle {
+	width: 44px;
+	height: 44px;
+	}
+.leaflet-control-layers .leaflet-control-layers-list,
+.leaflet-control-layers-expanded .leaflet-control-layers-toggle {
+	display: none;
+	}
+.leaflet-control-layers-expanded .leaflet-control-layers-list {
+	display: block;
+	position: relative;
+	}
+.leaflet-control-layers-expanded {
+	padding: 6px 10px 6px 6px;
+	color: #333;
+	background: #fff;
+	}
+.leaflet-control-layers-scrollbar {
+	overflow-y: scroll;
+	overflow-x: hidden;
+	padding-right: 5px;
+	}
+.leaflet-control-layers-selector {
+	margin-top: 2px;
+	position: relative;
+	top: 1px;
+	}
+.leaflet-control-layers label {
+	display: block;
+	font-size: 13px;
+	font-size: 1.08333em;
+	}
+.leaflet-control-layers-separator {
+	height: 0;
+	border-top: 1px solid #ddd;
+	margin: 5px -10px 5px -6px;
+	}
+
+/* Default icon URLs */
+.leaflet-default-icon-path { /* used only in path-guessing heuristic, see L.Icon.Default */
+	background-image: none;
+	}
+
+
+/* attribution and scale controls */
+
+.leaflet-container .leaflet-control-attribution {
+	background: #fff;
+	background: rgba(255, 255, 255, 0.8);
+	margin: 0;
+	}
+.leaflet-control-attribution,
+.leaflet-control-scale-line {
+	padding: 0 5px;
+	color: #333;
+	line-height: 1.4;
+	}
+.leaflet-control-attribution a {
+	text-decoration: none;
+	}
+.leaflet-control-attribution a:hover,
+.leaflet-control-attribution a:focus {
+	text-decoration: underline;
+	}
+.leaflet-attribution-flag {
+	display: inline !important;
+	vertical-align: baseline !important;
+	width: 1em;
+	height: 0.6669em;
+	}
+.leaflet-left .leaflet-control-scale {
+	margin-left: 5px;
+	}
+.leaflet-bottom .leaflet-control-scale {
+	margin-bottom: 5px;
+	}
+.leaflet-control-scale-line {
+	border: 2px solid #777;
+	border-top: none;
+	line-height: 1.1;
+	padding: 2px 5px 1px;
+	white-space: nowrap;
+	-moz-box-sizing: border-box;
+	     box-sizing: border-box;
+	background: rgba(255, 255, 255, 0.8);
+	text-shadow: 1px 1px #fff;
+	}
+.leaflet-control-scale-line:not(:first-child) {
+	border-top: 2px solid #777;
+	border-bottom: none;
+	margin-top: -2px;
+	}
+.leaflet-control-scale-line:not(:first-child):not(:last-child) {
+	border-bottom: 2px solid #777;
+	}
+
+.leaflet-touch .leaflet-control-attribution,
+.leaflet-touch .leaflet-control-layers,
+.leaflet-touch .leaflet-bar {
+	box-shadow: none;
+	}
+.leaflet-touch .leaflet-control-layers,
+.leaflet-touch .leaflet-bar {
+	border: 2px solid rgba(0,0,0,0.2);
+	background-clip: padding-box;
+	}
+
+
+/* popup */
+
+.leaflet-popup {
+	position: absolute;
+	text-align: center;
+	margin-bottom: 20px;
+	}
+.leaflet-popup-content-wrapper {
+	padding: 1px;
+	text-align: left;
+	border-radius: 12px;
+	}
+.leaflet-popup-content {
+	margin: 13px 24px 13px 20px;
+	line-height: 1.3;
+	font-size: 13px;
+	font-size: 1.08333em;
+	min-height: 1px;
+	}
+.leaflet-popup-content p {
+	margin: 17px 0;
+	margin: 1.3em 0;
+	}
+.leaflet-popup-tip-container {
+	width: 40px;
+	height: 20px;
+	position: absolute;
+	left: 50%;
+	margin-top: -1px;
+	margin-left: -20px;
+	overflow: hidden;
+	pointer-events: none;
+	}
+.leaflet-popup-tip {
+	width: 17px;
+	height: 17px;
+	padding: 1px;
+
+	margin: -10px auto 0;
+	pointer-events: auto;
+
+	-webkit-transform: rotate(45deg);
+	   -moz-transform: rotate(45deg);
+	    -ms-transform: rotate(45deg);
+	        transform: rotate(45deg);
+	}
+.leaflet-popup-content-wrapper,
+.leaflet-popup-tip {
+	background: white;
+	color: #333;
+	box-shadow: 0 3px 14px rgba(0,0,0,0.4);
+	}
+.leaflet-container a.leaflet-popup-close-button {
+	position: absolute;
+	top: 0;
+	right: 0;
+	border: none;
+	text-align: center;
+	width: 24px;
+	height: 24px;
+	font: 16px/24px Tahoma, Verdana, sans-serif;
+	color: #757575;
+	text-decoration: none;
+	background: transparent;
+	}
+.leaflet-container a.leaflet-popup-close-button:hover,
+.leaflet-container a.leaflet-popup-close-button:focus {
+	color: #585858;
+	}
+.leaflet-popup-scrolled {
+	overflow: auto;
+	}
+
+.leaflet-oldie .leaflet-popup-content-wrapper {
+	-ms-zoom: 1;
+	}
+.leaflet-oldie .leaflet-popup-tip {
+	width: 24px;
+	margin: 0 auto;
+
+	-ms-filter: "progid:DXImageTransform.Microsoft.Matrix(M11=0.70710678, M12=0.70710678, M21=-0.70710678, M22=0.70710678)";
+	filter: progid:DXImageTransform.Microsoft.Matrix(M11=0.70710678, M12=0.70710678, M21=-0.70710678, M22=0.70710678);
+	}
+
+.leaflet-oldie .leaflet-control-zoom,
+.leaflet-oldie .leaflet-control-layers,
+.leaflet-oldie .leaflet-popup-content-wrapper,
+.leaflet-oldie .leaflet-popup-tip {
+	border: 1px solid #999;
+	}
+
+
+/* div icon */
+
+.leaflet-div-icon {
+	background: #fff;
+	border: 1px solid #666;
+	}
+
+
+/* Tooltip */
+/* Base styles for the element that has a tooltip */
+.leaflet-tooltip {
+	position: absolute;
+	padding: 6px;
+	background-color: #fff;
+	border: 1px solid #fff;
+	border-radius: 3px;
+	color: #222;
+	white-space: nowrap;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	pointer-events: none;
+	box-shadow: 0 1px 3px rgba(0,0,0,0.4);
+	}
+.leaflet-tooltip.leaflet-interactive {
+	cursor: pointer;
+	pointer-events: auto;
+	}
+.leaflet-tooltip-top:before,
+.leaflet-tooltip-bottom:before,
+.leaflet-tooltip-left:before,
+.leaflet-tooltip-right:before {
+	position: absolute;
+	pointer-events: none;
+	border: 6px solid transparent;
+	background: transparent;
+	content: "";
+	}
+
+/* Directions */
+
+.leaflet-tooltip-bottom {
+	margin-top: 6px;
+}
+.leaflet-tooltip-top {
+	margin-top: -6px;
+}
+.leaflet-tooltip-bottom:before,
+.leaflet-tooltip-top:before {
+	left: 50%;
+	margin-left: -6px;
+	}
+.leaflet-tooltip-top:before {
+	bottom: 0;
+	margin-bottom: -12px;
+	border-top-color: #fff;
+	}
+.leaflet-tooltip-bottom:before {
+	top: 0;
+	margin-top: -12px;
+	margin-left: -6px;
+	border-bottom-color: #fff;
+	}
+.leaflet-tooltip-left {
+	margin-left: -6px;
+}
+.leaflet-tooltip-right {
+	margin-left: 6px;
+}
+.leaflet-tooltip-left:before,
+.leaflet-tooltip-right:before {
+	top: 50%;
+	margin-top: -6px;
+	}
+.leaflet-tooltip-left:before {
+	right: 0;
+	margin-right: -12px;
+	border-left-color: #fff;
+	}
+.leaflet-tooltip-right:before {
+	left: 0;
+	margin-left: -12px;
+	border-right-color: #fff;
+	}
+
+/* Printing */
+
+@media print {
+	/* Prevent printers from removing background-images of controls. */
+	.leaflet-control {
+		-webkit-print-color-adjust: exact;
+		print-color-adjust: exact;
+		}
+	}
+
+</style>
+<style>
+  :root{
+    --navy:#0B2545; --navy-deep:#081b34; --panel:#102d54;
+    --cyan:#4FC3E8; --cyan-dim: rgba(79,195,232,0.35);
+    --paper:#EDF2F7; --paper-dim:#B9C7D6;
+    --amber:#E8A94F; --rust:#E8704F;
+    --mono:'IBM Plex Mono', ui-monospace, monospace;
+    --sans:'Space Grotesk', sans-serif;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--navy);color:var(--paper);font-family:var(--sans);line-height:1.6;}
+  .wrap{max-width:880px;margin:0 auto;padding:0 24px;}
+  a{color:var(--cyan);}
+
+  .blueprint-bg{
+    background-image:linear-gradient(var(--cyan-dim) 1px, transparent 1px),linear-gradient(90deg, var(--cyan-dim) 1px, transparent 1px);
+    background-size:32px 32px;background-color:var(--navy-deep);opacity:0.18;position:absolute;inset:0;pointer-events:none;
+  }
+  header.masthead{position:relative;padding:52px 0 36px;border-bottom:1px solid var(--cyan-dim);overflow:hidden;}
+  .repo-tag{font-family:var(--mono);font-size:12.5px;letter-spacing:0.04em;color:var(--cyan);margin-bottom:16px;}
+  h1.title{font-size:clamp(28px,4.6vw,42px);font-weight:700;line-height:1.14;margin:0 0 14px;max-width:22ch;position:relative;}
+  p.dek{font-size:17px;color:var(--paper-dim);max-width:64ch;margin:0;position:relative;}
+
+  section{padding:36px 0;border-bottom:1px solid var(--cyan-dim);}
+  h2{font-family:var(--sans);font-size:1.35rem;font-weight:700;margin:0 0 14px;color:var(--paper);}
+  h3{font-family:var(--sans);font-size:1.05rem;font-weight:700;margin:22px 0 8px;color:var(--cyan);}
+  p{margin:0 0 14px;max-width:74ch;color:var(--paper-dim);font-size:15.5px;}
+  p b{color:var(--paper);}
+
+  .start-here{background:var(--panel);border-left:3px solid var(--cyan);padding:18px 22px;}
+  .start-here h2{color:var(--cyan);font-size:1.1rem;}
+  .start-here p:last-child{margin-bottom:0;}
+
+  .who-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px;margin-top:16px;}
+  .who-card{perspective:800px;height:190px;cursor:pointer;}
+  .who-face{
+    position:absolute;inset:0;backface-visibility:hidden;border:1px solid var(--cyan-dim);
+    border-radius:2px;padding:16px;display:flex;flex-direction:column;justify-content:center;
+    transition:transform 0.5s;overflow:auto;
+  }
+  .who-card{position:relative;transform-style:preserve-3d;}
+  .who-front{background:var(--panel);}
+  .who-name{font-family:var(--sans);font-weight:700;font-size:1.05rem;color:var(--paper);display:block;margin-bottom:6px;}
+  .who-hint{font-family:var(--mono);font-size:0.72rem;color:var(--cyan);}
+  .who-back{background:var(--navy-deep);color:var(--paper-dim);font-size:0.86rem;line-height:1.45;transform:rotateY(180deg);}
+  .who-card.flipped .who-front{transform:rotateY(180deg);}
+  .who-card.flipped .who-back{transform:rotateY(0deg);}
+
+  .entity-chain{background:var(--panel);border:1px solid var(--cyan-dim);padding:20px;margin:16px 0;}
+  .ec-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:8px;}
+  .ec-node{font-family:var(--mono);font-size:12.5px;background:rgba(79,195,232,0.12);border:1px solid var(--cyan);color:var(--cyan);padding:6px 12px;border-radius:2px;}
+  .ec-arrow{color:var(--paper-dim);font-size:14px;}
+
+  .mini-timeline{position:relative;margin:16px 0 4px;padding-left:20px;border-left:2px solid var(--cyan-dim);}
+  .mt-item{position:relative;padding-bottom:16px;}
+  .mt-item:last-child{padding-bottom:0;}
+  .mt-dot{position:absolute;left:-25px;top:3px;width:9px;height:9px;border-radius:50%;background:var(--cyan);}
+  .mt-date{font-family:var(--mono);font-weight:700;font-size:0.82rem;color:var(--amber);display:block;margin-bottom:2px;}
+  .mt-text{font-size:0.92rem;color:var(--paper-dim);}
+
+  .callout{background:var(--navy-deep);border-left:4px solid var(--amber);padding:16px 20px;margin:14px 0;font-size:0.92rem;}
+  .callout b{color:var(--amber);}
+  .callout-quote{background:var(--navy-deep);border-left:4px solid var(--rust);padding:18px 22px;margin:14px 0;font-size:1.02rem;font-style:italic;color:var(--paper);}
+  .callout-quote .attrib{display:block;margin-top:10px;font-family:var(--mono);font-size:0.75rem;font-style:normal;color:var(--rust);}
+
+  .caution-box{background:rgba(232,112,79,0.08);border:1px solid var(--rust);padding:14px 18px;margin:14px 0;font-size:0.88rem;color:var(--paper-dim);}
+  .caution-box .label{font-family:var(--mono);font-size:0.72rem;letter-spacing:0.05em;color:var(--rust);display:block;margin-bottom:6px;font-weight:700;}
+
+  .net-table{width:100%;border-collapse:collapse;margin:16px 0;font-size:0.88rem;}
+  .net-table th{background:var(--navy-deep);color:var(--cyan);text-align:left;padding:10px 12px;font-family:var(--mono);font-weight:600;font-size:0.75rem;}
+  .net-table td{padding:11px 12px;border-bottom:1px solid var(--cyan-dim);background:var(--panel);vertical-align:top;color:var(--paper-dim);}
+  .net-table tr td:first-child{font-weight:700;color:var(--paper);width:18%;}
+
+  .fix-table{width:100%;border-collapse:collapse;margin:16px 0;font-size:0.86rem;}
+  .fix-table th{background:var(--navy-deep);color:var(--cyan);text-align:left;padding:10px 12px;font-family:var(--mono);font-weight:600;font-size:0.75rem;}
+  .fix-table td{padding:11px 12px;border-bottom:1px solid var(--cyan-dim);vertical-align:top;color:var(--paper-dim);}
+  .fix-table tr td:first-child{background:rgba(232,112,79,0.08);border-right:3px solid var(--rust);width:44%;}
+  .fix-table tr td:last-child{background:var(--panel);border-left:3px solid #4FE88A;}
+
+  .chart-box{background:var(--panel);border:1px solid var(--cyan-dim);padding:18px 20px;margin:16px 0;}
+  .chart-title{font-family:var(--mono);font-size:0.78rem;letter-spacing:0.04em;color:var(--cyan);margin-bottom:10px;}
+  .chart-box svg{width:100%;height:auto;display:block;}
+  .chart-label{font-family:var(--sans);fill:var(--paper);}
+  .chart-value{font-family:var(--mono);fill:var(--paper-dim);}
+  .chart-note{font-size:0.78rem;color:var(--paper-dim);margin-top:10px;font-style:italic;}
+
+  details.grade-card{background:var(--panel);border:1px solid var(--cyan-dim);margin:10px 0;border-radius:2px;}
+  details.grade-card summary{cursor:pointer;padding:14px 16px;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:12px;}
+  details.grade-card summary::-webkit-details-marker{display:none;}
+  details.grade-card summary::before{content:"+ ";color:var(--cyan);font-family:var(--mono);margin-right:2px;}
+  details.grade-card[open] summary::before{content:"\2212 ";}
+  .grade-card-topic{font-weight:700;color:var(--paper);font-size:0.95rem;}
+  .grade-card-badge{font-family:var(--mono);font-size:0.85rem;font-weight:700;color:var(--navy);background:var(--cyan);padding:3px 10px;border-radius:2px;white-space:nowrap;}
+  details.grade-card .grade-body{padding:0 16px 16px;border-top:1px solid var(--cyan-dim);}
+  .grade-row{padding:10px 0;border-bottom:1px solid rgba(185,199,214,0.15);font-size:0.86rem;color:var(--paper-dim);}
+  .grade-row:last-child{border-bottom:none;}
+  .grade-row .grade-label{font-family:var(--mono);font-size:0.7rem;letter-spacing:0.04em;color:var(--cyan);display:block;margin-bottom:3px;}
+
+  .questions-box{background:var(--navy-deep);border-left:4px solid var(--rust);padding:26px;}
+  .questions-box .qw-label{font-family:var(--mono);color:var(--rust);font-size:0.78rem;letter-spacing:0.06em;margin-bottom:14px;}
+  .questions-box ol{margin:0;padding-left:20px;}
+  .questions-box li{font-size:1rem;color:var(--paper);margin-bottom:14px;}
+
+  details.sources-toggle{background:var(--panel);border:1px solid var(--cyan-dim);margin:10px 0;}
+  details.sources-toggle summary{cursor:pointer;padding:12px 16px;font-weight:700;color:var(--cyan);list-style:none;font-family:var(--mono);font-size:0.85rem;}
+  details.sources-toggle summary::-webkit-details-marker{display:none;}
+  details.sources-toggle summary::before{content:"+ ";}
+  details.sources-toggle[open] summary::before{content:"\2212 ";}
+  details.sources-toggle .body{padding:0 16px 16px;font-size:0.85rem;color:var(--paper-dim);}
+  details.sources-toggle ul{margin:0;padding-left:18px;}
+  details.sources-toggle li{margin-bottom:6px;}
+
+  footer{padding:30px 0 56px;font-family:var(--mono);font-size:12px;color:var(--paper-dim);}
+  ul{padding-left:20px;color:var(--paper-dim);font-size:15.5px;}
+  li{margin-bottom:6px;}
+
+  .pub-date{font-family:var(--mono);font-size:12px;color:var(--paper-dim);margin-top:14px;position:relative;}
+  .lot-table{width:100%;border-collapse:collapse;margin:16px 0;font-size:0.85rem;}
+  .lot-table th{background:var(--navy-deep);color:var(--cyan);text-align:left;padding:8px 10px;font-family:var(--mono);font-weight:600;font-size:0.72rem;position:sticky;top:0;}
+  .lot-table td{padding:8px 10px;border-bottom:1px solid var(--cyan-dim);background:var(--panel);color:var(--paper-dim);font-family:var(--mono);font-size:0.8rem;}
+  .lot-table tr.owe td{background:rgba(232,112,79,0.10);}
+  .lot-table td.dn{color:var(--rust);font-weight:600;}
+  .tbl-wrap{overflow-x:auto;border:1px solid var(--cyan-dim);}
+  .stat-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin:18px 0;}
+  .stat{background:var(--panel);border:1px solid var(--cyan-dim);padding:14px;}
+  .stat b{display:block;font-family:var(--mono);font-size:1.5rem;color:var(--amber);}
+  .stat span{font-size:0.82rem;color:var(--paper-dim);}
+  #map{height:380px;border:1px solid var(--cyan-dim);margin:14px 0;}
+  .counter{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-top:10px;}
+  .counter div{background:var(--panel);border:1px solid var(--cyan-dim);padding:12px;font-size:0.8rem;color:var(--paper-dim);}
+  .counter b{display:block;font-family:var(--mono);font-size:1.3rem;color:var(--cyan);}
+  .legend-dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px;vertical-align:middle;}
+</style>
+<link rel="stylesheet" href="fd-parts.css?v=5">
+</head>
+<body>
+<div class="hb-bar"><a href="https://webercountyhive.substack.com/" target="_blank" rel="noopener"><img src="uhp-badge.png" alt="Utah Hive Politics logo"><span><span class="hb-name">Utah Hive Politics</span><span class="hb-sub">from the publisher of The Weber County Hive</span><span class="hb-line-top">The people's publication. We investigate what's best for the public as a whole, not any party or special interest.</span></span></a></div>
+<div class="up-top"><div class="in"><span><a href="index.html">← All Follow the Deed cases</a> &nbsp;·&nbsp; <a href="https://weber-county-hive.github.io/-weber-county-hive-index/">Hive library ↗</a></span></div></div>
+
+<!-- Utah Maps link -->
+<div style="background:#0d0b0a;border-bottom:1px solid #3a2f1c;padding:9px 16px;text-align:center;font-family:'IBM Plex Mono',ui-monospace,Menlo,monospace;font-size:13px;line-height:1.5;color:#b8956a;">See it on the map: <a href="https://weber-county-hive.github.io/utah-maps/utah-tax-increment-map.html" style="color:#d4af37;text-decoration:underline;text-underline-offset:2px;">MAP 001: Where Utah's Tax Increment Goes &rarr;</a> &nbsp;&middot;&nbsp; <a href="https://weber-county-hive.github.io/utah-maps/ogden-valley-development.html" style="color:#d4af37;text-decoration:underline;text-underline-offset:2px;">MAP 003: Ogden Valley Development &rarr;</a></div>
+
+
+
+<header class="masthead">
+  <div class="blueprint-bg"></div>
+  <div class="wrap">
+    <div class="repo-tag">FOLLOW THE DEED &middot; CASE 06 · FD 200.03</div>
+    <h1 class="title">The Lots That Wait</h1>
+    <p class="dek">At Osprey Ranch in Eden, the developer's unsold lots carry about $550,000 in property taxes listed as unpaid, most of it going back to 2023. When a lot sells, the title company pays the back taxes at closing. And the lots the developers still held in 2026 saw their values drop 13 to 32 percent, while lots owned by other buyers held steady.</p>
+    <div class="pub-date">Posted Oct. 28, 2026 · Updated Oct. 28, 2026</div>
+  </div>
+</header>
+<section class="up-short"><h2>The short version</h2><ul><li>Osprey Ranch is a large-lot subdivision near Pineview Reservoir in Eden. Its developer, Osprey Ranch, LLC, is managed by John Lewis's company and has Shane Dunleavy's company as its member, per state business records.</li><li>Weber County lists 15 Phase 1 lots as owing $550,079 in back property taxes with interest, as of Oct. 28, 2026: 14 owned by Osprey Ranch, LLC and one by Lewis Group Holdings. Most have been unpaid since 2023.</li><li>When a lot sells, the title company pays the back taxes at closing. That happened on six lots, most recently lot 10 on Oct. 5, 2026.</li><li>Phase 2 (28 lots, on the 2026 tax rolls) has 26 lots still owned by the LLC, valued at $22.5 million together; their first tax bills are due Nov. 30, 2026. Two LLC lots in Legacy Mountain, Huntsville, owe $29,157.42 more, unpaid since 2024.</li><li>In 2026, lots the developers still held later in the year dropped 13 to 32 percent in value. Lots owned by unrelated buyers did not change, except two with new homes. The county record does not say why.</li><li>The approvals were made at public meetings with recorded votes, and the developer posted a $3,437,023 improvements guarantee, per the county staff report.</li></ul><p class="up-short-more"><a href="weber-hive-osprey-ranch-plain.html">Read the plain-words version →</a></p></section>
+<div class="up-ww"><div class="up-where"><div class="up-where-h"><div class="up-lbl">WHERE</div><div class="pl">Weber County · Ogden Valley · Eden · Liberty</div></div><div class="up-who"><div class="up-who-h">WHO</div><ul><li><b>Osprey Ranch, LLC</b> — Developer; owns the unsold lots (formed Feb. 25, 2021)</li><li><b>Lewis Group Holdings, LLC</b> — John Lewis's company; manager of Osprey Ranch, LLC; owns lot 22</li><li><b>Edenview, Co.</b> — Shane Dunleavy's company; member of Osprey Ranch, LLC</li><li><b>John Lewis</b> — Developer; former Ogden Valley Planning Commission chair; spoke for the applicant on Phase 2</li><li><b>Shane Dunleavy</b> — Developer named with Lewis; his trust owns lot 25</li><li><b>Wolf Creek Water and Sewer Improvement District</b> — Provides sewer; received part of the common area in 2026</li><li><b>Weber Basin Water Conservancy District</b> — Heard the 0.65 acre-foot water transfer to lot 10</li></ul></div></div></div>
+
+
+<div class="wrap">
+
+<section>
+  <div class="start-here">
+    <h2>Start here</h2>
+    <p><b>What is this?</b> Osprey Ranch is a large-lot subdivision on about 560 acres near Pineview Reservoir in Eden. Phase 1 has 31 lots of 3 to 18 acres. The developer is Osprey Ranch, LLC, which state records show is managed by John Lewis's company and has Shane Dunleavy's company as its member.</p>
+    <p><b>What did we find?</b> Using only Weber County parcel, tax and plat records, state business filings and public meeting records, we checked every Phase 1 lot. Fourteen lots still owned by Osprey Ranch, LLC and one owned by Lewis Group Holdings are listed as delinquent, most since 2023. The 2026 values on those lots fell sharply. The county record does not say why.</p>
+    <p><b>What's the goal?</b> Not to argue against the development. The approvals were made in public, votes are on the record, and the developer posted an improvements guarantee. The question is financial accountability: who pays property taxes on land while it waits to sell, and how values are set on that land.</p>
+  </div>
+</section>
+
+<section>
+  <h2>The short version</h2>
+  <div class="stat-row">
+    <div class="stat"><b>$550,079</b><span>listed as owed on 15 lots, with interest, as of Oct. 28, 2026</span></div>
+    <div class="stat"><b>2023</b><span>the first year of unpaid taxes on most of those lots</span></div>
+    <div class="stat"><b>13&ndash;32%</b><span>drop in 2026 value on lots the developers still held</span></div>
+    <div class="stat"><b>$0</b><span>change on lots owned by unrelated buyers (except two that built homes)</span></div>
+  </div>
+  <h3>What does "delinquent" mean?</h3>
+  <p>Property taxes in Weber County are due Nov. 30. Anything unpaid on Dec. 1 is <b>delinquent</b> and picks up a penalty and interest. The county doesn't lose the money: it stays attached to the land and must be paid before the land can be sold with clear title. Under Utah law, the county can put land up for a tax sale after about <b>four years</b> of unpaid taxes.</p>
+</section>
+
+<section>
+  <h2>Where it is</h2>
+  <p>Approximate location of the Osprey Ranch streets (Osprey Ranch Drive, Shamy Way, Hardy Trail), from OpenStreetMap. Exact lot lines are on the county plat map.</p>
+  <div id="map"></div>
+  <p style="font-size:0.85rem;">County plat map for Phase 1: book 20, page 193, on the <a href="https://www.webercountyutah.gov/parcelsearch/index.php" target="_blank" rel="noopener">Weber County Parcel Search</a>.</p>
+</section>
+
+<section>
+  <h2>Who's who</h2>
+  <p>Click a card to flip it.</p>
+  <div class="who-grid">
+    <div class="who-card" data-flip>
+      <div class="who-face who-front"><span class="who-name">Osprey Ranch, LLC</span><span class="who-hint">click for role</span></div>
+      <div class="who-face who-back">The developer. Formed Feb. 25, 2021. Registered agent John Lewis, 3718 N Wolf Creek Dr, Eden. Owns the unsold lots and the 9.21-acre parcel whose water is being moved (Utah entity 12182822-0160).</div>
+    </div>
+    <div class="who-card" data-flip>
+      <div class="who-face who-front"><span class="who-name">Lewis Group Holdings, LLC</span><span class="who-hint">click for role</span></div>
+      <div class="who-face who-back">John Lewis's holding company. Listed as the <b>manager</b> of Osprey Ranch, LLC. Also owns lot 22 directly, taken by special warranty deed Jan. 9, 2024.</div>
+    </div>
+    <div class="who-card" data-flip>
+      <div class="who-face who-front"><span class="who-name">Edenview, Co.</span><span class="who-hint">click for role</span></div>
+      <div class="who-face who-back">Listed as the <b>member</b> of Osprey Ranch, LLC. Shane Dunleavy is its president, director and registered agent (Utah entity 11929897-0142).</div>
+    </div>
+    <div class="who-card" data-flip>
+      <div class="who-face who-front"><span class="who-name">John Lewis</span><span class="who-hint">click for role</span></div>
+      <div class="who-face who-back">Developer (Wolf Creek, Eden Crossing). Chair of the Ogden Valley Planning Commission as of Jan. 2022. Spoke for the applicant when Phase 2 came before that commission on April 25, 2023.</div>
+    </div>
+    <div class="who-card" data-flip>
+      <div class="who-face who-front"><span class="who-name">Shane Dunleavy</span><span class="who-hint">click for role</span></div>
+      <div class="who-face who-back">Named with Lewis as Osprey Ranch's developer in a June 2023 Western Home Journal feature. His revocable trust now owns lot 25, moved there by special warranty deed Oct. 2, 2025.</div>
+    </div>
+    <div class="who-card" data-flip>
+      <div class="who-face who-front"><span class="who-name">Wolf Creek Water &amp; Sewer</span><span class="who-hint">click for role</span></div>
+      <div class="who-face who-back">The public improvement district that provides Osprey Ranch's sewer. Received part of the subdivision's common area by warranty deed on Jan. 26, 2026.</div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>How the company is set up</h2>
+  <div class="entity-chain">
+    <div class="ec-row">
+      <span class="ec-node">Lewis Group Holdings, LLC (manager)</span>
+      <span class="ec-arrow">+</span>
+      <span class="ec-node">Edenview, Co. (member)</span>
+      <span class="ec-arrow">&rarr;</span>
+      <span class="ec-node">Osprey Ranch, LLC</span>
+      <span class="ec-arrow">&rarr;</span>
+      <span class="ec-node">Unsold Phase 1 lots</span>
+    </div>
+    <div class="ec-row">
+      <span class="ec-node">Osprey Ranch, LLC</span>
+      <span class="ec-arrow">&rarr;</span>
+      <span class="ec-node">Lot 22 &rarr; Lewis Group Holdings (2024)</span>
+    </div>
+    <div class="ec-row">
+      <span class="ec-node">Osprey Ranch, LLC</span>
+      <span class="ec-arrow">&rarr;</span>
+      <span class="ec-node">Lot 25 &rarr; Edenview (2024) &rarr; Dunleavy trust (2025)</span>
+    </div>
+  </div>
+  <p>Source: Utah Division of Corporations, entity records for Osprey Ranch, LLC and Edenview, Co.; Weber County parcel records for lots 22 and 25.</p>
+</section>
+
+<section>
+  <h2>Every Phase 1 lot</h2>
+  <p><b>Phase 1 (Eden side, book 20, page 193).</b> Values are the county's market value as of Jan. 1 each year. Rows shaded in rust are listed as delinquent today. Amounts owed include interest the county calculated as of Oct. 28, 2026. Owners who are private people or unrelated companies are listed only as "private buyer."</p>
+  <div class="tbl-wrap">
+  <table class="lot-table">
+    <tr><th>Lot</th><th>Owner</th><th>2025 value</th><th>2026 value</th><th>Change</th><th>Property taxes</th></tr>
+<tr class=""><td>1</td><td>Private buyer</td><td>$1,022,323</td><td>$1,022,323</td><td class="">no change</td><td>Paid</td></tr>
+<tr class="owe"><td>2</td><td>Osprey Ranch LLC</td><td>$1,011,023</td><td>$701,500</td><td class="dn">-31%</td><td>Owes $33,578.59 (since 2023)</td></tr>
+<tr class="owe"><td>3</td><td>Osprey Ranch LLC</td><td>$1,006,823</td><td>$691,000</td><td class="dn">-31%</td><td>Owes $33,036.47 (since 2023)</td></tr>
+<tr class="owe"><td>4</td><td>Osprey Ranch LLC</td><td>$1,020,223</td><td>$724,500</td><td class="dn">-29%</td><td>Owes $33,897.51 (since 2023)</td></tr>
+<tr class=""><td>5</td><td>Private buyer (Apr. 2026)</td><td>$1,003,823</td><td>$1,003,823</td><td class="">no change</td><td>Paid at sale, Apr. 28, 2026</td></tr>
+<tr class="owe"><td>6</td><td>Osprey Ranch LLC</td><td>$1,483,692</td><td>$1,002,750</td><td class="dn">-32%</td><td>Owes $50,293.91 (since 2023)</td></tr>
+<tr class=""><td>7</td><td>Private buyer</td><td>$1,334,750</td><td>$1,334,750</td><td class="">no change</td><td>Paid</td></tr>
+<tr class="owe"><td>8</td><td>Osprey Ranch LLC</td><td>$1,040,623</td><td>$880,800</td><td class="dn">-15%</td><td>Owes $34,607.29 (since 2023)</td></tr>
+<tr class="owe"><td>9</td><td>Osprey Ranch LLC</td><td>$1,000,623</td><td>$720,800</td><td class="dn">-28%</td><td>Owes $33,218.23 (since 2023)</td></tr>
+<tr class=""><td>10</td><td>Private buyer (Oct. 2026)</td><td>$1,001,023</td><td>$722,400</td><td class="dn">-28%</td><td>$33,055.95 paid at sale, Oct. 5, 2026</td></tr>
+<tr class=""><td>11</td><td>Private buyer (home built)</td><td>$1,443,692</td><td>$3,271,243</td><td class="">+127%</td><td>$14,289.97 paid at sale, Sept. 3, 2024</td></tr>
+<tr class=""><td>12</td><td>Private buyer (Sept. 2025)</td><td>$1,399,992</td><td>$1,399,992</td><td class="">no change</td><td>$29,240.26 paid at sale, Oct. 1, 2025</td></tr>
+<tr class=""><td>13</td><td>Private buyer (company)</td><td>$991,723</td><td>$991,723</td><td class="">no change</td><td>Paid</td></tr>
+<tr class=""><td>14</td><td>Private buyer (company)</td><td>$1,041,823</td><td>$1,041,823</td><td class="">no change</td><td>Paid</td></tr>
+<tr class=""><td>15</td><td>Private buyer</td><td>$1,402,892</td><td>$1,402,892</td><td class="">no change</td><td>Paid</td></tr>
+<tr class=""><td>16</td><td>Private buyer (home built)</td><td>$1,500,000</td><td>$4,106,224</td><td class="">+174%</td><td>Paid</td></tr>
+<tr class=""><td>17</td><td>Private buyer</td><td>$1,071,523</td><td>$1,071,523</td><td class="">no change</td><td>Paid</td></tr>
+<tr class="owe"><td>18</td><td>Osprey Ranch LLC</td><td>$1,063,723</td><td>$879,900</td><td class="dn">-17%</td><td>Owes $35,410.44 (since 2023)</td></tr>
+<tr class="owe"><td>19</td><td>Osprey Ranch LLC</td><td>$992,923</td><td>$690,000</td><td class="dn">-31%</td><td>Owes $11,005.19 (2025); 2023&ndash;24 paid June 2, 2025</td></tr>
+<tr class="owe"><td>20</td><td>Osprey Ranch LLC</td><td>$1,021,623</td><td>$804,800</td><td class="dn">-21%</td><td>Owes $33,947.15 (since 2023)</td></tr>
+<tr class=""><td>21</td><td>Private buyer</td><td>$1,084,123</td><td>$1,084,123</td><td class="">no change</td><td>Paid</td></tr>
+<tr class="owe"><td>22</td><td>Lewis Group Holdings LLC</td><td>$1,013,823</td><td>$774,000</td><td class="dn">-24%</td><td>Owes $33,676.21 (since 2023)</td></tr>
+<tr class=""><td>23</td><td>Private buyer</td><td>$1,147,823</td><td>$1,147,823</td><td class="">no change</td><td>Paid</td></tr>
+<tr class="owe"><td>24</td><td>Osprey Ranch LLC</td><td>$991,623</td><td>$684,800</td><td class="dn">-31%</td><td>Owes $32,903.89 (since 2023)</td></tr>
+<tr class=""><td>25</td><td>Shane Dunleavy Revocable Trust</td><td>$1,034,623</td><td>$860,000</td><td class="dn">-17%</td><td>Paid ($9,819.71 on Dec. 2, 2024)</td></tr>
+<tr class=""><td>26</td><td>Private buyer (Apr. 2026)</td><td>$1,027,123</td><td>$1,027,123</td><td class="">no change</td><td>$32,300.99 paid at sale, Apr. 24, 2026</td></tr>
+<tr class="owe"><td>27</td><td>Osprey Ranch LLC</td><td>$1,444,292</td><td>$1,032,800</td><td class="dn">-28%</td><td>Owes $48,924.78 (since 2023)</td></tr>
+<tr class="owe"><td>28</td><td>Osprey Ranch LLC</td><td>$1,442,192</td><td>$1,024,400</td><td class="dn">-29%</td><td>Owes $49,476.77 (since 2023)</td></tr>
+<tr class="owe"><td>29</td><td>Osprey Ranch LLC</td><td>$1,509,792</td><td>$1,143,600</td><td class="dn">-24%</td><td>Owes $51,201.63 (since 2023)</td></tr>
+<tr class=""><td>30</td><td>Private buyer (company)</td><td>$1,069,023</td><td>$793,200</td><td class="dn">-26%</td><td>Paid</td></tr>
+<tr class="owe"><td>31</td><td>Osprey Ranch LLC</td><td>$1,049,023</td><td>$914,400</td><td class="dn">-13%</td><td>Owes $34,901.27 (since 2023)</td></tr>
+
+  </table>
+  </div>
+  <div class="callout"><b>What the pattern shows.</b> Every lot that Osprey Ranch, LLC, Lewis Group Holdings or Dunleavy's trust still held later in 2026 dropped 13 to 32 percent. Lots 5 and 26, which the LLC sold in April 2026, kept their values. Lot 30, owned by an out-of-state company, also dropped. Every other lot owned by an unrelated buyer stayed the same, except two where homes were built.</div>
+  <div class="caution-box"><span class="label">WHAT THE RECORD DOESN'T SAY</span>The county pages show the new values but not the reason. A value can drop after an owner appeals to the County Board of Equalization, or because of how the assessor values a developer's unsold lots. Neither is confirmed here.</div>
+</section>
+
+<section>
+  <h2>Phase 2 and the LLC's other land</h2>
+  <p><b>Phase 2 (Liberty side, parcels 22-435-0001 through 22-435-0028).</b> Phase 2 was recorded in 2026 as <b>28 lots</b>, numbered 32 to 61, plus common areas held by the owners association. These parcels are new on the 2026 tax rolls, so their first tax bills are due <b>Nov. 30, 2026</b>. None are delinquent yet.</p>
+  <ul>
+    <li><b>26 of the 28 lots</b> are still owned by Osprey Ranch, LLC, with 2026 values from $725,600 to $1,117,800. Together they are valued at <b>$22,499,346</b>.</li>
+    <li><b>2 lots</b> are owned by private buyers: one by a deed recorded Feb. 9, 2024, and one by a deed recorded April 24, 2026.</li>
+    <li>The land under Phase 2 came to the LLC by warranty deed recorded May 11, 2021.</li>
+  </ul>
+  <p><b>Other land owned by Osprey Ranch, LLC.</b> A county owner search for "Osprey Ranch" also lists:</p>
+  <ul>
+    <li><b>Two lots in Legacy Mountain</b>, Huntsville (parcels 20-186-0037 and 20-186-0043), deeded to the LLC by special warranty deed March 8, 2023. Both are listed as delinquent since <b>2024</b>: <b>$15,835.16</b> and <b>$13,322.26</b> with interest, as of Oct. 28, 2026 ($29,157.42 together). Metro National Title paid about $5,400 on each on May 9, 2024. Lot 37's value dropped from $717,311 (2025) to $640,000 (2026); lot 43's did not change.</li>
+    <li><b>A 15.97-acre parcel</b> (22-040-0044), deeded May 11, 2021. Not delinquent.</li>
+    <li><b>The 9.21-acre parcel</b> (22-048-0012) whose water is being moved to lot 10. It was first listed as delinquent in 2021; the balance is now paid.</li>
+  </ul>
+  <div class="callout"><b>All together:</b> counting the two Legacy Mountain lots, land held by Osprey Ranch, LLC and Lewis Group Holdings is listed as owing <b>$579,236.75</b> in back property taxes as of Oct. 28, 2026.</div>
+  <p style="font-size:0.85rem;">Source: Weber County Parcel Search, ownership, tax history and delinquent tax pages for parcels 22-435-0001 through 22-435-0040, 20-186-0037, 20-186-0043, 22-040-0044 and 22-048-0012, read Oct. 28, 2026.</p>
+</section>
+
+<section>
+  <h2>Timeline</h2>
+  <div class="mini-timeline">
+    <div class="mt-item"><span class="mt-dot"></span><span class="mt-date">Feb. 25, 2021</span><span class="mt-text">Osprey Ranch, LLC is formed (Utah Division of Corporations).</span></div>
+    <div class="mt-item"><span class="mt-dot"></span><span class="mt-date">April 12 &amp; 16, 2021</span><span class="mt-text">Warranty deeds put the Phase 1 land, and a separate 9.21-acre parcel (22-048-0012), in the LLC's name.</span></div>
+    <div class="mt-item"><span class="mt-dot"></span><span class="mt-date">May 10, 2021</span><span class="mt-text">Nordic Mountain Water's will-serve letter limits each lot to watering 5,000 square feet until secondary water is available.</span></div>
+    <div class="mt-item"><span class="mt-dot"></span><span class="mt-date">Jan. 25, 2022</span><span class="mt-text">John Lewis is chair of the Ogden Valley Planning Commission (meeting minutes).</span></div>
+    <div class="mt-item"><span class="mt-dot"></span><span class="mt-date">June 7, 2022</span><span class="mt-text">Planning Commission work session on about 61 lots, a new sewer system and a road linking Hwy 158 to Nordic Valley Drive. Who sat on the commission that night is not yet confirmed.</span></div>
+    <div class="mt-item"><span class="mt-dot"></span><span class="mt-date">Aug. 23, 2022</span><span class="mt-text">Planning Commission approves Phase 1, 31 lots on 283.78 acres, 6-0. One commissioner recused; the minutes don't say why.</span></div>
+    <div class="mt-item"><span class="mt-dot"></span><span class="mt-date">Oct. 25, 2022</span><span class="mt-text">County Commission agenda item for final approval. The staff report shows a $3,437,023 cash improvements guarantee. The vote outcome is not yet confirmed.</span></div>
+    <div class="mt-item"><span class="mt-dot"></span><span class="mt-date">Oct. 28, 2022</span><span class="mt-text">Common area deeded to the Osprey Ranch Owners Association as the plat is recorded. Lot sales begin that fall.</span></div>
+    <div class="mt-item"><span class="mt-dot"></span><span class="mt-date">April 25, 2023</span><span class="mt-text">Planning Commission grants Phase 2 preliminary approval, 30 lots, 6-0. John Lewis speaks for the applicant.</span></div>
+    <div class="mt-item"><span class="mt-dot"></span><span class="mt-date">June 7, 2023</span><span class="mt-text">Western Home Journal names "developers Shane Dunleavy and John Lewis."</span></div>
+    <div class="mt-item"><span class="mt-dot"></span><span class="mt-date">Dec. 1, 2023</span><span class="mt-text">2023 property taxes on the LLC's unsold lots go delinquent. Most stay unpaid through today.</span></div>
+    <div class="mt-item"><span class="mt-dot"></span><span class="mt-date">Dec. 15, 2023</span><span class="mt-text">In a letter in the Ogden Valley News, Lewis writes that "my partners and I have invested over $10 million in sewer and water lines" connecting Osprey Ranch to Wolf Creek.</span></div>
+    <div class="mt-item"><span class="mt-dot"></span><span class="mt-date">Jan. 9, 2024</span><span class="mt-text">Lot 22 moves to Lewis Group Holdings by special warranty deed. It is also delinquent from 2023.</span></div>
+    <div class="mt-item"><span class="mt-dot"></span><span class="mt-date">June 2, 2025</span><span class="mt-text">The LLC pays $19,436.89 in back taxes on lot 19. Its 2025 taxes go unpaid.</span></div>
+    <div class="mt-item"><span class="mt-dot"></span><span class="mt-date">June&ndash;Oct. 2025</span><span class="mt-text">Phase 2 approved for 30 lots (June 26), the sewer lift station approved 7-0 (Sept. 23), then Phase 2 listed at 28 lots (Oct. 8). No reason given for the change.</span></div>
+    <div class="mt-item"><span class="mt-dot"></span><span class="mt-date">Oct. 2, 2025</span><span class="mt-text">Lot 25 moves to the Shane Dunleavy Revocable Trust by special warranty deed.</span></div>
+    <div class="mt-item"><span class="mt-dot"></span><span class="mt-date">Jan. 26, 2026</span><span class="mt-text">Part of the common area is deeded to the Wolf Creek Water and Sewer Improvement District.</span></div>
+    <div class="mt-item"><span class="mt-dot"></span><span class="mt-date">April 2026</span><span class="mt-text">Lots 5 and 26 sell. About $73,000 in back taxes is paid at closing.</span></div>
+    <div class="mt-item"><span class="mt-dot"></span><span class="mt-date">2026 values</span><span class="mt-text">Lots still held by the LLC, Lewis Group and Dunleavy's trust show values 13&ndash;32% lower than 2025.</span></div>
+    <div class="mt-item"><span class="mt-dot"></span><span class="mt-date">2026</span><span class="mt-text">Phase 2 is on the 2026 tax rolls as 28 lots; 26 are still owned by the LLC. First tax bills are due Nov. 30, 2026.</span></div>
+    <div class="mt-item"><span class="mt-dot"></span><span class="mt-date">Oct. 2&ndash;5, 2026</span><span class="mt-text">Lot 10 sells. The title company pays $33,055.95 in back taxes plus $10,006.22 toward 2026.</span></div>
+    <div class="mt-item"><span class="mt-dot"></span><span class="mt-date">Oct. 29, 2026</span><span class="mt-text">Weber Basin hearing on Osprey Ranch LLC moving 0.65 of its 3.0 acre-feet of water from parcel 22-048-0012 to lot 10.</span></div>
+  </div>
+</section>
+
+<section>
+  <h2>What this means for the public &mdash; graded by topic</h2>
+  <p>Graded on the Hive's rubric: what benefits the public collectively, judged on power, transparency, financial accountability, environmental impact and community impact. Tap a topic to see the full breakdown.</p>
+
+  <details class="grade-card">
+    <summary><span class="grade-card-topic">Unpaid taxes on unsold lots</span><span class="grade-card-badge">C&ndash;</span></summary>
+    <div class="grade-body">
+      <div class="grade-row"><span class="grade-label">POWER</span>Not applicable &mdash; no vote or public office involved</div>
+      <div class="grade-row"><span class="grade-label">TRANSPARENCY</span>Good &mdash; every delinquency and payoff is on the county's public parcel record</div>
+      <div class="grade-row"><span class="grade-label">FINANCIAL ACCOUNTABILITY</span>Bad &mdash; about $550,000 listed as unpaid on 15 lots, most since 2023; schools, the county, fire and water districts wait years for that money</div>
+      <div class="grade-row"><span class="grade-label">ENVIRONMENTAL IMPACT</span>Not applicable</div>
+      <div class="grade-row"><span class="grade-label">COMMUNITY IMPACT</span>Mixed &mdash; the county does collect the taxes with penalties and interest when lots sell, but taxpayers who pay on time carry the services in the meantime</div>
+    </div>
+  </details>
+
+  <details class="grade-card">
+    <summary><span class="grade-card-topic">The 2026 value drops</span><span class="grade-card-badge">Pending</span></summary>
+    <div class="grade-body">
+      <div class="grade-row"><span class="grade-label">POWER</span>Pending &mdash; depends on who decided the new values and how</div>
+      <div class="grade-row"><span class="grade-label">TRANSPARENCY</span>Bad so far &mdash; the parcel record shows the new values but no reason for them</div>
+      <div class="grade-row"><span class="grade-label">FINANCIAL ACCOUNTABILITY</span>Pending &mdash; lower values mean lower taxes on lots that already owe; whether the values are correct is the open question</div>
+      <div class="grade-row"><span class="grade-label">ENVIRONMENTAL IMPACT</span>Not applicable</div>
+      <div class="grade-row"><span class="grade-label">COMMUNITY IMPACT</span>Pending</div>
+    </div>
+  </details>
+
+  <details class="grade-card">
+    <summary><span class="grade-card-topic">The subdivision approvals</span><span class="grade-card-badge">B&ndash;</span></summary>
+    <div class="grade-body">
+      <div class="grade-row"><span class="grade-label">POWER</span>Mixed &mdash; approvals went through public bodies with recorded votes, but a former Planning Commission chair later appeared before that same commission for his own project</div>
+      <div class="grade-row"><span class="grade-label">TRANSPARENCY</span>Good &mdash; posted agendas, minutes and staff reports for each step</div>
+      <div class="grade-row"><span class="grade-label">FINANCIAL ACCOUNTABILITY</span>Good &mdash; a $3.44 million cash improvements guarantee in the staff report, and building permits held until sewer escrow was paid</div>
+      <div class="grade-row"><span class="grade-label">ENVIRONMENTAL IMPACT</span>Mixed &mdash; a geologic hazard report and a watering limit were required; Phase 2's lot count changed without a stated reason</div>
+      <div class="grade-row"><span class="grade-label">COMMUNITY IMPACT</span>Neutral &mdash; large lots and open space, but water and sewer depend on districts the developers also do business with</div>
+    </div>
+  </details>
+
+  <details class="grade-card">
+    <summary><span class="grade-card-topic">The water transfer</span><span class="grade-card-badge">B</span></summary>
+    <div class="grade-body">
+      <div class="grade-row"><span class="grade-label">POWER</span>Neutral &mdash; an ordinary transfer request decided by a public board</div>
+      <div class="grade-row"><span class="grade-label">TRANSPARENCY</span>Good &mdash; noticed publicly and heard at a public meeting</div>
+      <div class="grade-row"><span class="grade-label">FINANCIAL ACCOUNTABILITY</span>Not applicable</div>
+      <div class="grade-row"><span class="grade-label">ENVIRONMENTAL IMPACT</span>Mixed &mdash; water in Ogden Valley is fully appropriated, so any move matters, but 0.65 acre-feet is small</div>
+      <div class="grade-row"><span class="grade-label">COMMUNITY IMPACT</span>Not applicable</div>
+    </div>
+  </details>
+
+  <h3>What would have earned a passing grade</h3>
+  <table class="fix-table">
+    <tr><th>What actually happened</th><th>What would keep the same goal, without the gap</th></tr>
+    <tr><td>Unsold developer lots carry unpaid taxes for years, paid only when a lot sells</td><td>Developers keep taxes current on lots they hold, as every homeowner must</td></tr>
+    <tr><td>2026 values dropped sharply on developer-held lots with no reason on the public record</td><td>Value changes from appeals or special methods posted on the parcel record with the reason</td></tr>
+  </table>
+</section>
+
+<section class="up-ask"><h2>Questions to ask, and to whom</h2><ul><li><b>Ask: Weber County Assessor</b> — Why did the 2026 values on lots still held by Osprey Ranch, LLC, Lewis Group Holdings and the Dunleavy trust drop 13 to 32 percent, while lots owned by unrelated buyers did not change? Was there a Board of Equalization appeal?</li><li><b>Ask: Weber County Treasurer</b> — When do the 2023 delinquencies on these lots reach the point where the county can hold a tax sale?</li><li><b>Ask: Weber County Commission (public comment, or the Clerk/Auditor)</b> — Was the $3,437,023 Phase 1 improvements guarantee posted, and how much of it has been released?</li><li><b>Ask: Weber County Planning</b> — Why did Phase 2 go from 30 lots to 28 between June and October 2025?</li><li><b>Ask: Wolf Creek Water and Sewer Improvement District (board meeting public comment)</b> — What land did the district receive on Jan. 26, 2026, and what standby fees apply to Osprey Ranch?</li><li><b>Ask: Weber County Treasurer</b> — Will the first-year 2026 taxes on the 26 Phase 2 lots still owned by Osprey Ranch, LLC be paid by Nov. 30, 2026?</li></ul></section>
+
+
+<section>
+  <h2>Behind this piece</h2>
+  <div class="counter">
+    <div><b>150+</b>public records read (parcel, tax, deed, business and meeting records)</div>
+    <div><b>190+</b>values, payments and deeds checked lot by lot</div>
+    <div><b>12</b>records checked but not used</div>
+    <div><b>~45</b>searches run (estimate)</div>
+  </div>
+</section>
+
+<section class="up-connect"><h2>Connecting stories</h2><ul><li><a href="weber-hive-nordic-village-froerer.html">The Trustee Signed His Own Deal (FD 200.02)</a><span>The same Lewis-Dunleavy partnership (Lewis Group Holdings and Edenview, Co.) held a parcel that went into the Nordic Village PID.</span></li><li><a href="https://weber-county-hive.github.io/Unelected-Power/laura-warburton.html">Laura Warburton (UP 200.03)</a><span>Voted on John Lewis's Eden Crossing project and the Osprey Ranch sewer lift station while on the Ogden Valley Planning Commission.</span></li><li><a href="https://weber-county-hive.github.io/Unelected-Power/chris-roybal.html">Chris Roybal (UP 200.01)</a><span>Utah Forward PAC, where Roybal is a member, lists $5,000 each from John Lewis and Shane Dunleavy in 2022.</span></li></ul></section>
+<section>
+  <details class="sources-toggle">
+    <summary>Sources</summary>
+    <div class="body">
+      <ul>
+        <li><a href="https://www.webercountyutah.gov/parcelsearch/index.php" target="_blank" rel="noopener">Weber County Parcel Search</a>: ownership, tax history and delinquent tax pages for parcels 20-193-0001 through 20-193-0034 and 22-048-0012, read Oct. 28, 2026</li>
+        <li>Utah Division of Corporations: Osprey Ranch, LLC (12182822-0160), including filing history; Edenview, Co. (11929897-0142); Osprey Ranch Owners Association, Inc. (13041096-0140)</li>
+        <li><a href="https://www.utah.gov/pmn/sitemap/notice/771211.html" target="_blank" rel="noopener">Ogden Valley Planning Commission agenda, Aug. 2, 2022</a></li>
+        <li><a href="https://www.webercountyutah.gov/planning/documents/uploads/08-23-22%20minutes_Approved.pdf" target="_blank" rel="noopener">Ogden Valley Planning Commission minutes, Aug. 23, 2022</a></li>
+        <li><a href="https://www.webercountyutah.gov/commission/documents/uploads/H4%20%20Osprey.pdf" target="_blank" rel="noopener">Weber County Commission staff report, Osprey Ranch Phase 1, Oct. 25, 2022</a></li>
+        <li><a href="https://webercountyutah.gov/planning/documents/uploads/2023%20OVPC%206-27-%20PACKET.pdf" target="_blank" rel="noopener">Ogden Valley Planning Commission packet with April 25, 2023 minutes</a></li>
+        <li><a href="https://westernhomejournal.com/park-city-utah/osprey-ranch/" target="_blank" rel="noopener">Western Home Journal, Osprey Ranch feature, June 2023</a></li>
+        <li><a href="https://www.utah.gov/pmn/sitemap/notice/879964.html" target="_blank" rel="noopener">Wolf Creek Water and Sewer board, Nov. 16, 2023</a></li>
+        <li><a href="https://newspapers.lib.utah.edu/ark:/87278/s6193brx/31102449" target="_blank" rel="noopener">Ogden Valley News, Dec. 15, 2023 (Lewis letter)</a></li>
+        <li><a href="https://webercountyutah.gov/planning/documents/uploads/2025%20%20AR%20%20June%2026%20Packet_Amended.pdf" target="_blank" rel="noopener">Weber County Administrative Review packet, June 26, 2025</a></li>
+        <li><a href="https://www.utah.gov/pmn/sitemap/notice/1023929.html" target="_blank" rel="noopener">Ogden Valley Planning Commission notice, Sept. 23, 2025 (CUP 2025-11)</a></li>
+        <li><a href="https://www.webercountyutah.gov/planning/documents/uploads/2025%20%20AR%20%20October%208%20Packet.pdf" target="_blank" rel="noopener">Weber County Administrative Review packet, Oct. 8, 2025</a></li>
+        <li><a href="https://www.utah.gov/pmn/sitemap/notice/1071289.html" target="_blank" rel="noopener">Wolf Creek Water and Sewer board, April 9, 2026</a></li>
+        <li>Weber County Parcel Search: Phase 2 parcels 22-435-0001 through 22-435-0040; Legacy Mountain parcels 20-186-0037 and 20-186-0043; 22-040-0044, read Oct. 28, 2026</li>
+        <li>Weber Basin Water Conservancy District, answers to the Hive's questions, Oct. 27, 2026 (Osprey Ranch transfer of 0.65 acre-feet to parcel 20-193-0010)</li>
+        <li><a href="https://www.nolo.com/legal-encyclopedia/what-happens-if-i-don-t-pay-property-taxes-in-utah.html" target="_blank" rel="noopener">Nolo, Utah property tax sales (citing Utah Code 59-2-1343)</a></li>
+        <li><a href="https://nominatim.openstreetmap.org/" target="_blank" rel="noopener">OpenStreetMap</a> for the map location</li>
+      </ul>
+    </div>
+  </details>
+</section>
+
+</div>
+
+<footer class="up-foot"><div class="in"><div id="up-shelf"></div><div class="up-sub">Public records only. We report public records. You decide.</div></div></footer><script src="followthedeed-data.js?v=5"></script><script src="fd-shelf.js?v=5"></script>
+<div class="hb-foot"><img src="hive-bee.png" alt=""><span class="hb-name">Utah Hive Politics</span><span class="hb-sub">from the publisher of The Weber County Hive</span><span class="hb-tag">Independent · Accountability · Journalism</span><p class="hb-line">The Weber County Hive and Utah Hive Politics: the people's publication. We investigate what's best for the public as a whole, not any party or special interest.</p><p class="hb-tips"><a class="hb-btn" href="https://weber-county-hive.github.io/-weber-county-hive-index/tips.html#send">Send a tip</a><a class="hb-btn hb-btn2" href="https://weber-county-hive.github.io/-weber-county-hive-index/tips.html">Tips we checked</a><a class="hb-btn hb-btn2" href="https://weber-county-hive.github.io/-weber-county-hive-index/tips.html#send">See a mistake? Tell us</a></p><p class="hb-small">We never name tipsters. When we correct a page, the fix and its date are shown on the page.</p><p class="hb-small"><a href="https://webercountyhive.substack.com/" style="color:#d4af37">webercountyhive.substack.com</a></p></div>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+  document.querySelectorAll('.who-card[data-flip]').forEach(function(card){
+    card.addEventListener('click', function(){ card.classList.toggle('flipped'); });
+  });
+  if (window.L) {
+    var map = L.map('map', {scrollWheelZoom:false}).setView([41.292, -111.838], 13);
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {maxZoom:17, attribution:'&copy; OpenStreetMap contributors'}).addTo(map);
+    L.circle([41.292, -111.838], {radius:1300, color:'#E8A94F', weight:2, fillOpacity:0.08}).addTo(map).bindPopup('Osprey Ranch (approximate area)');
+    [[41.2971875,-111.8470114,'Osprey Ranch Drive'],[41.2936291,-111.8405787,'Shamy Way'],[41.2893227,-111.8300615,'Hardy Trail']].forEach(function(p){
+      L.circleMarker([p[0],p[1]], {radius:7, color:'#fff', weight:2, fillColor:'#4FC3E8', fillOpacity:1}).addTo(map).bindPopup(p[2]);
+    });
+  }
+</script>
+<script data-goatcounter="https://weberhive.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>
