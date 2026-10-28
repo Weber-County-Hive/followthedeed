@@ -120,95 +120,88 @@
     border-top:1px solid var(--cyan-dim);
   }
 </style>
+<link rel="stylesheet" href="fd-parts.css?v=5">
+<style>
+.shelf{margin:28px 0}.shelf-h{display:flex;justify-content:space-between;align-items:baseline;border-bottom:2px solid var(--cyan);padding-bottom:6px;margin-bottom:14px}
+.shelf-h h2{margin:0;font-size:1.3rem}.shelf-h span{font-family:var(--mono);color:#E8A94F;font-size:.85rem}
+.case-cn{font-family:var(--mono);font-size:13px;color:#E8A94F;font-weight:600}
+.case-links{margin-top:12px;display:flex;gap:10px;flex-wrap:wrap}.case-links a{font-family:var(--mono);font-size:13px;border:1px solid var(--cyan-dim);padding:6px 10px;text-decoration:none;border-radius:4px}
+.case-card{cursor:default}.case-title a{color:var(--paper);text-decoration:none}.case-title a:hover{color:var(--cyan)}
+.case-summary{font-size:16px}
+#searchBox{font-size:17px}
+.how{background:var(--panel);border-left:4px solid #E8A94F;padding:14px 18px;margin:22px 0 0;font-size:16px;color:var(--paper-dim)}
+</style>
 </head>
 <body>
+<div class="hb-bar"><a href="https://webercountyhive.substack.com/" target="_blank" rel="noopener"><img src="uhp-badge.png" alt="Utah Hive Politics logo"><span><span class="hb-name">Utah Hive Politics</span><span class="hb-sub">from the publisher of The Weber County Hive</span><span class="hb-line-top">The people's publication. We investigate what's best for the public as a whole, not any party or special interest.</span></span></a></div>
+<div class="up-top"><div class="in"><span><a href="https://weber-county-hive.github.io/-weber-county-hive-index/">Hive library ↗</a></span></div></div>
 
 <header class="masthead">
   <div class="blueprint-bg"></div>
   <div class="wrap">
-    <div class="repo-tag">FOLLOW THE DEED</div>
+    <div class="repo-tag">FOLLOW THE DEED · UTAH HIVE POLITICS</div>
     <h1 class="title">Who's behind the deed, and what did they get</h1>
     <p class="dek">Person- and entity-centered case files tracing LLC ownership chains behind Utah land deals — public land, county land, and everything in between.</p>
+    <div class="pub-date">Updated Oct. 28, 2026 · 6 case files</div>
   </div>
 </header>
 
 <div class="wrap">
   <div class="controls">
-    <input type="text" id="searchBox" placeholder="Search titles, summaries, tags…">
+    <input type="search" id="searchBox" placeholder="Search by name, place, topic or call number (e.g. FD 200.03)" aria-label="Search the case files">
     <select id="countyFilter">
       <option value="all">All counties</option>
     </select>
     <span id="resultCount"></span>
   </div>
 
-  <div class="case-grid" id="caseGrid"></div>
+  <div class="how"><b style="color:#EDF2F7">How to use this shelf:</b> every case has a <b style="color:#E8A94F">call number</b> (FD = Follow the Deed; 200 = Weber County, 400 = Wasatch, 500 = Summit, 600 = Box Elder) and a short plain-words version. The call number is also at the bottom of every page, with buttons to the next and previous case.</div>
+  <div id="caseGrid"></div>
 </div>
 
-<footer>
-  <div class="wrap">
-    <p>The Weber County Hive — accountability journalism for Weber County, Utah. We report the filings. You decide what they mean.</p>
-  </div>
-</footer>
+<footer class="up-foot"><div class="in"><div class="up-sub">Public records only. We report public records. You decide. Every Hive repo: <a href="https://weber-county-hive.github.io/-weber-county-hive-index/">Hive library</a>.</div></div></footer>
+<div class="hb-foot"><img src="hive-bee.png" alt=""><span class="hb-name">Utah Hive Politics</span><span class="hb-sub">from the publisher of The Weber County Hive</span><span class="hb-tag">Independent · Accountability · Journalism</span><p class="hb-line">The Weber County Hive and Utah Hive Politics: the people's publication. We investigate what's best for the public as a whole, not any party or special interest.</p><p class="hb-tips"><a class="hb-btn" href="https://weber-county-hive.github.io/-weber-county-hive-index/tips.html#send">Send a tip</a><a class="hb-btn hb-btn2" href="https://weber-county-hive.github.io/-weber-county-hive-index/tips.html">Tips we checked</a><a class="hb-btn hb-btn2" href="https://weber-county-hive.github.io/-weber-county-hive-index/tips.html#send">See a mistake? Tell us</a></p><p class="hb-small">We never name tipsters. When we correct a page, the fix and its date are shown on the page.</p><p class="hb-small"><a href="https://webercountyhive.substack.com/" style="color:#d4af37">webercountyhive.substack.com</a></p></div>
 
-<script src="followthedeed-data.js"></script>
+
+<script src="followthedeed-data.js?v=5"></script>
 <script>
   (function(){
+    var SHELVES = { "100":"Statewide", "200":"Weber County", "300":"Davis County", "400":"Wasatch County", "500":"Summit County", "600":"Box Elder County" };
     var grid = document.getElementById('caseGrid');
     var search = document.getElementById('searchBox');
     var countySel = document.getElementById('countyFilter');
     var count = document.getElementById('resultCount');
-
-    // Populate county dropdown from data
+    var esc = function(t){ return String(t).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];}); };
     var counties = Array.from(new Set(FOLLOWTHEDEED_CASES.map(function(c){ return c.county; }))).sort();
-    counties.forEach(function(c){
-      var opt = document.createElement('option');
-      opt.value = c; opt.textContent = c + ' County';
-      countySel.appendChild(opt);
-    });
-
-    function fmtDate(iso){
-      var d = new Date(iso + 'T00:00:00');
-      return d.toLocaleDateString('en-US', { year:'numeric', month:'short', day:'numeric' });
-    }
-
+    counties.forEach(function(c){ var o=document.createElement('option'); o.value=c; o.textContent=c+' County'; countySel.appendChild(o); });
+    function fmtDate(iso){ return new Date(iso+'T00:00:00').toLocaleDateString('en-US',{year:'numeric',month:'short',day:'numeric'}); }
+    var q0 = new URLSearchParams(location.search).get('q'); if(q0){ search.value = q0; }
     function render(){
-      var q = search.value.trim().toLowerCase();
-      var countyVal = countySel.value;
-      var sorted = FOLLOWTHEDEED_CASES.slice().sort(function(a,b){ return b.dateAdded.localeCompare(a.dateAdded); });
-      var matches = sorted.filter(function(c){
-        var countyOk = (countyVal === 'all') || (c.county === countyVal);
-        if(!countyOk) return false;
+      var q = search.value.trim().toLowerCase().replace(/\s+/g,' ');
+      var cv = countySel.value;
+      var list = FOLLOWTHEDEED_CASES.slice().sort(function(a,b){ return a.callNumber.localeCompare(b.callNumber,undefined,{numeric:true}); });
+      var m = list.filter(function(c){
+        if(cv!=='all' && c.county!==cv) return false;
         if(!q) return true;
-        var haystack = (c.title + ' ' + c.summary + ' ' + c.tags.join(' ') + ' ' + c.county).toLowerCase();
-        return haystack.indexOf(q) !== -1;
+        var hay=(c.callNumber+' '+c.callNumber.replace(' ','')+' case '+c.caseNumber+' '+c.title+' '+c.summary+' '+c.tags.join(' ')+' '+c.county).toLowerCase();
+        return q.split(' ').every(function(w){ return hay.indexOf(w)!==-1; });
       });
-
-      count.textContent = matches.length + ' of ' + FOLLOWTHEDEED_CASES.length + ' cases';
-      grid.innerHTML = '';
-      if(matches.length === 0){
-        grid.innerHTML = '<div class="no-results">No cases match that search.</div>';
-        return;
-      }
-      matches.forEach(function(c){
-        var a = document.createElement('a');
-        a.className = 'case-card';
-        a.href = c.file;
-        var tagsHtml = c.tags.map(function(t){ return '<span class="tag-pill">' + t + '</span>'; }).join('');
-        a.innerHTML =
-          '<div class="case-top">' +
-            '<span class="case-num">CASE ' + c.caseNumber + '</span>' +
-            '<span class="case-date">Added ' + fmtDate(c.dateAdded) + '</span>' +
-          '</div>' +
-          '<div class="case-title">' + c.title + '</div>' +
-          '<p class="case-summary">' + c.summary + '</p>' +
-          '<div class="case-meta">' +
-            '<span class="county-pill">' + c.county + ' County</span>' +
-            tagsHtml +
-          '</div>';
-        grid.appendChild(a);
+      count.textContent = m.length + ' of ' + FOLLOWTHEDEED_CASES.length + ' cases';
+      if(!m.length){ grid.innerHTML='<div class="no-results">No cases match that search.</div>'; return; }
+      var out='';
+      Object.keys(SHELVES).forEach(function(sh){
+        var items=m.filter(function(c){return c.shelf===sh;}); if(!items.length) return;
+        out+='<div class="shelf"><div class="shelf-h"><h2>'+SHELVES[sh]+'</h2><span>Shelf FD '+sh+'</span></div><div class="case-grid" style="padding:0">';
+        items.forEach(function(c){
+          out+='<div class="case-card"><div class="case-top"><span class="case-cn">'+c.callNumber+'</span><span class="case-num">CASE '+c.caseNumber+'</span><span class="case-date">Added '+fmtDate(c.dateAdded)+(c.dateUpdated?' · Updated '+fmtDate(c.dateUpdated):'')+'</span></div>'+
+            '<div class="case-title"><a href="'+c.file+'">'+esc(c.title)+'</a></div><p class="case-summary">'+esc(c.summary)+'</p>'+
+            '<div class="case-meta"><span class="county-pill">'+c.county+' County</span>'+c.tags.map(function(t){return '<span class="tag-pill">'+esc(t)+'</span>';}).join('')+'</div>'+
+            '<div class="case-links"><a href="'+c.file+'">Full case file →</a>'+(c.plain?'<a href="'+c.plain+'">Plain words →</a>':'')+'</div></div>';
+        });
+        out+='</div></div>';
       });
+      grid.innerHTML=out;
     }
-
     search.addEventListener('input', render);
     countySel.addEventListener('change', render);
     render();
