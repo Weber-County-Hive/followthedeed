@@ -4,13 +4,15 @@
    and the whole shelf list. Add a page to followthedeed-data.js and every
    page's list and next/previous buttons update on their own. */
 (function () {
-  var SHELF_NAMES = { "100": "Statewide", "200": "Weber County", "300": "Davis County", "400": "Wasatch County", "500": "Summit County", "600": "Box Elder County" };
+  var SHELF_NAMES = { "000": "Start here", "100": "Statewide", "200": "Weber County", "300": "Davis County", "400": "Wasatch County", "500": "Summit County", "600": "Box Elder County" };
   var box = document.getElementById("up-shelf");
   if (!box || typeof FOLLOWTHEDEED_CASES === "undefined") return;
   var list = FOLLOWTHEDEED_CASES.map(function(c){return {slug:c.file.replace(/\.html$/,""),callNumber:c.callNumber,shelf:c.shelf,name:c.title};}).sort(function (a, b) {
     return a.callNumber.localeCompare(b.callNumber, undefined, { numeric: true });
   });
-  var file = (location.pathname.split("/").pop() || "").replace(/\.html$/, "");
+  /* The shelf's front page is FD 000.01 (added Nov. 2, 2026) */
+  list.unshift({ slug: "index", callNumber: "FD 000.01", shelf: "000", name: "Follow the Deed: every case" });
+  var file = (location.pathname.split("/").pop() || "index").replace(/\.html$/, "");
   var i = list.findIndex(function (p) { return p.slug === file; });
   if (i < 0 && /-plain$/.test(file)) { var base = file.replace(/-plain$/, ""); i = list.findIndex(function (p) { return p.slug === base; }); }
   var esc = function (s) { return String(s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); };
@@ -26,7 +28,7 @@
   Object.keys(SHELF_NAMES).forEach(function (no) {
     var items = list.filter(function (p) { return p.shelf === no; });
     if (!items.length) return;
-    rows += '<li class="up-shelf-head">UP ' + no + " · " + SHELF_NAMES[no] + "</li>";
+    rows += '<li class="up-shelf-head">FD ' + no + " · " + SHELF_NAMES[no] + "</li>";
     items.forEach(function (p) {
       rows += '<li' + (me && p.slug === me.slug ? ' class="up-here"' : "") + '><a href="' + p.slug + '.html"><span class="up-cn">' +
         p.callNumber + "</span> " + esc(p.name) + (me && p.slug === me.slug ? " <em>(you are here)</em>" : "") + "</a></li>";
@@ -42,7 +44,7 @@
       '<button type="submit">Search</button></div></form>' +
     '<div class="up-search">Opens the <a href="index.html">Follow the Deed shelf</a> with your search filled in. Every Hive repo: <a href="https://weber-county-hive.github.io/-weber-county-hive-index/">Hive library</a>.</div>';
   /* Page tools bar under the Where/Who box: call number, jump menu, share */
-  var ww = document.querySelector(".up-ww");
+  var ww = document.querySelector(".up-ww") || document.querySelector("header.masthead");
   if (ww && me) {
     var heads = [].slice.call(document.querySelectorAll("h2")).filter(function (h) {
       return !h.closest("footer") && !h.closest(".hb-foot") && h.offsetParent !== null && h.textContent.trim();
