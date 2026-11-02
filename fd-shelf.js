@@ -25,7 +25,7 @@
       '<b>' + p.callNumber + "</b> " + esc(p.name) + (dir === "next" ? " →" : "") + "</a>";
   };
   var rows = "";
-  Object.keys(SHELF_NAMES).forEach(function (no) {
+  Object.keys(SHELF_NAMES).sort().forEach(function (no) {
     var items = list.filter(function (p) { return p.shelf === no; });
     if (!items.length) return;
     rows += '<li class="up-shelf-head">FD ' + no + " · " + SHELF_NAMES[no] + "</li>";
